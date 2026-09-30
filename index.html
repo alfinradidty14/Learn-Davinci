@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DaVinci Resolve Academy — Modul Per Page</title>
+  <title>ResolveHub — Mastering DaVinci Resolve</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfe; color: #0f172a; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fbfcfd; color: #0f172a; }
     .thumbnail-img { aspect-ratio: 16/9; object-fit: cover; }
+    .ui-showcase-img { aspect-ratio: 16/10; object-fit: cover; }
     ::-webkit-scrollbar { width: 7px; }
     ::-webkit-scrollbar-track { background: #f8fafc; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -19,55 +20,150 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Navbar -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-extrabold text-sm shadow-sm">
+  <!-- Floating Capsule Navbar (Inspired by Haven Reference) -->
+  <div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="pointer-events-auto bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-full px-6 py-2.5 shadow-lg flex items-center justify-between gap-6 sm:gap-10 max-w-4xl w-full">
+      <a href="#" class="flex items-center space-x-2">
+        <div class="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center font-extrabold text-xs shadow-sm">
           DR
         </div>
-        <div>
-          <span class="font-extrabold text-base tracking-tight text-slate-900">Resolve Academy</span>
-          <span class="text-[10px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full ml-1 border border-slate-200">Per-Page Curriculum</span>
-        </div>
+        <span class="font-bold text-sm tracking-tight text-slate-900">ResolveHub</span>
+      </a>
+
+      <div class="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-600">
+        <a href="#showcase" class="hover:text-slate-900 transition">Workspace UI</a>
+        <a href="#kurikulum" class="hover:text-slate-900 transition">Kurikulum Page</a>
+        <a href="https://www.blackmagicdesign.com/products/davinciresolve/training" target="_blank" class="hover:text-slate-900 transition">Sertifikasi Resmi</a>
       </div>
 
-      <div class="flex items-center space-x-4">
-        <!-- Progress Tracker Bar -->
-        <div class="flex items-center space-x-2 bg-slate-50 border border-slate-200/80 px-4 py-1.5 rounded-full text-xs font-semibold text-slate-700">
+      <div class="flex items-center space-x-3">
+        <div class="hidden sm:flex items-center space-x-1.5 text-[11px] font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
           <i class="fa-solid fa-circle-check text-emerald-500"></i>
-          <span>Progress Total:</span>
-          <span id="nav-progress-text" class="text-slate-900 font-bold">0%</span>
+          <span id="nav-progress-text">0%</span>
         </div>
+        <a href="#kurikulum" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition shadow-sm">
+          Mulai Belajar
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero Section (Clean Minimalist Aesthetics from Reference) -->
+  <section class="relative min-h-[90vh] flex flex-col justify-between pt-32 pb-12 px-6 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-100">
+    
+    <!-- Background Ambient Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-indigo-100/50 via-rose-100/30 to-amber-100/40 blur-3xl -z-10 rounded-full pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center space-y-6 my-auto">
+      
+      <!-- Pill Badge -->
+      <div class="inline-flex items-center space-x-2 bg-white border border-slate-200/90 text-slate-700 px-4 py-1.5 rounded-full text-xs font-medium shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>150+ Tutorial Terkurasi Tingkat Lanjut</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08]">
+        Master every frame.
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+        Pelajari alur kerja pascaproduksi DaVinci Resolve mulai dari Editorial, Color Science (ACES), Fusion VFX, hingga Fairlight Audio Mastering.
+      </p>
+
+      <!-- Pill Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
+        <a href="#kurikulum" class="bg-white border border-slate-300 hover:border-slate-400 text-slate-900 font-semibold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-sm flex items-center space-x-2">
+          <span>Jelajahi Kurikulum</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <a href="#showcase" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-sm">
+          Lihat Workspace UI
+        </a>
       </div>
     </div>
-  </header>
 
-  <!-- Hero Section (Clean White SaaS Style) -->
-  <section class="pt-12 pb-8 px-6 bg-gradient-to-b from-white via-slate-50/40 to-white border-b border-slate-100">
-    <div class="max-w-4xl mx-auto text-center space-y-4">
-      <div class="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-medium">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span>Struktur Modular DaVinci Resolve Pipeline</span>
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
-        Kuasai DaVinci Resolve <span class="text-indigo-600">Page demi Page</span>.
-      </h1>
-      <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-        Pilih workspace page di bawah ini untuk mempelajari modul dan video tutorial spesifik. Anda dapat melacak materi yang telah diselesaikan.
-      </p>
+    <!-- Scroll Down Indicator -->
+    <div class="text-center pt-8">
+      <a href="#showcase" class="inline-flex items-center space-x-1.5 text-[11px] font-bold tracking-widest uppercase text-slate-400 hover:text-slate-700 transition">
+        <span>SCROLL</span>
+        <i class="fa-solid fa-arrow-down text-[10px]"></i>
+      </a>
     </div>
   </section>
 
-  <!-- Main Content Area -->
-  <main class="max-w-7xl mx-auto px-6 py-8 w-full flex-1">
-    
-    <!-- DaVinci Resolve Page Navigation Bar (Mirrors the Bottom Toolbar) -->
-    <div class="mb-8">
-      <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center sm:text-left">Pilih Halaman / Page Kerja:</p>
-      <div class="flex items-center justify-start sm:justify-center overflow-x-auto pb-3 gap-2" id="page-nav-tabs">
-        <!-- Tab tombol digenerate oleh JS -->
+  <!-- Showcase DaVinci Resolve UI Section -->
+  <section id="showcase" class="py-20 px-6 max-w-7xl mx-auto w-full">
+    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">Workspace Tour</span>
+      <h2 class="text-3xl font-extrabold text-slate-900">Arsitektur Halaman Kerja DaVinci Resolve</h2>
+      <p class="text-sm text-slate-500">Masing-masing page dirancang untuk menangani satu disiplin pascaproduksi dengan presisi tingkat film bioskop.</p>
+    </div>
+
+    <!-- Interactive UI Switcher Tabs -->
+    <div class="flex items-center justify-center flex-wrap gap-2 mb-8">
+      <button onclick="switchUIShowcase('edit')" class="ui-tab-btn active px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-white transition">
+        Edit Page
+      </button>
+      <button onclick="switchUIShowcase('color')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
+        Color Page
+      </button>
+      <button onclick="switchUIShowcase('fusion')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
+        Fusion Page
+      </button>
+      <button onclick="switchUIShowcase('fairlight')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
+        Fairlight Page
+      </button>
+      <button onclick="switchUIShowcase('deliver')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
+        Deliver Page
+      </button>
+    </div>
+
+    <!-- UI Preview Showcase Card -->
+    <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- UI Image Frame -->
+        <div class="lg:col-span-8 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 shadow-md">
+          <img id="showcase-img" src="https://images.blackmagicdesign.com/images/products/davinciresolve/overview/hollywood/hollywood-md.jpg" alt="DaVinci Resolve UI" class="ui-showcase-img w-full">
+        </div>
+        <!-- UI Description Info -->
+        <div class="lg:col-span-4 space-y-4">
+          <span id="showcase-tag" class="text-xs font-extrabold uppercase tracking-wider text-emerald-600">Editorial Timeline</span>
+          <h3 id="showcase-title" class="text-2xl font-extrabold text-slate-900">Edit Page: Jantung Perakitan Cerita</h3>
+          <p id="showcase-desc" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Dilengkapi automatic trimming cursor, multi-track timeline, dynamic keyboard editing, serta integrasi proxy otomatis untuk kelancaran editing footage 4K/8K.
+          </p>
+          <div class="pt-2">
+            <button id="showcase-jump-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition">
+              Buka Video Kelas Ini <i class="fa-solid fa-arrow-down ml-1.5 text-[10px]"></i>
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Interactive Curriculum Section -->
+  <section id="kurikulum" class="py-16 px-6 max-w-7xl mx-auto w-full border-t border-slate-100">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Kelas Lengkap</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Daftar Modul Berdasarkan Page</h2>
+        <p class="text-sm text-slate-500 mt-1">Pilih tab di bawah untuk beralih ruang kerja dan tonton langsung videonya.</p>
+      </div>
+      
+      <!-- Search Input -->
+      <div class="relative w-full md:w-72">
+        <i class="fa-solid fa-search absolute left-3.5 top-3 text-xs text-slate-400"></i>
+        <input type="text" id="page-search-input" placeholder="Cari materi..." 
+               class="w-full bg-white border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400">
+      </div>
+    </div>
+
+    <!-- Page Navigation Pills -->
+    <div class="flex items-center justify-start overflow-x-auto pb-3 gap-2 mb-8" id="page-nav-tabs">
+      <!-- Digenerate oleh JS -->
     </div>
 
     <!-- Active Video Player Area (Muncul saat video diklik) -->
@@ -97,68 +193,116 @@
       </div>
     </div>
 
-    <!-- Page Details & Video List -->
+    <!-- Video Cards Container -->
     <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-8">
-      
-      <!-- Current Page Header -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-100 gap-4">
-        <div>
-          <div class="flex items-center space-x-2.5">
-            <div id="page-badge-icon" class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg">
-              <i class="fa-solid fa-book"></i>
-            </div>
-            <div>
-              <h2 id="page-title" class="text-2xl font-extrabold text-slate-900">Basic Knowledge</h2>
-              <p id="page-desc" class="text-xs sm:text-sm text-slate-500 mt-0.5">Pondasi dasar, setting project, dan optimasi hardware.</p>
-            </div>
-          </div>
+      <div class="flex items-center space-x-3 pb-6 border-b border-slate-100">
+        <div id="page-badge-icon" class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg">
+          <i class="fa-solid fa-graduation-cap"></i>
         </div>
-
-        <!-- Search Bar dalam Page -->
-        <div class="relative w-full md:w-72">
-          <i class="fa-solid fa-search absolute left-3.5 top-3 text-xs text-slate-400"></i>
-          <input type="text" id="page-search-input" placeholder="Cari dalam page ini..." 
-                 class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400">
+        <div>
+          <h3 id="page-title" class="text-2xl font-extrabold text-slate-900">Basic Knowledge</h3>
+          <p id="page-desc" class="text-xs sm:text-sm text-slate-500 mt-0.5">Pondasi dasar, setting project, dan optimasi hardware.</p>
         </div>
       </div>
 
-      <!-- Topics and Video Cards Grid -->
       <div id="topics-container" class="space-y-8">
-        <!-- Render topics & video cards via JS -->
+        <!-- Render materi & video cards via JS -->
       </div>
     </div>
-
-  </main>
+  </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-100 bg-white py-8 px-6 text-center text-xs text-slate-400">
-    <p>Resolve Academy — Modul Pembelajaran DaVinci Resolve Indonesia. Hak cipta materi milik kreator masing-masing di YouTube.</p>
+  <footer class="border-t border-slate-100 bg-white py-10 px-6 text-center text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto space-y-2">
+      <p class="font-medium text-slate-600">ResolveHub — Kurikulum Mandiri DaVinci Resolve Indonesia.</p>
+      <p>Hak cipta materi video YouTube adalah milik para kreator resmi masing-masing.</p>
+    </div>
   </footer>
 
   <!-- DATA & JAVASCRIPT ENGINE -->
   <script>
-    /*
-      =========================================================
-      STRUKTUR DATA PER-PAGE (MUDAH DITAMBAHKAN KAPAN SAJA)
-      =========================================================
-      Untuk menambah video baru, cukup tambahkan objek baru di dalam
-      array "videos": { id: "YOUTUBE_ID", title: "Judul Video" }
-    */
+    // Data Showcase UI Antarmuka DaVinci Resolve
+    const uiShowcaseData = {
+      edit: {
+        tag: "Editorial & Trimming",
+        title: "Edit Page: Jantung Perakitan Cerita",
+        desc: "Halaman kerja pemotongan presisi dengan automatic trimming cursor, ripple/roll edit, multi-track timeline, dan sync audio otomatis.",
+        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/hollywood/hollywood-md.jpg",
+        pageIndex: 3
+      },
+      color: {
+        tag: "Color Science & ACES",
+        title: "Color Page: Standar Hollywood Color Grading",
+        desc: "Dilengkapi 32-bit float color processing, DaVinci Wide Gamut, ACES pipeline, Waveform Scopes, HDR Wheels, dan Fixed Node Tree.",
+        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/color/hero/hero-still.jpg",
+        pageIndex: 5
+      },
+      fusion: {
+        tag: "Visual Effects & Motion Graphics",
+        title: "Fusion Page: Node-Based Compositing",
+        desc: "Ruang VFX terintegrasi tanpa perlu round-trip ke software lain. Dilengkapi Planar Tracker, Delta Keyer, 3D Camera Tracking, dan Spline Editor.",
+        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fusion/fusion-md.jpg",
+        pageIndex: 4
+      },
+      fairlight: {
+        tag: "Audio Post-Production",
+        title: "Fairlight Page: Studio Mixing & Mastering Audio",
+        desc: "Digital Audio Workstation (DAW) profesional terintegrasi dengan ratusan track, AI Voice Isolation, EQ, Dinamika, dan Submix Bus Routing (DME).",
+        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fairlight/fairlight-md.jpg",
+        pageIndex: 6
+      },
+      deliver: {
+        tag: "Mastering & Export",
+        title: "Deliver Page: Ekspor Multi-Format Berstandar Siar",
+        desc: "Output ProRes, Avid DNxHR, H.265, DCI DCP Festival Bioskop, serta perbaikan Gamma Shift QuickTime dengan Rec.709-A tagging.",
+        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/deliver/deliver-md.jpg",
+        pageIndex: 7
+      }
+    };
+
+    function switchUIShowcase(key) {
+      const data = uiShowcaseData[key];
+      if (!data) return;
+
+      document.querySelectorAll('.ui-tab-btn').forEach(btn => {
+        btn.className = "ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition";
+      });
+      event.target.className = "ui-tab-btn active px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-white transition";
+
+      document.getElementById('showcase-tag').textContent = data.tag;
+      document.getElementById('showcase-title').textContent = data.title;
+      document.getElementById('showcase-desc').textContent = data.desc;
+      document.getElementById('showcase-img').src = data.img;
+      document.getElementById('showcase-jump-btn').onclick = () => {
+        selectPage(data.pageIndex);
+        document.getElementById('kurikulum').scrollIntoView({ behavior: 'smooth' });
+      };
+    }
+
+    // Seluruh Data Kurikulum Per-Page
     const resolvePages = [
       {
         id: "basic",
         name: "0. Basic Knowledge",
         icon: "fa-solid fa-graduation-cap",
-        desc: "Pondasi esensial: arsitektur sistem, database, project settings, cache, dan rekomendasi channel belajar.",
+        desc: "Pondasi esensial: pemahaman antarmuka, arsitektur database, pengaturan timeline, dan optimasi hardware.",
         topics: [
           {
-            name: "Fundamental & Resource Belajar",
+            name: "Pengenalan & Mindset Belajar",
             videos: [
+              { id: "MCDVcQIA3UM", title: "Introduction to DaVinci Resolve (Full Course) — Casey Faris" },
+              { id: "3mo_vgKfYCU", title: "Learn DaVinci Resolve in JUST 10 MINUTES! — Casey Faris" },
               { id: "MTYjCp-hxjQ", title: "Panduan Memulai DaVinci Resolve dari Nol" },
-              { id: "CyexunsDzwA", title: "Setup Project & Best Preferences" },
-              { id: "hUM88jlUTgo", title: "Manajemen Database & Library Project" },
-              { id: "WmuO8AkWS5A", title: "Optimasi Cache & Playback Lancar" },
-              { id: "kMGkmK0SG34", title: "Keyboard Shortcuts Standar Editor Cepat" }
+              { id: "CyexunsDzwA", title: "Setup Project & Best Preferences" }
+            ]
+          },
+          {
+            name: "Database, Cache & Shortcuts",
+            videos: [
+              { id: "hUM88jlUTgo", title: "Manajemen Database & Library Project (JayAreTV)" },
+              { id: "WmuO8AkWS5A", title: "Optimasi Cache SSD & Playback Lancar" },
+              { id: "kMGkmK0SG34", title: "Keyboard Shortcuts Standar Editor Cepat" },
+              { id: "4-G3AMHFeb4", title: "Optimized Media vs Render Cache" }
             ]
           }
         ]
@@ -167,15 +311,21 @@
         id: "media",
         name: "1. Media Page",
         icon: "fa-regular fa-folder-open",
-        desc: "Ingest media, verifikasi data checksum, sinkronisasi audio otomatis, dan metadata tagging.",
+        desc: "Ingest media aman, Clone Tool MD5 checksum, sinkronisasi audio otomatis, Smart Bins, dan proxy generator.",
         topics: [
           {
-            name: "Ingest & Media Management",
+            name: "Ingest & Manajemen File",
             videos: [
-              { id: "WP8zydfkofc", title: "Struktur Folder & Smart Bins Efisien" },
+              { id: "Dv4j5-gHxkg", title: "The Media Page | DaVinci Resolve 101" },
+              { id: "FUNfPUZxE9E", title: "Master the Media Page: THIS IS CRUCIAL (Clone Tool)" },
+              { id: "WP8zydfkofc", title: "Struktur Folder & Smart Bins Efisien" }
+            ]
+          },
+          {
+            name: "Sinkronisasi Audio & Proxy",
+            videos: [
               { id: "6ciMx3AV2JQ", title: "Sinkronisasi Audio Kamera & External Recorder" },
-              { id: "i_88edxhJvc", title: "Pembuatan Proxy Otomatis untuk Editing Ringan" },
-              { id: "4-G3AMHFeb4", title: "Optimized Media vs Render Cache" }
+              { id: "i_88edxhJvc", title: "DaVinci Proxy Generator Workflow (Film Riot)" }
             ]
           }
         ]
@@ -184,15 +334,24 @@
         id: "cut",
         name: "2. Cut Page",
         icon: "fa-solid fa-forward",
-        desc: "Fast rough-cut, source tape workflow, dual timeline, dan perakitan footage kecepatan tinggi.",
+        desc: "Perakitan adegan cepat, Source Tape, dual timeline, perakitan B-Roll, dan integrasi Speed Editor.",
         topics: [
           {
-            name: "Fast Assembly & B-Roll",
+            name: "Filosofi Cut Page & Source Tape",
             videos: [
-              { id: "9jRZIqPQHm8", title: "Source Tape & Fast Selection" },
-              { id: "ZePNEgZhf48", title: "Speed Ramps & Retime Curves di Cut Page" },
+              { id: "EYHKVb2qFI4", title: "STOP Struggling with CUT PAGE! — Darren Mostyn" },
+              { id: "C-8C-JHkjAY", title: "How to Cut Video with Source Tape — Casey Faris" },
+              { id: "26OfvGXGezw", title: "Speed Editor In-Depth Tutorial — Darren Mostyn" }
+            ]
+          },
+          {
+            name: "Fast Assembly & Retiming",
+            videos: [
+              { id: "Q1tCEvqakUo", title: "Fastest Editing Workflow in DaVinci Resolve" },
+              { id: "9jRZIqPQHm8", title: "Dynamic B-Roll Sequencing di Cut Page" },
+              { id: "ZePNEgZhf48", title: "Speed Ramps & Retime Curves" },
               { id: "Au1IB_sHlWE", title: "B-Roll Cutaways & Quick Audio Sync" },
-              { id: "wZ27FgwcnSw", title: "Cinematic B-Roll Assembly Cepat" }
+              { id: "wZ27FgwcnSw", title: "Cinematic B-Roll Layering" }
             ]
           }
         ]
@@ -201,15 +360,15 @@
         id: "edit",
         name: "3. Edit Page",
         icon: "fa-solid fa-sliders",
-        desc: "Timeline editorial presisi, pacing penceritaan, dynamic trimming, dan penyusunan adegan film.",
+        desc: "Timeline editorial presisi, teknik ripple/roll/slip/slide, pacing naratif, kesinambungan dialog, dan film editing.",
         topics: [
           {
-            name: "Timeline & Trimming",
+            name: "Timeline & Precision Trimming",
             videos: [
-              { id: "mjiT0g3mYgw", title: "Timeline Essentials & Precision Trimming" },
+              { id: "mjiT0g3mYgw", title: "Timeline Essentials & Setup" },
               { id: "AA2agmf6jTo", title: "Ripple, Roll, Slip, dan Slide Edit" },
-              { id: "ve38J2Z3EIQ", title: "Multi-Track Management & Compound Clips" },
-              { id: "ns4HtiFvUOc", title: "Advanced Timeline Keyboard Trimming" }
+              { id: "ve38J2Z3EIQ", title: "Fast Trimming & Keyboard Shortcuts" },
+              { id: "ns4HtiFvUOc", title: "Advanced Timeline Track Management" }
             ]
           },
           {
@@ -222,12 +381,12 @@
             ]
           },
           {
-            name: "Film Editing",
+            name: "Film Editing & Dialog",
             videos: [
-              { id: "F5euSYD0nMY", title: "Dari Assembly Cut ke Final Cut" },
-              { id: "yaqq9aB1csw", title: "Kontinuitas Dialog Antar Tokoh" },
+              { id: "yaqq9aB1csw", title: "Hollywood Dialogue Continuity (J & L Cuts)" },
+              { id: "F5euSYD0nMY", title: "Assembly Cut ke Final Polish" },
               { id: "UDgKrsb1X7A", title: "Ritme Emosional Adegan Dramatis" },
-              { id: "zsy9HSMYBgg", title: "Standar Workflow Film Bioskop" }
+              { id: "zsy9HSMYBgg", title: "Feature Film Pipeline Workflow" }
             ]
           }
         ]
@@ -236,33 +395,35 @@
         id: "fusion",
         name: "4. Fusion Page",
         icon: "fa-solid fa-wand-magic-sparkles",
-        desc: "Node-based compositing, motion graphics, 2D/3D tracking, rotoscoping, dan visual effects.",
+        desc: "Node-based compositing, masking, 2D/3D tracking, Delta Keyer, AI Magic Mask, dan ruang kerja 3 dimensi.",
         topics: [
           {
             name: "Dasar Node & Masking",
             videos: [
-              { id: "gaFT_Kj2yeQ", title: "Pemahaman Alur Logika Node Fusion" },
-              { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, Effect Mask" },
+              { id: "gaFT_Kj2yeQ", title: "Fusion Interface & Node Logic" },
+              { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, Mask" },
               { id: "PoinMs_YceQ", title: "Vector Polygon & Masking" },
               { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor Halus" }
             ]
           },
           {
-            name: "Tracking, Roto & VFX",
+            name: "Tracking, Keying & AI",
             videos: [
               { id: "F-Pr1GGmyVU", title: "Point Tracker & Stabilisasi" },
-              { id: "dp_qeQY8Zps", title: "Planar Tracking & Corner Pinning (Ganti Layar HP)" },
-              { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Cepat" },
-              { id: "kZC08b5mG58", title: "Delta Keyer: Ekstraksi Green Screen Bersih" },
-              { id: "f6bo9hoDWpc", title: "VFX Dasar: Compositing Ledakan & Debu" }
+              { id: "dp_qeQY8Zps", title: "Planar Tracking & Corner Pinning (Ganti Layar)" },
+              { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Efisien" },
+              { id: "kZC08b5mG58", title: "Delta Keyer: Hollywood Green Screen" },
+              { id: "DmQKedj3r2E", title: "AI Magic Mask Tutorial — Darren Mostyn" },
+              { id: "f6bo9hoDWpc", title: "VFX Dasar: Compositing Elemen" }
             ]
           },
           {
-            name: "3D Workspace Fusion",
+            name: "3D Workspace & Camera Tracker",
             videos: [
+              { id: "6yHyU5oZQvI", title: "How to 3D Camera Track in Fusion" },
               { id: "HhjK2q1jHwA", title: "Navigasi Lingkungan 3D Fusion" },
               { id: "VSUC2zOFPh0", title: "3D Camera, Light, dan Renderer3D" },
-              { id: "rx591Kh3IpU", title: "3D Text & Motion Graphic Lanjut" }
+              { id: "rx591Kh3IpU", title: "3D Text & Motion Graphics Lanjut" }
             ]
           }
         ]
@@ -271,20 +432,23 @@
         id: "color",
         name: "5. Color Page",
         icon: "fa-solid fa-palette",
-        desc: "Color science, ACES, DaVinci Wide Gamut, Scopes, Node Tree terstandar, dan Film Emulation.",
+        desc: "Color science, ACES, DaVinci Wide Gamut, Scopes, Fixed Node Tree, preservasi skin tone, dan film emulation.",
         topics: [
           {
             name: "Color Management & Scopes",
             videos: [
               { id: "99v96TL-tuY", title: "DaVinci YRGB Color Managed (RCM)" },
               { id: "V7Od6GlBrdc", title: "ACES Architecture di Film Komersial" },
+              { id: "QCRVwkhxDzw", title: "CSTs vs Resolve Color Management — Cullen Kelly" },
+              { id: "JpRuQQ__-YA", title: "Pro Colorist Guide to ACES in Resolve — Cullen Kelly" },
               { id: "3ap8k564N_w", title: "Color Space Transform (CST) Manual" },
-              { id: "IwqucXqb2zY", title: "Membaca Waveform, Parade, & Vectorscope" },
-              { id: "JhPY-nojylE", title: "Preservasi Skin Tone Menggunakan Garis Indikator" }
+              { id: "IwqucXqb2zY", title: "Scopes Mastery: Waveform & Parade" },
+              { id: "JhPY-nojylE", title: "Vectorscope & Skin Tone Line" },
+              { id: "6m3AR-hNsSw", title: "Histogram & Dynamic Range Evaluation" }
             ]
           },
           {
-            name: "Primary Corrections & Balance",
+            name: "Koreksi Primer & Keseimbangan",
             videos: [
               { id: "Gz_QzBdHDYc", title: "Exposure Normalization & Highlight Rolloff" },
               { id: "zplOyEp1Ofc", title: "Keseimbangan Shadow & Midtone" },
@@ -296,9 +460,9 @@
           {
             name: "Fixed Node Tree & Secondaries",
             videos: [
-              { id: "U3vzpYHi4R8", title: "Membangun Fixed Node Tree Standar Hollywood" },
+              { id: "U3vzpYHi4R8", title: "Fixed Node Tree Architecture Hollywood" },
               { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes" },
-              { id: "Bw14wqVbpOo", title: "Isolasi Skin Tone Tanpa Menodai Background" },
+              { id: "Bw14wqVbpOo", title: "Isolasi & Preservasi Skin Tone" },
               { id: "7wcQzJ2MiTg", title: "Power Windows & Soft Edge Blending" },
               { id: "ZvpzChjKDA8", title: "Color Page Object Tracking" }
             ]
@@ -306,11 +470,13 @@
           {
             name: "Look Dev & Film Emulation",
             videos: [
-              { id: "1-5mXPEsm3k", title: "Membangun Palet Warna Sinematik Sendiri" },
-              { id: "tc2OF7iGtzY", title: "Pemisahan Warna Dingin dan Hangat (Split Toning)" },
+              { id: "1-5mXPEsm3k", title: "Designing Custom Cinematic Looks" },
+              { id: "tc2OF7iGtzY", title: "Pemisahan Warna Dingin & Hangat" },
               { id: "4q5KU3L2S3o", title: "Prinsip Film Emulation (Kodak 2383)" },
-              { id: "4BufREoC8xE", title: "Halation, Bloom, dan Tekstur Grain Organik" },
-              { id: "aoS-yLYtOh8", title: "Pemanfaatan HDR Color Wheels" }
+              { id: "4BufREoC8xE", title: "Halation, Bloom, dan Grain Organik" },
+              { id: "yZ9OGyhE4F8", title: "Print Film LUTs & Tone Curves" },
+              { id: "aoS-yLYtOh8", title: "Pemanfaatan HDR Color Wheels" },
+              { id: "OK5Nr6XSJyU", title: "Noise Reduction Temporal & Spasial" }
             ]
           }
         ]
@@ -319,26 +485,33 @@
         id: "fairlight",
         name: "6. Fairlight Page",
         icon: "fa-solid fa-music",
-        desc: "Audio post-production, pembersihan vokal, EQ & Dynamics, bus routing DME, dan target loudness LUFS.",
+        desc: "Audio post-production, pembersihan vokal, EQ & Dynamics, sidechain ducking, bus routing DME, dan standar LUFS.",
         topics: [
           {
             name: "Audio Essentials & Pembersihan Dialog",
             videos: [
-              { id: "sxLz6r-Vqms", title: "Arsitektur Workspace Fairlight" },
+              { id: "sxLz6r-Vqms", title: "Fairlight Architecture Overview" },
               { id: "-B13nDMxC1k", title: "Gain Staging & Pengaturan Headroom" },
               { id: "a68BwGw-2-M", title: "Standar Metering LUFS (-14 web vs -24 broadcast)" },
               { id: "iZiR7uoNWuo", title: "Checkerboarding Track Dialog" },
-              { id: "9k7-OtG2lAE", title: "Noise Removal & AI Voice Isolation" }
+              { id: "9k7-OtG2lAE", title: "Voice Isolation & Noise Removal" }
             ]
           },
           {
-            name: "EQ, Kompresi & Routing DME",
+            name: "EQ, Dinamika & Sidechain",
             videos: [
               { id: "vRa_Zk90lDc", title: "Parametric EQ: Membentuk Kejelasan Vokal" },
               { id: "booRjPgtIS4", title: "Kompresor: Meratakan Dinamika Suara" },
-              { id: "X-QaPnzBhB4", title: "Master Limiter untuk Menghindari Clipping" },
-              { id: "LZPJoS0CqC4", title: "Submix & Bus Routing (Dialogue, Music, SFX)" },
-              { id: "udEc8Ub1LQ4", title: "Otomasi Volume & Panning Lanjut" }
+              { id: "X-QaPnzBhB4", title: "Master Limiter Mencegah Clipping" },
+              { id: "y2Vnp_XyRI4", title: "New SIDECHAIN in DaVinci Resolve (Audio Ducking)" }
+            ]
+          },
+          {
+            name: "Routing Bus & Final Mix",
+            videos: [
+              { id: "UHudbCiEmnU", title: "Use BUSES to Master Your Audio — Daniel Batal" },
+              { id: "LZPJoS0CqC4", title: "Submix & DME Bus Routing (JayAreTV)" },
+              { id: "udEc8Ub1LQ4", title: "Track Automation & Master Delivery" }
             ]
           }
         ]
@@ -354,7 +527,7 @@
             videos: [
               { id: "ISSg000DaU0", title: "Navigasi Deliver Page & Custom Presets" },
               { id: "-4NXxY4maYc", title: "Dasar Codec: Lossless, Intermediate vs Delivery" },
-              { id: "SqVoTQL3iGg", title: "Solusi Gamma Shift QuickTime (Rec.709-A Tagging)" },
+              { id: "SqVoTQL3iGg", title: "Solusi QuickTime Gamma Shift (Rec.709-A)" },
               { id: "a9oJNfm27i0", title: "Format Ekspor Festival Film & DCI DCP" },
               { id: "b3iWBMK92GM", title: "Project Archive (.dra) untuk Cadangan LTO" }
             ]
@@ -367,7 +540,6 @@
     let completedVideos = JSON.parse(localStorage.getItem('resolve_class_done') || '[]');
     let currentActiveVideo = null;
 
-    // Render Navigation Tabs
     function renderPageTabs() {
       const tabContainer = document.getElementById('page-nav-tabs');
       tabContainer.innerHTML = '';
@@ -375,7 +547,7 @@
       resolvePages.forEach((page, idx) => {
         const btn = document.createElement('button');
         const isActive = idx === activePageIndex;
-        btn.className = `flex items-center space-x-2 px-4 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition ${
+        btn.className = `flex items-center space-x-2 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition ${
           isActive 
             ? 'bg-slate-900 text-white shadow-sm' 
             : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300'
@@ -392,7 +564,6 @@
       renderCurrentPageContent(document.getElementById('page-search-input').value);
     }
 
-    // Render Konten Halaman Aktif
     function renderCurrentPageContent(searchTerm = '') {
       const page = resolvePages[activePageIndex];
       
@@ -415,7 +586,7 @@
 
           topicBlock.innerHTML = `
             <div class="flex items-center justify-between">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">${topic.name}</h3>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">${topic.name}</h4>
               <span class="text-[11px] text-slate-400 font-medium">${filteredVideos.length} Video</span>
             </div>
           `;
@@ -442,7 +613,7 @@
                 ${isDone ? '<span class="absolute top-2 right-2 bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow"><i class="fa-solid fa-check"></i></span>' : ''}
               </div>
               <div class="p-3.5 flex flex-col justify-between">
-                <h4 class="text-xs font-semibold text-slate-800 line-clamp-2 group-hover:text-indigo-600 transition leading-snug">${vid.title}</h4>
+                <h5 class="text-xs font-semibold text-slate-800 line-clamp-2 group-hover:text-indigo-600 transition leading-snug">${vid.title}</h5>
                 <div class="mt-3 flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100">
                   <span class="truncate pr-1">${topic.name}</span>
                   <span class="${isDone ? 'text-emerald-600 font-semibold' : ''}">${isDone ? 'Selesai ✓' : 'Tonton'}</span>
@@ -462,7 +633,6 @@
       updateTotalProgress();
     }
 
-    // Video Player Functions
     function playVideo(id, title, pageName) {
       currentActiveVideo = { id, title, pageName };
       const player = document.getElementById('player-container');
@@ -523,6 +693,10 @@
     // Inisialisasi awal
     renderPageTabs();
     renderCurrentPageContent();
+    document.getElementById('showcase-jump-btn').onclick = () => {
+      selectPage(3);
+      document.getElementById('kurikulum').scrollIntoView({ behavior: 'smooth' });
+    };
   </script>
 </body>
 </html>

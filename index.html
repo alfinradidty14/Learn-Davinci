@@ -4,17 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ResolveHub — Mastering DaVinci Resolve</title>
+  
+  <!-- Tailwind CSS & Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fbfcfd; color: #0f172a; }
+    /* Filosofi Desain: Clean White Minimalist SaaS */
+    body { 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      background-color: #fbfcfd; /* Latar belakang putih bersih */
+      color: #0f172a; 
+    }
+    
     .thumbnail-img { aspect-ratio: 16/9; object-fit: cover; }
     .ui-showcase-img { aspect-ratio: 16/10; object-fit: cover; }
 
-    /* Full-Cover Background Video */
+    /* Full-Cover Background Video dengan Soft Overlay */
     .video-bg-frame {
       position: absolute;
       top: 50%;
@@ -27,130 +36,139 @@
       pointer-events: none;
     }
 
-    ::-webkit-scrollbar { width: 7px; }
-    ::-webkit-scrollbar-track { background: #f8fafc; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    /* Scrollbar Halus */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    
+    /* Animasi Transisi Halus */
+    .fade-in { animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen selection:bg-indigo-100 selection:text-indigo-900">
 
-  <!-- Floating Capsule Navbar -->
+  <!-- Floating Capsule Navbar[cite: 1] -->
   <div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <nav class="pointer-events-auto bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-full px-6 py-2.5 shadow-lg flex items-center justify-between gap-6 sm:gap-10 max-w-4xl w-full">
-      <a href="#" class="flex items-center space-x-2">
-        <div class="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center font-extrabold text-xs shadow-sm">
+    <nav class="pointer-events-auto bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-full px-5 py-2.5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex items-center justify-between gap-6 sm:gap-10 max-w-4xl w-full transition-all">
+      <a href="#" class="flex items-center space-x-2.5 group">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-extrabold text-xs shadow-sm group-hover:scale-105 transition-transform">
           DR
         </div>
         <span class="font-bold text-sm tracking-tight text-slate-900">ResolveHub</span>
       </a>
 
-      <div class="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-600">
-        <a href="#showcase" class="hover:text-slate-900 transition">Workspace UI</a>
-        <a href="#kurikulum" class="hover:text-slate-900 transition">Kurikulum Page</a>
-        <a href="https://www.blackmagicdesign.com/products/davinciresolve/training" target="_blank" class="hover:text-slate-900 transition">Sertifikasi</a>
+      <div class="hidden md:flex items-center space-x-7 text-[13px] font-semibold text-slate-500">
+        <a href="#showcase" class="hover:text-slate-900 transition-colors">Workspace</a>
+        <a href="#kurikulum" class="hover:text-slate-900 transition-colors">Kurikulum</a>
+        <a href="https://www.blackmagicdesign.com/products/davinciresolve/training" target="_blank" class="hover:text-slate-900 transition-colors">Sertifikasi Resmi</a>
       </div>
 
       <div class="flex items-center space-x-3">
-        <div class="hidden sm:flex items-center space-x-1.5 text-[11px] font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
-          <i class="fa-solid fa-circle-check text-emerald-500"></i>
-          <span id="nav-progress-text">0%</span>
+        <!-- Global Progress Tracker[cite: 1] -->
+        <div class="hidden sm:flex items-center space-x-1.5 text-[11px] font-bold text-slate-600 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full" title="Progres Global">
+          <i class="fa-solid fa-circle-notch text-emerald-500"></i>
+          <span id="global-progress-text">0% Selesai</span>
         </div>
-        <a href="#kurikulum" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-1.5 rounded-full transition shadow-sm">
-          Mulai Belajar
+        <a href="#kurikulum" class="bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-colors shadow-sm">
+          Mulai
         </a>
       </div>
     </nav>
   </div>
 
-  <!-- Hero Section (Video Jauh Lebih Jelas, Minimalis Tanpa Distraksi) -->
-  <section class="relative min-h-[95vh] flex flex-col justify-center items-center px-6 overflow-hidden border-b border-slate-100">
-    
-    <!-- BACKGROUND VIDEO FRAME (Opasitas Video Dinaikkan) -->
-    <div class="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
-      <iframe id="hero-bg-iframe" class="video-bg-frame opacity-85" 
-              src="" frameborder="0" allow="autoplay" allowfullscreen>
-      </iframe>
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex flex-col justify-center items-center px-6 overflow-hidden border-b border-slate-200/50">
+    <!-- Background Video YouTube[cite: 1] -->
+    <div class="absolute inset-0 -z-20 overflow-hidden pointer-events-none bg-slate-100">
+      <iframe id="hero-bg-iframe" class="video-bg-frame opacity-40 mix-blend-luminosity" src="" frameborder="0" allow="autoplay; muted" allowfullscreen></iframe>
     </div>
 
-    <!-- Soft Overlay Halus (Opasitas Putih Dikurangi) -->
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white/40 via-white/20 to-[#fbfcfd] backdrop-blur-[0.5px] pointer-events-none"></div>
+    <!-- Soft Overlay Halus untuk Kontras -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white/70 via-white/80 to-[#fbfcfd] backdrop-blur-[2px] pointer-events-none"></div>
 
-    <!-- Center Content -->
-    <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10 py-16">
-      
-      <!-- Pill Badge -->
-      <div class="inline-flex items-center space-x-2 bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>150+ Tutorial Terkurasi Tingkat Lanjut</span>
+    <div class="max-w-3xl mx-auto text-center space-y-7 relative z-10 py-20 mt-10">
+      <div class="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-md border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-bold shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+        <span>Platform Edukasi Mandiri DaVinci Resolve</span>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-950 leading-[1.08] drop-shadow-sm">
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 leading-[1.05] drop-shadow-sm">
         Master every frame.
       </h1>
 
-      <!-- Subtitle -->
-      <p class="text-base sm:text-lg text-slate-800 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
-        Pelajari alur kerja pascaproduksi DaVinci Resolve mulai dari Editorial, Color Science (ACES), Fusion VFX, hingga Fairlight Audio Mastering.
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
+        Pelajari alur kerja pascaproduksi berstandar industri. Dari Editorial, Color Science (ACES), Fusion VFX, hingga Fairlight Audio Mastering dalam satu ekosistem interaktif.
       </p>
 
-      <!-- Pill Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
-        <a href="#kurikulum" class="bg-white/95 hover:bg-white border border-slate-300 hover:border-slate-400 text-slate-900 font-semibold text-xs sm:text-sm px-7 py-3.5 rounded-full transition shadow-md flex items-center space-x-2">
-          <span>Jelajahi Kurikulum</span>
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
+        <a href="#kurikulum" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all shadow-md shadow-slate-900/10 flex items-center space-x-2 hover:-translate-y-0.5">
+          <span>Eksplorasi Kurikulum</span>
           <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
-        <a href="#showcase" class="bg-slate-950 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm px-7 py-3.5 rounded-full transition shadow-md">
-          Lihat Workspace UI
+        <a href="#showcase" class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 font-semibold text-sm px-8 py-3.5 rounded-full transition-all shadow-sm hover:-translate-y-0.5">
+          Arsitektur Workspace
         </a>
       </div>
     </div>
-
   </section>
 
-  <!-- Showcase DaVinci Resolve UI Section -->
-  <section id="showcase" class="py-20 px-6 max-w-7xl mx-auto w-full">
-    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-      <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">Workspace Tour</span>
-      <h2 class="text-3xl font-extrabold text-slate-900">Arsitektur Halaman Kerja DaVinci Resolve</h2>
-      <p class="text-sm text-slate-500">Masing-masing page dirancang untuk menangani satu disiplin pascaproduksi dengan presisi tingkat film bioskop.</p>
+  <!-- Interactive Workspace Tour (Showcase) -->
+  <section id="showcase" class="py-24 px-6 max-w-6xl mx-auto w-full">
+    <div class="text-center max-w-2xl mx-auto mb-14 space-y-4">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Arsitektur 7 Halaman Kerja</h2>
+      <p class="text-sm text-slate-500 font-medium">Setiap halaman dirancang khusus untuk menangani satu disiplin pascaproduksi spesifik tanpa perlu berpindah aplikasi.</p>
     </div>
 
-    <!-- Interactive UI Switcher Tabs -->
-    <div class="flex items-center justify-center flex-wrap gap-2 mb-8">
-      <button onclick="switchUIShowcase('edit')" class="ui-tab-btn active px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-white transition">
-        Edit Page
-      </button>
-      <button onclick="switchUIShowcase('color')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
-        Color Page
-      </button>
-      <button onclick="switchUIShowcase('fusion')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
-        Fusion Page
-      </button>
-      <button onclick="switchUIShowcase('fairlight')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
-        Fairlight Page
-      </button>
-      <button onclick="switchUIShowcase('deliver')" class="ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition">
-        Deliver Page
-      </button>
+    <!-- UI Switcher Tabs (7 Pages) -->
+    <div class="flex items-center justify-start sm:justify-center overflow-x-auto pb-4 gap-2 mb-8 hide-scrollbar" id="showcase-tabs">
+      <!-- Digenerate via JS -->
     </div>
 
-    <!-- UI Preview Showcase Card -->
-    <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-8 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 shadow-md">
-          <img id="showcase-img" src="https://images.blackmagicdesign.com/images/products/davinciresolve/overview/hollywood/hollywood-md.jpg" alt="DaVinci Resolve UI" class="ui-showcase-img w-full">
+    <!-- UI Preview Card -->
+    <div class="bg-white border border-slate-200/80 rounded-[2rem] p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] fade-in" id="showcase-content">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Left: Image Preview -->
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-inner relative group">
+          <img id="showcase-img" src="" alt="Workspace UI" class="ui-showcase-img w-full transition-transform duration-700 group-hover:scale-[1.02]">
+          <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-xl p-3 flex items-center justify-between shadow-sm">
+            <div class="text-xs font-bold text-slate-700">Progres Belajar Anda:</div>
+            <div class="flex items-center space-x-3 w-1/2">
+              <div class="w-full bg-slate-200 rounded-full h-1.5">
+                <div id="showcase-progress-bar" class="bg-emerald-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+              </div>
+              <span id="showcase-progress-text" class="text-xs font-bold text-emerald-600">0%</span>
+            </div>
+          </div>
         </div>
-        <div class="lg:col-span-4 space-y-4">
-          <span id="showcase-tag" class="text-xs font-extrabold uppercase tracking-wider text-emerald-600">Editorial Timeline</span>
-          <h3 id="showcase-title" class="text-2xl font-extrabold text-slate-900">Edit Page: Jantung Perakitan Cerita</h3>
-          <p id="showcase-desc" class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Dilengkapi automatic trimming cursor, multi-track timeline, dynamic keyboard editing, serta integrasi proxy otomatis untuk kelancaran editing footage 4K/8K.
-          </p>
-          <div class="pt-2">
-            <button id="showcase-jump-btn" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition">
-              Buka Video Kelas Ini <i class="fa-solid fa-arrow-down ml-1.5 text-[10px]"></i>
+        
+        <!-- Right: Details & 3 Key Features -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <div class="flex items-center space-x-2 mb-3">
+              <i id="showcase-icon" class="fa-solid fa-folder-open text-indigo-500"></i>
+              <span id="showcase-tag" class="text-xs font-extrabold uppercase tracking-wider text-indigo-600">Fase Berjalan</span>
+            </div>
+            <h3 id="showcase-title" class="text-3xl font-extrabold text-slate-900 tracking-tight">Nama Page</h3>
+            <p id="showcase-desc" class="text-sm text-slate-600 leading-relaxed mt-3 font-medium"></p>
+          </div>
+
+          <!-- 3 Key Features Badge -->
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <h4 class="text-[11px] font-bold uppercase text-slate-400 mb-3 tracking-wider">3 Fitur Kunci Utama</h4>
+            <ul id="showcase-features" class="space-y-2.5">
+              <!-- Digenerate JS -->
+            </ul>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+            <button id="showcase-jump-btn" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-6 py-3 rounded-xl transition shadow-sm flex justify-center items-center">
+              Mulai Belajar Page Ini
             </button>
+            <a href="https://documents.blackmagicdesign.com/UserManuals/DaVinci_Resolve_18_Reference_Manual.pdf" target="_blank" class="w-full sm:w-auto bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold px-6 py-3 rounded-xl transition flex justify-center items-center">
+              <i class="fa-regular fa-file-pdf mr-2 text-red-500"></i> Panduan PDF
+            </a>
           </div>
         </div>
       </div>
@@ -158,245 +176,232 @@
   </section>
 
   <!-- Interactive Curriculum Section -->
-  <section id="kurikulum" class="py-16 px-6 max-w-7xl mx-auto w-full border-t border-slate-100">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+  <section id="kurikulum" class="py-20 px-6 max-w-[1400px] mx-auto w-full border-t border-slate-200/60">
+    
+    <!-- Header & Search[cite: 1] -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-5">
       <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Kelas Lengkap</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Daftar Modul Berdasarkan Page</h2>
-        <p class="text-sm text-slate-500 mt-1">Pilih tab di bawah untuk beralih ruang kerja dan tonton langsung videonya.</p>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Materi & Kurikulum Video</h2>
+        <p class="text-sm text-slate-500 mt-2 font-medium">Pilih workspace di bawah untuk memfilter materi, atau gunakan pencarian.</p>
       </div>
       
-      <!-- Search Input -->
-      <div class="relative w-full md:w-72">
-        <i class="fa-solid fa-search absolute left-3.5 top-3 text-xs text-slate-400"></i>
-        <input type="text" id="page-search-input" placeholder="Cari materi..." 
-               class="w-full bg-white border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400">
+      <!-- Instant Search Bar -->
+      <div class="relative w-full md:w-80 group">
+        <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"></i>
+        <input type="text" id="global-search-input" placeholder="Cari materi, teknik, shortcut..." 
+               class="w-full bg-white border border-slate-200 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-800 placeholder-slate-400 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all">
       </div>
     </div>
 
-    <!-- Page Navigation Pills -->
-    <div class="flex items-center justify-start overflow-x-auto pb-3 gap-2 mb-8" id="page-nav-tabs">
+    <!-- Main Workspace Navigation Pills -->
+    <div class="flex items-center justify-start overflow-x-auto pb-4 gap-2.5 mb-2 hide-scrollbar" id="curriculum-tabs">
       <!-- Digenerate oleh JS -->
     </div>
 
-    <!-- Active Video Player Area (Muncul saat video diklik) -->
-    <div id="player-container" class="hidden mb-10 bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm">
-      <div class="flex items-center justify-between mb-4">
-        <div>
-          <span id="player-page-tag" class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Page</span>
-          <h2 id="player-title" class="text-lg sm:text-xl font-bold text-slate-900 mt-2">Judul Video</h2>
-        </div>
-        <button onclick="closePlayer()" class="text-slate-400 hover:text-slate-600 text-sm p-2">
-          <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
-      </div>
-
-      <div class="relative pb-[56.25%] bg-slate-950 rounded-2xl overflow-hidden shadow-inner mb-4">
-        <iframe id="main-iframe" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
-      </div>
-
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-        <button id="player-done-btn" class="bg-slate-900 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-slate-800 transition">
-          Tandai Selesai
-        </button>
-        <a id="player-yt-link" href="#" target="_blank" class="text-xs text-slate-600 hover:text-red-600 transition flex items-center space-x-1.5 font-medium">
-          <i class="fa-brands fa-youtube text-red-500 text-base"></i>
-          <span>Buka di YouTube</span>
-        </a>
-      </div>
+    <!-- Quick Sub-Topic Filters -->
+    <div class="flex items-center justify-start overflow-x-auto pb-6 gap-2 mb-6 hide-scrollbar border-b border-slate-100" id="subtopic-filters">
+      <!-- Digenerate oleh JS -->
     </div>
 
-    <!-- Video Cards Container -->
-    <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-8">
-      <div class="flex items-center space-x-3 pb-6 border-b border-slate-100">
-        <div id="page-badge-icon" class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg">
-          <i class="fa-solid fa-graduation-cap"></i>
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- Main Content (Video List & Player) -->
+      <div class="lg:col-span-3 space-y-8">
+        
+        <!-- Active Video Player & Personal Notebook (Tersembunyi by default) -->
+        <div id="player-container" class="hidden bg-white border border-slate-200/80 rounded-[2rem] p-2 shadow-md fade-in overflow-hidden">
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-0">
+            <!-- Video Area -->
+            <div class="xl:col-span-2 p-4 sm:p-6 bg-slate-50 rounded-[1.5rem]">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <span id="player-page-tag" class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-100/50 border border-indigo-100 px-2.5 py-1 rounded-md">Page</span>
+                  <h2 id="player-title" class="text-xl font-bold text-slate-900 mt-2 leading-tight">Judul Video</h2>
+                </div>
+                <button onclick="closePlayer()" class="bg-white border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <div class="relative pb-[56.25%] bg-slate-900 rounded-xl overflow-hidden shadow-inner mb-5">
+                <iframe id="main-iframe" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <button id="player-done-btn" class="bg-slate-900 text-white text-xs font-bold px-6 py-2.5 rounded-xl hover:bg-slate-800 transition-all shadow-sm">
+                  Tandai Selesai
+                </button>
+                <a id="player-yt-link" href="#" target="_blank" class="text-[13px] text-slate-500 hover:text-red-500 transition-colors flex items-center font-bold">
+                  <i class="fa-brands fa-youtube text-lg mr-1.5"></i> YouTube
+                </a>
+              </div>
+            </div>
+
+            <!-- Personal Notebook Area -->
+            <div class="xl:col-span-1 p-4 sm:p-6 border-t xl:border-t-0 xl:border-l border-slate-100 flex flex-col bg-white">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-sm font-bold text-slate-900 flex items-center">
+                  <i class="fa-solid fa-pen-to-square text-indigo-500 mr-2"></i> Catatan Pribadi
+                </h3>
+                <span id="notes-status" class="text-[10px] font-bold text-emerald-500 opacity-0 transition-opacity">Tersimpan otomatis ✓</span>
+              </div>
+              <textarea id="personal-notes" placeholder="Tulis catatan, timecode, atau pemahaman Anda dari materi ini... (Otomatis tersimpan)" class="w-full flex-grow bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all resize-none min-h-[150px]"></textarea>
+              <div class="mt-3 flex justify-end">
+                <button onclick="clearNotes()" class="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors">
+                  <i class="fa-regular fa-trash-can mr-1"></i> Bersihkan
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 id="page-title" class="text-2xl font-extrabold text-slate-900">Basic Knowledge</h3>
-          <p id="page-desc" class="text-xs sm:text-sm text-slate-500 mt-0.5">Pondasi dasar, setting project, dan optimasi hardware.</p>
+
+        <!-- Video Cards Container -->
+        <div id="topics-container" class="space-y-10">
+          <!-- Render materi & video cards via JS -->
         </div>
       </div>
 
-      <div id="topics-container" class="space-y-8">
-        <!-- Render materi & video cards via JS -->
+      <!-- Right Sidebar: Interactive Cheatsheet -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-24 bg-white border border-slate-200/80 rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center space-x-2 mb-6 pb-4 border-b border-slate-100">
+            <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-sm shadow-sm">
+              <i class="fa-regular fa-keyboard"></i>
+            </div>
+            <h3 class="text-sm font-bold text-slate-900">Shortcuts <span id="cheatsheet-page-name" class="text-indigo-600"></span></h3>
+          </div>
+          
+          <ul id="cheatsheet-list" class="space-y-3">
+            <!-- Digenerate oleh JS berdasarkan Page aktif -->
+          </ul>
+          
+          <div class="mt-6 pt-4 border-t border-slate-100">
+            <p class="text-[10px] text-slate-400 font-medium leading-relaxed">Pintasan keyboard disesuaikan secara dinamis dengan Workspace yang sedang Anda pelajari.</p>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-100 bg-white py-10 px-6 text-center text-xs text-slate-400">
-    <div class="max-w-7xl mx-auto space-y-2">
-      <p class="font-medium text-slate-600">ResolveHub — Kurikulum Mandiri DaVinci Resolve Indonesia.</p>
-      <p>Hak cipta materi video YouTube adalah milik para kreator resmi masing-masing.</p>
+  <footer class="border-t border-slate-200/60 bg-white py-12 px-6 text-center text-sm text-slate-500 font-medium mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col items-center justify-center space-y-4">
+      <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-sm shadow-sm">DR</div>
+      <p>ResolveHub — Interactive Knowledge Base untuk DaVinci Resolve.</p>
+      <p class="text-[11px] text-slate-400">Hak cipta materi video YouTube adalah milik para kreator resmi terkait. Tidak berafiliasi dengan Blackmagic Design.</p>
     </div>
   </footer>
 
   <!-- DATA & JAVASCRIPT ENGINE -->
   <script>
-    const uiShowcaseData = {
-      edit: {
-        tag: "Editorial & Trimming",
-        title: "Edit Page: Jantung Perakitan Cerita",
-        desc: "Halaman kerja pemotongan presisi dengan automatic trimming cursor, ripple/roll edit, multi-track timeline, dan sync audio otomatis.",
-        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/hollywood/hollywood-md.jpg",
-        pageIndex: 3
-      },
-      color: {
-        tag: "Color Science & ACES",
-        title: "Color Page: Standar Hollywood Color Grading",
-        desc: "Dilengkapi 32-bit float color processing, DaVinci Wide Gamut, ACES pipeline, Waveform Scopes, HDR Wheels, dan Fixed Node Tree.",
-        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/color/hero/hero-still.jpg",
-        pageIndex: 5
-      },
-      fusion: {
-        tag: "Visual Effects & Motion Graphics",
-        title: "Fusion Page: Node-Based Compositing",
-        desc: "Ruang VFX terintegrasi tanpa perlu round-trip ke software lain. Dilengkapi Planar Tracker, Delta Keyer, 3D Camera Tracking, dan Spline Editor.",
-        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fusion/fusion-md.jpg",
-        pageIndex: 4
-      },
-      fairlight: {
-        tag: "Audio Post-Production",
-        title: "Fairlight Page: Studio Mixing & Mastering Audio",
-        desc: "Digital Audio Workstation (DAW) profesional terintegrasi dengan ratusan track, AI Voice Isolation, EQ, Dinamika, dan Submix Bus Routing (DME).",
-        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fairlight/fairlight-md.jpg",
-        pageIndex: 6
-      },
-      deliver: {
-        tag: "Mastering & Export",
-        title: "Deliver Page: Ekspor Multi-Format Berstandar Siar",
-        desc: "Output ProRes, Avid DNxHR, H.265, DCI DCP Festival Bioskop, serta perbaikan Gamma Shift QuickTime dengan Rec.709-A tagging.",
-        img: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/deliver/deliver-md.jpg",
-        pageIndex: 7
-      }
-    };
-
-    function switchUIShowcase(key) {
-      const data = uiShowcaseData[key];
-      if (!data) return;
-
-      document.querySelectorAll('.ui-tab-btn').forEach(btn => {
-        btn.className = "ui-tab-btn px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:border-slate-300 transition";
-      });
-      event.target.className = "ui-tab-btn active px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-white transition";
-
-      document.getElementById('showcase-tag').textContent = data.tag;
-      document.getElementById('showcase-title').textContent = data.title;
-      document.getElementById('showcase-desc').textContent = data.desc;
-      document.getElementById('showcase-img').src = data.img;
-      document.getElementById('showcase-jump-btn').onclick = () => {
-        selectPage(data.pageIndex);
-        document.getElementById('kurikulum').scrollIntoView({ behavior: 'smooth' });
-      };
-    }
-
-    const resolvePages = [
+    /* =========================================================================
+       1. DATA STRUKTUR (KURIKULUM & SHOWCASE DIGABUNG)
+       ========================================================================= */
+    const appData = [
       {
-        id: "basic",
-        name: "0. Basic Knowledge",
-        icon: "fa-solid fa-graduation-cap",
-        desc: "Pondasi esensial: pemahaman antarmuka, arsitektur database, pengaturan timeline, dan optimasi hardware.",
+        id: "media",
+        name: "Media Page",
+        icon: "fa-regular fa-folder-open",
+        tag: "Ingest & Manajemen File",
+        desc: "Langkah awal krusial: Ingest media aman, verifikasi MD5, organisasi Smart Bins, sinkronisasi audio eksternal, dan pembuatan proxy otomatis.",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/media/hero/hero-still.jpg",
+        features: ["Clone Tool MD5 Checksum", "Smart Bins & Metadata", "Audio Auto-Sync Workflow"],
+        shortcuts: [
+          { key: "Cmd/Ctrl + I", desc: "Import Media" },
+          { key: "Alt + Drag", desc: "Duplicate Clip" },
+          { key: "Shift + Bin", desc: "Open Bin in New Window" }
+        ],
         topics: [
           {
-            name: "Pengenalan & Mindset Belajar",
+            name: "Ingest, Project Setup & Database",
             videos: [
               { id: "MCDVcQIA3UM", title: "Introduction to DaVinci Resolve (Full Course) — Casey Faris" },
-              { id: "3mo_vgKfYCU", title: "Learn DaVinci Resolve in JUST 10 MINUTES! — Casey Faris" },
-              { id: "MTYjCp-hxjQ", title: "Panduan Memulai DaVinci Resolve dari Nol" },
+              { id: "hUM88jlUTgo", title: "Manajemen Database & Library Project" },
+              { id: "FUNfPUZxE9E", title: "Master the Media Page: Clone Tool & Data Wrangling" },
               { id: "CyexunsDzwA", title: "Setup Project & Best Preferences" }
             ]
           },
           {
-            name: "Database, Cache & Shortcuts",
+            name: "Smart Bins, Audio Auto-Sync, Proxy",
             videos: [
-              { id: "hUM88jlUTgo", title: "Manajemen Database & Library Project (JayAreTV)" },
-              { id: "WmuO8AkWS5A", title: "Optimasi Cache SSD & Playback Lancar" },
-              { id: "kMGkmK0SG34", title: "Keyboard Shortcuts Standar Editor Cepat" },
+              { id: "WP8zydfkofc", title: "Struktur Folder & Smart Bins Efisien" },
+              { id: "6ciMx3AV2JQ", title: "Sinkronisasi Audio Kamera & External Recorder" },
+              { id: "i_88edxhJvc", title: "DaVinci Proxy Generator Workflow" },
               { id: "4-G3AMHFeb4", title: "Optimized Media vs Render Cache" }
             ]
           }
         ]
       },
       {
-        id: "media",
-        name: "1. Media Page",
-        icon: "fa-regular fa-folder-open",
-        desc: "Ingest media aman, Clone Tool MD5 checksum, sinkronisasi audio otomatis, Smart Bins, dan proxy generator.",
-        topics: [
-          {
-            name: "Ingest & Manajemen File",
-            videos: [
-              { id: "Dv4j5-gHxkg", title: "The Media Page | DaVinci Resolve 101" },
-              { id: "FUNfPUZxE9E", title: "Master the Media Page: THIS IS CRUCIAL (Clone Tool)" },
-              { id: "WP8zydfkofc", title: "Struktur Folder & Smart Bins Efisien" }
-            ]
-          },
-          {
-            name: "Sinkronisasi Audio & Proxy",
-            videos: [
-              { id: "6ciMx3AV2JQ", title: "Sinkronisasi Audio Kamera & External Recorder" },
-              { id: "i_88edxhJvc", title: "DaVinci Proxy Generator Workflow (Film Riot)" }
-            ]
-          }
-        ]
-      },
-      {
         id: "cut",
-        name: "2. Cut Page",
+        name: "Cut Page",
         icon: "fa-solid fa-forward",
-        desc: "Perakitan adegan cepat, Source Tape, dual timeline, perakitan B-Roll, dan integrasi Speed Editor.",
+        tag: "Fast Assembly & B-Roll",
+        desc: "Dirancang untuk kecepatan. Memanfaatkan Source Tape untuk meninjau seluruh footage, dual timeline tanpa zoom, dan integrasi mulus dengan Speed Editor.",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/cut/hero/hero-still.jpg",
+        features: ["Source Tape View", "Dual Timeline Navigation", "Speed Ramps & Retiming"],
+        shortcuts: [
+          { key: "F9", desc: "Smart Insert" },
+          { key: "F10", desc: "Append at End" },
+          { key: "F11", desc: "Ripple Overwrite" }
+        ],
         topics: [
           {
-            name: "Filosofi Cut Page & Source Tape",
+            name: "Fast Assembly & Source Tape",
             videos: [
               { id: "EYHKVb2qFI4", title: "STOP Struggling with CUT PAGE! — Darren Mostyn" },
-              { id: "C-8C-JHkjAY", title: "How to Cut Video with Source Tape — Casey Faris" },
-              { id: "26OfvGXGezw", title: "Speed Editor In-Depth Tutorial — Darren Mostyn" }
+              { id: "C-8C-JHkjAY", title: "How to Cut Video with Source Tape" },
+              { id: "Q1tCEvqakUo", title: "Fastest Editing Workflow in DaVinci Resolve" }
             ]
           },
           {
-            name: "Fast Assembly & Retiming",
+            name: "Dual Timeline, Speed Ramps",
             videos: [
-              { id: "Q1tCEvqakUo", title: "Fastest Editing Workflow in DaVinci Resolve" },
-              { id: "9jRZIqPQHm8", title: "Dynamic B-Roll Sequencing di Cut Page" },
+              { id: "26OfvGXGezw", title: "Speed Editor In-Depth Tutorial" },
               { id: "ZePNEgZhf48", title: "Speed Ramps & Retime Curves" },
-              { id: "Au1IB_sHlWE", title: "B-Roll Cutaways & Quick Audio Sync" },
-              { id: "wZ27FgwcnSw", title: "Cinematic B-Roll Layering" }
+              { id: "9jRZIqPQHm8", title: "Dynamic B-Roll Sequencing di Cut Page" }
             ]
           }
         ]
       },
       {
         id: "edit",
-        name: "3. Edit Page",
+        name: "Edit Page",
         icon: "fa-solid fa-sliders",
-        desc: "Timeline editorial presisi, teknik ripple/roll/slip/slide, pacing naratif, kesinambungan dialog, dan film editing.",
+        tag: "Editorial & Pacing",
+        desc: "Jantung perakitan cerita. Dilengkapi automatic trimming cursor, multi-track timeline, dynamic keyboard editing, dan presisi level film bioskop.",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/hollywood/hollywood-md.jpg",
+        features: ["Precision Trimming (Roll/Ripple/Slip)", "Dynamic Keyboard Editing", "Inspector & Keyframing"],
+        shortcuts: [
+          { key: "A", desc: "Normal Edit Mode" },
+          { key: "T", desc: "Trim Edit Mode" },
+          { key: "B", desc: "Blade Tool" },
+          { key: "U", desc: "Toggle Video/Audio Link" },
+          { key: "Alt + Y", desc: "Select Forward" }
+        ],
         topics: [
           {
-            name: "Timeline & Precision Trimming",
+            name: "Timeline Precision Trimming",
             videos: [
               { id: "mjiT0g3mYgw", title: "Timeline Essentials & Setup" },
               { id: "AA2agmf6jTo", title: "Ripple, Roll, Slip, dan Slide Edit" },
-              { id: "ve38J2Z3EIQ", title: "Fast Trimming & Keyboard Shortcuts" },
-              { id: "ns4HtiFvUOc", title: "Advanced Timeline Track Management" }
+              { id: "ve38J2Z3EIQ", title: "Fast Trimming & Keyboard Shortcuts" }
             ]
           },
           {
-            name: "Pacing & Storytelling",
+            name: "Pacing & Kontinuitas Dialog J/L Cuts",
             videos: [
               { id: "9J3CNT3qvCM", title: "Pacing Fundamentals & Visual Beats" },
-              { id: "sJLldZdGkzA", title: "Cutting on Action & Continuity" },
-              { id: "7R8WebgoqRo", title: "Membangun Ketegangan Naratif" },
-              { id: "uon8fOXdyRQ", title: "Struktur Cerita 4 Babak dalam Editing" }
+              { id: "yaqq9aB1csw", title: "Hollywood Dialogue Continuity (J & L Cuts)" },
+              { id: "sJLldZdGkzA", title: "Cutting on Action & Continuity" }
             ]
           },
           {
-            name: "Film Editing & Dialog",
+            name: "Film Editing & Narasi",
             videos: [
-              { id: "yaqq9aB1csw", title: "Hollywood Dialogue Continuity (J & L Cuts)" },
+              { id: "7R8WebgoqRo", title: "Membangun Ketegangan Naratif" },
               { id: "F5euSYD0nMY", title: "Assembly Cut ke Final Polish" },
-              { id: "UDgKrsb1X7A", title: "Ritme Emosional Adegan Dramatis" },
               { id: "zsy9HSMYBgg", title: "Feature Film Pipeline Workflow" }
             ]
           }
@@ -404,141 +409,152 @@
       },
       {
         id: "fusion",
-        name: "4. Fusion Page",
+        name: "Fusion Page",
         icon: "fa-solid fa-wand-magic-sparkles",
-        desc: "Node-based compositing, masking, 2D/3D tracking, Delta Keyer, AI Magic Mask, dan ruang kerja 3 dimensi.",
+        tag: "Node-Based Compositing",
+        desc: "Ruang VFX terintegrasi sesungguhnya. Bangun efek visual kompleks dengan arsitektur Node, Planar Tracking, 3D Camera Workspace, dan AI Magic Mask.",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fusion/fusion-md.jpg",
+        features: ["Node-Based Architecture", "3D Camera & Lighting Workspace", "AI Magic Mask & Planar Tracker"],
+        shortcuts: [
+          { key: "Shift + Space", desc: "Select Tool / Node" },
+          { key: "1 / 2", desc: "Send Node to Viewer 1/2" },
+          { key: "Ctrl + T", desc: "Swap Node Inputs" }
+        ],
         topics: [
           {
-            name: "Dasar Node & Masking",
+            name: "Node-based Compositing & Masking",
             videos: [
               { id: "gaFT_Kj2yeQ", title: "Fusion Interface & Node Logic" },
               { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, Mask" },
-              { id: "PoinMs_YceQ", title: "Vector Polygon & Masking" },
-              { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor Halus" }
+              { id: "PoinMs_YceQ", title: "Vector Polygon & Masking" }
             ]
           },
           {
-            name: "Tracking, Keying & AI",
+            name: "Planar & 3D Camera Tracking",
             videos: [
-              { id: "F-Pr1GGmyVU", title: "Point Tracker & Stabilisasi" },
               { id: "dp_qeQY8Zps", title: "Planar Tracking & Corner Pinning (Ganti Layar)" },
-              { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Efisien" },
+              { id: "6yHyU5oZQvI", title: "How to 3D Camera Track in Fusion" },
+              { id: "VSUC2zOFPh0", title: "3D Camera, Light, dan Renderer3D" }
+            ]
+          },
+          {
+            name: "Delta Keyer & AI Magic Mask",
+            videos: [
               { id: "kZC08b5mG58", title: "Delta Keyer: Hollywood Green Screen" },
               { id: "DmQKedj3r2E", title: "AI Magic Mask Tutorial — Darren Mostyn" },
-              { id: "f6bo9hoDWpc", title: "VFX Dasar: Compositing Elemen" }
-            ]
-          },
-          {
-            name: "3D Workspace & Camera Tracker",
-            videos: [
-              { id: "6yHyU5oZQvI", title: "How to 3D Camera Track in Fusion" },
-              { id: "HhjK2q1jHwA", title: "Navigasi Lingkungan 3D Fusion" },
-              { id: "VSUC2zOFPh0", title: "3D Camera, Light, dan Renderer3D" },
-              { id: "rx591Kh3IpU", title: "3D Text & Motion Graphics Lanjut" }
+              { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Efisien" }
             ]
           }
         ]
       },
       {
         id: "color",
-        name: "5. Color Page",
+        name: "Color Page",
         icon: "fa-solid fa-palette",
-        desc: "Color science, ACES, DaVinci Wide Gamut, Scopes, Fixed Node Tree, preservasi skin tone, dan film emulation.",
+        tag: "Color Science & ACES",
+        desc: "Standar industri pewarnaan Hollywood. Memanfaatkan 32-bit float processing, DaVinci Wide Gamut, Waveform Scopes, dan Fixed Node Tree.",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/color/hero/hero-still.jpg",
+        features: ["ACES & DaVinci Wide Gamut", "Waveform, Parade & Vectorscope", "HDR Color Wheels & Qualifiers"],
+        shortcuts: [
+          { key: "Alt + S", desc: "Add Serial Node" },
+          { key: "Alt + P", desc: "Add Parallel Node" },
+          { key: "Alt + L", desc: "Add Layer Node" },
+          { key: "Shift + D", desc: "Bypass All Grades" },
+          { key: "Ctrl + D", desc: "Bypass Current Node" }
+        ],
         topics: [
           {
-            name: "Color Management & Scopes",
+            name: "Color Science, ACES/DaVinci Wide Gamut",
             videos: [
               { id: "99v96TL-tuY", title: "DaVinci YRGB Color Managed (RCM)" },
               { id: "V7Od6GlBrdc", title: "ACES Architecture di Film Komersial" },
-              { id: "QCRVwkhxDzw", title: "CSTs vs Resolve Color Management — Cullen Kelly" },
-              { id: "JpRuQQ__-YA", title: "Pro Colorist Guide to ACES in Resolve — Cullen Kelly" },
-              { id: "3ap8k564N_w", title: "Color Space Transform (CST) Manual" },
+              { id: "JpRuQQ__-YA", title: "Pro Colorist Guide to ACES in Resolve" },
+              { id: "3ap8k564N_w", title: "Color Space Transform (CST) Manual" }
+            ]
+          },
+          {
+            name: "Scopes, Fixed Node Tree Hollywood",
+            videos: [
               { id: "IwqucXqb2zY", title: "Scopes Mastery: Waveform & Parade" },
-              { id: "JhPY-nojylE", title: "Vectorscope & Skin Tone Line" },
-              { id: "6m3AR-hNsSw", title: "Histogram & Dynamic Range Evaluation" }
-            ]
-          },
-          {
-            name: "Koreksi Primer & Keseimbangan",
-            videos: [
-              { id: "Gz_QzBdHDYc", title: "Exposure Normalization & Highlight Rolloff" },
-              { id: "zplOyEp1Ofc", title: "Keseimbangan Shadow & Midtone" },
-              { id: "bjA0Zqs5KRY", title: "Teknik White Balance Akurat" },
-              { id: "fTg-1KicwSs", title: "Kontras Kurva & Pengaturan Pivot Point" },
-              { id: "TpJ1EAerPN4", title: "Saturation vs Color Boost" }
-            ]
-          },
-          {
-            name: "Fixed Node Tree & Secondaries",
-            videos: [
               { id: "U3vzpYHi4R8", title: "Fixed Node Tree Architecture Hollywood" },
-              { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes" },
-              { id: "Bw14wqVbpOo", title: "Isolasi & Preservasi Skin Tone" },
-              { id: "7wcQzJ2MiTg", title: "Power Windows & Soft Edge Blending" },
-              { id: "ZvpzChjKDA8", title: "Color Page Object Tracking" }
+              { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes" }
             ]
           },
           {
-            name: "Look Dev & Film Emulation",
+            name: "Skin Tone Retention & Film Emulation",
             videos: [
-              { id: "1-5mXPEsm3k", title: "Designing Custom Cinematic Looks" },
-              { id: "tc2OF7iGtzY", title: "Pemisahan Warna Dingin & Hangat" },
+              { id: "Bw14wqVbpOo", title: "Isolasi & Preservasi Skin Tone" },
+              { id: "JhPY-nojylE", title: "Vectorscope & Skin Tone Line" },
               { id: "4q5KU3L2S3o", title: "Prinsip Film Emulation (Kodak 2383)" },
-              { id: "4BufREoC8xE", title: "Halation, Bloom, dan Grain Organik" },
-              { id: "yZ9OGyhE4F8", title: "Print Film LUTs & Tone Curves" },
-              { id: "aoS-yLYtOh8", title: "Pemanfaatan HDR Color Wheels" },
-              { id: "OK5Nr6XSJyU", title: "Noise Reduction Temporal & Spasial" }
+              { id: "4BufREoC8xE", title: "Halation, Bloom, dan Grain Organik" }
             ]
           }
         ]
       },
       {
         id: "fairlight",
-        name: "6. Fairlight Page",
+        name: "Fairlight Page",
         icon: "fa-solid fa-music",
-        desc: "Audio post-production, pembersihan vokal, EQ & Dynamics, sidechain ducking, bus routing DME, dan standar LUFS.",
+        tag: "Audio Mixing & Mastering",
+        desc: "Digital Audio Workstation (DAW) di dalam NLE. Dilengkapi ratusan track, EQ parametrik, Sidechain Compression, AI Voice Isolation, dan BUS Routing (DME).",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fairlight/fairlight-md.jpg",
+        features: ["AI Voice Isolation", "Submix Bus Routing (DME)", "Loudness Metering (-14 LUFS)"],
+        shortcuts: [
+          { key: "Alt + Click", desc: "Add Audio Keyframe" },
+          { key: "Ctrl + Scroll", desc: "Zoom Track Height" },
+          { key: "Shift + Scroll", desc: "Zoom Timeline" }
+        ],
         topics: [
           {
-            name: "Audio Essentials & Pembersihan Dialog",
+            name: "Audio Post & Voice Isolation",
             videos: [
               { id: "sxLz6r-Vqms", title: "Fairlight Architecture Overview" },
               { id: "-B13nDMxC1k", title: "Gain Staging & Pengaturan Headroom" },
-              { id: "a68BwGw-2-M", title: "Standar Metering LUFS (-14 web vs -24 broadcast)" },
-              { id: "iZiR7uoNWuo", title: "Checkerboarding Track Dialog" },
               { id: "9k7-OtG2lAE", title: "Voice Isolation & Noise Removal" }
             ]
           },
           {
-            name: "EQ, Dinamika & Sidechain",
+            name: "Parametric EQ, Dinamika, Sidechain",
             videos: [
               { id: "vRa_Zk90lDc", title: "Parametric EQ: Membentuk Kejelasan Vokal" },
               { id: "booRjPgtIS4", title: "Kompresor: Meratakan Dinamika Suara" },
-              { id: "X-QaPnzBhB4", title: "Master Limiter Mencegah Clipping" },
               { id: "y2Vnp_XyRI4", title: "New SIDECHAIN in DaVinci Resolve (Audio Ducking)" }
             ]
           },
           {
-            name: "Routing Bus & Final Mix",
+            name: "Bus Routing DME & Standar LUFS",
             videos: [
-              { id: "UHudbCiEmnU", title: "Use BUSES to Master Your Audio — Daniel Batal" },
+              { id: "UHudbCiEmnU", title: "Use BUSES to Master Your Audio" },
               { id: "LZPJoS0CqC4", title: "Submix & DME Bus Routing (JayAreTV)" },
-              { id: "udEc8Ub1LQ4", title: "Track Automation & Master Delivery" }
+              { id: "a68BwGw-2-M", title: "Standar Metering LUFS (-14 web vs -24 broadcast)" }
             ]
           }
         ]
       },
       {
         id: "deliver",
-        name: "7. Deliver Page",
+        name: "Deliver Page",
         icon: "fa-solid fa-rocket",
-        desc: "Mastering video, format ProRes/DNxHR, penanganan pergeseran warna Mac (Gamma Shift), dan arsip project.",
+        tag: "Mastering & Export",
+        desc: "Halaman akhir eksekusi. Konfigurasi Codec untuk web, intermediate, hingga DCP bioskop, serta memecahkan masalah pergeseran gamma pada platform Mac.",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/deliver/deliver-md.jpg",
+        features: ["Custom Export Presets", "Render Queue Management", "Rec.709-A Gamma Shift Fix"],
+        shortcuts: [
+          { key: "I / O", desc: "Set In / Out Range" },
+          { key: "Alt + X", desc: "Clear In/Out Range" }
+        ],
         topics: [
           {
-            name: "Standar Codec & Ekspor Master",
+            name: "Codec Science & Solusi Gamma Shift",
             videos: [
               { id: "ISSg000DaU0", title: "Navigasi Deliver Page & Custom Presets" },
-              { id: "-4NXxY4maYc", title: "Dasar Codec: Lossless, Intermediate vs Delivery" },
-              { id: "SqVoTQL3iGg", title: "Solusi QuickTime Gamma Shift (Rec.709-A)" },
+              { id: "-4NXxY4maYc", title: "Dasar Codec ProRes/DNxHR/H.265" },
+              { id: "SqVoTQL3iGg", title: "Solusi QuickTime Gamma Shift Rec.709-A" }
+            ]
+          },
+          {
+            name: "DCI DCP Bioskop & Project Archive",
+            videos: [
               { id: "a9oJNfm27i0", title: "Format Ekspor Festival Film & DCI DCP" },
               { id: "b3iWBMK92GM", title: "Project Archive (.dra) untuk Cadangan LTO" }
             ]
@@ -547,193 +563,331 @@
       }
     ];
 
-    let activePageIndex = 0;
-    let completedVideos = JSON.parse(localStorage.getItem('resolve_class_done') || '[]');
-    let currentActiveVideo = null;
-    let allFlattenedVideos = [];
+    /* =========================================================================
+       2. STATE MANAGEMENT & STORAGE
+       ========================================================================= */
+    let activePageId = appData[0].id;
+    let activeFilterTopic = "All";
+    let currentVideoObj = null;
+    let dbDone = JSON.parse(localStorage.getItem('rhub_done') || '[]');
+    let dbNotes = JSON.parse(localStorage.getItem('rhub_notes') || '{}');
 
-    resolvePages.forEach((p, pIdx) => {
-      p.topics.forEach(t => {
-        t.videos.forEach(v => {
-          allFlattenedVideos.push({
-            id: v.id,
-            title: v.title,
-            pageIndex: pIdx,
-            pageName: p.name
-          });
-        });
-      });
-    });
+    // Notes auto-save timeout
+    let notesTimeout;
 
-    function shuffleBackgroundVideo() {
-      if (allFlattenedVideos.length === 0) return;
-      const randIdx = Math.floor(Math.random() * allFlattenedVideos.length);
-      const chosen = allFlattenedVideos[randIdx];
+    // Hitung total video global
+    const allVideosCount = appData.reduce((acc, page) => 
+      acc + page.topics.reduce((tAcc, topic) => tAcc + topic.videos.length, 0)
+    , 0);
 
-      const iframe = document.getElementById('hero-bg-iframe');
-      if (iframe) {
-        iframe.src = `https://www.youtube.com/embed/${chosen.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${chosen.id}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1`;
-      }
-    }
-
-    function renderPageTabs() {
-      const tabContainer = document.getElementById('page-nav-tabs');
-      tabContainer.innerHTML = '';
-
-      resolvePages.forEach((page, idx) => {
-        const btn = document.createElement('button');
-        const isActive = idx === activePageIndex;
-        btn.className = `flex items-center space-x-2 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition ${
-          isActive 
-            ? 'bg-slate-900 text-white shadow-sm' 
-            : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300'
-        }`;
-        btn.innerHTML = `<i class="${page.icon}"></i> <span>${page.name}</span>`;
-        btn.onclick = () => selectPage(idx);
-        tabContainer.appendChild(btn);
-      });
-    }
-
-    function selectPage(index) {
-      activePageIndex = index;
-      renderPageTabs();
-      renderCurrentPageContent(document.getElementById('page-search-input').value);
-    }
-
-    function renderCurrentPageContent(searchTerm = '') {
-      const page = resolvePages[activePageIndex];
+    /* =========================================================================
+       3. INIT & RENDER ENGINE
+       ========================================================================= */
+    function init() {
+      renderShowcaseTabs();
+      switchShowcase(appData[0].id);
       
-      document.getElementById('page-title').textContent = page.name;
-      document.getElementById('page-desc').textContent = page.desc;
-      document.getElementById('page-badge-icon').innerHTML = `<i class="${page.icon}"></i>`;
+      renderCurriculumTabs();
+      renderPageContent();
+      
+      updateGlobalProgress();
+      shuffleHeroVideo();
 
-      const container = document.getElementById('topics-container');
+      // Search Event Listener
+      document.getElementById('global-search-input').addEventListener('input', (e) => {
+        renderPageContent(e.target.value);
+      });
+
+      // Notes Auto-save Event
+      document.getElementById('personal-notes').addEventListener('input', (e) => {
+        if(!currentVideoObj) return;
+        clearTimeout(notesTimeout);
+        document.getElementById('notes-status').style.opacity = '0';
+        
+        notesTimeout = setTimeout(() => {
+          dbNotes[currentVideoObj.id] = e.target.value;
+          localStorage.setItem('rhub_notes', JSON.stringify(dbNotes));
+          document.getElementById('notes-status').style.opacity = '1';
+        }, 800);
+      });
+    }
+
+    /* --- Showcase Functions --- */
+    function renderShowcaseTabs() {
+      const container = document.getElementById('showcase-tabs');
       container.innerHTML = '';
+      
+      appData.forEach(p => {
+        const btn = document.createElement('button');
+        btn.id = `sc-btn-${p.id}`;
+        btn.className = `flex items-center space-x-2 px-5 py-2.5 rounded-2xl text-[13px] font-bold whitespace-nowrap transition-all border ${
+          p.id === activePageId 
+            ? 'bg-slate-900 border-slate-900 text-white shadow-md' 
+            : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+        }`;
+        btn.innerHTML = `<i class="${p.icon}"></i> <span>${p.name}</span>`;
+        btn.onclick = () => switchShowcase(p.id);
+        container.appendChild(btn);
+      });
+    }
+
+    function switchShowcase(id) {
+      const page = appData.find(p => p.id === id);
+      if(!page) return;
+
+      // Update Tabs UI
+      appData.forEach(p => {
+        const btn = document.getElementById(`sc-btn-${p.id}`);
+        if(btn) {
+          btn.className = `flex items-center space-x-2 px-5 py-2.5 rounded-2xl text-[13px] font-bold whitespace-nowrap transition-all border ${
+            p.id === id ? 'bg-slate-900 border-slate-900 text-white shadow-md' : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+          }`;
+        }
+      });
+
+      // Update Content
+      document.getElementById('showcase-content').classList.remove('fade-in');
+      void document.getElementById('showcase-content').offsetWidth; // trigger reflow
+      document.getElementById('showcase-content').classList.add('fade-in');
+
+      document.getElementById('showcase-icon').className = `${page.icon} text-indigo-500`;
+      document.getElementById('showcase-tag').textContent = page.tag;
+      document.getElementById('showcase-title').textContent = page.name;
+      document.getElementById('showcase-desc').textContent = page.desc;
+      document.getElementById('showcase-img').src = page.showcaseImg;
+
+      // Render Features
+      const featList = document.getElementById('showcase-features');
+      featList.innerHTML = page.features.map(f => `
+        <li class="flex items-center text-[13px] font-semibold text-slate-700 bg-white border border-slate-100 rounded-lg px-3 py-2 shadow-sm">
+          <i class="fa-solid fa-check text-emerald-500 mr-2.5 text-xs"></i> ${f}
+        </li>
+      `).join('');
+
+      // Mini Progress bar for this specific page
+      const pageVideos = page.topics.reduce((acc, t) => acc.concat(t.videos.map(v => v.id)), []);
+      const doneInPage = pageVideos.filter(id => dbDone.includes(id)).length;
+      const pct = pageVideos.length === 0 ? 0 : Math.round((doneInPage / pageVideos.length) * 100);
+      
+      document.getElementById('showcase-progress-bar').style.width = `${pct}%`;
+      document.getElementById('showcase-progress-text').textContent = `${pct}%`;
+
+      // Jump CTA
+      document.getElementById('showcase-jump-btn').onclick = () => {
+        switchCurriculumPage(id);
+        document.getElementById('kurikulum').scrollIntoView({ behavior: 'smooth' });
+      };
+    }
+
+    /* --- Curriculum Functions --- */
+    function renderCurriculumTabs() {
+      const container = document.getElementById('curriculum-tabs');
+      container.innerHTML = '';
+      
+      appData.forEach(p => {
+        const btn = document.createElement('button');
+        const isActive = p.id === activePageId;
+        btn.className = `flex items-center space-x-2 px-5 py-2.5 rounded-2xl text-[13px] font-bold whitespace-nowrap transition-all border ${
+          isActive 
+            ? 'bg-slate-900 border-slate-900 text-white shadow-md' 
+            : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+        }`;
+        btn.innerHTML = `<i class="${p.icon}"></i> <span>${p.name}</span>`;
+        btn.onclick = () => switchCurriculumPage(p.id);
+        container.appendChild(btn);
+      });
+    }
+
+    function switchCurriculumPage(id) {
+      activePageId = id;
+      activeFilterTopic = "All";
+      document.getElementById('global-search-input').value = '';
+      
+      renderCurriculumTabs();
+      renderPageContent();
+    }
+
+    function renderPageContent(searchTerm = '') {
+      const page = appData.find(p => p.id === activePageId);
+      if(!page) return;
+
+      // Update Cheatsheet
+      document.getElementById('cheatsheet-page-name').textContent = page.name;
+      const csList = document.getElementById('cheatsheet-list');
+      csList.innerHTML = page.shortcuts.map(s => `
+        <li class="flex items-center justify-between text-xs">
+          <span class="font-semibold text-slate-600">${s.desc}</span>
+          <span class="bg-slate-100 border border-slate-200 text-slate-800 font-bold px-2 py-1 rounded-md text-[10px]">${s.key}</span>
+        </li>
+      `).join('');
+
+      // Render Filter Pills
+      const filterContainer = document.getElementById('subtopic-filters');
+      filterContainer.innerHTML = '';
+      
+      // Tombol 'All'
+      const btnAll = document.createElement('button');
+      btnAll.className = `px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${activeFilterTopic === 'All' ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`;
+      btnAll.textContent = "Semua Topik";
+      btnAll.onclick = () => { activeFilterTopic = 'All'; renderPageContent(searchTerm); };
+      filterContainer.appendChild(btnAll);
+
+      // Tombol per Topik
+      page.topics.forEach(t => {
+        const btn = document.createElement('button');
+        btn.className = `px-4 py-1.5 rounded-full text-xs font-bold transition-all border whitespace-nowrap ${activeFilterTopic === t.name ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`;
+        btn.textContent = t.name;
+        btn.onclick = () => { activeFilterTopic = t.name; renderPageContent(searchTerm); };
+        filterContainer.appendChild(btn);
+      });
+
+      // Render Videos
+      const vidContainer = document.getElementById('topics-container');
+      vidContainer.innerHTML = '';
 
       page.topics.forEach(topic => {
+        if(activeFilterTopic !== 'All' && activeFilterTopic !== topic.name) return;
+
         const filteredVideos = topic.videos.filter(v => 
-          v.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          topic.name.toLowerCase().includes(searchTerm.toLowerCase())
+          v.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
         if (filteredVideos.length > 0) {
           const topicBlock = document.createElement('div');
-          topicBlock.className = "space-y-3";
-
+          topicBlock.className = "space-y-4 fade-in";
+          
           topicBlock.innerHTML = `
             <div class="flex items-center justify-between">
-              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">${topic.name}</h4>
-              <span class="text-[11px] text-slate-400 font-medium">${filteredVideos.length} Video</span>
+              <h4 class="text-sm font-bold text-slate-800">${topic.name}</h4>
+              <span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-lg">${filteredVideos.length} Video</span>
             </div>
           `;
 
-          const videoGrid = document.createElement('div');
-          videoGrid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4";
+          const grid = document.createElement('div');
+          grid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5";
 
           filteredVideos.forEach(vid => {
-            const isDone = completedVideos.includes(vid.id);
+            const isDone = dbDone.includes(vid.id);
             const card = document.createElement('div');
-            card.className = `group cursor-pointer border rounded-2xl overflow-hidden hover:shadow-md transition duration-200 ${
-              isDone ? 'bg-slate-50 border-emerald-200' : 'bg-white border-slate-200/80'
+            card.className = `group cursor-pointer rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border bg-white flex flex-col ${
+              isDone ? 'border-emerald-200 bg-emerald-50/30' : 'border-slate-200/80 hover:-translate-y-1'
             }`;
 
             card.innerHTML = `
               <div class="relative bg-slate-900">
-                <img src="https://img.youtube.com/vi/${vid.id}/mqdefault.jpg" alt="${vid.title}" class="thumbnail-img w-full group-hover:scale-105 transition duration-300">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                  <div class="w-9 h-9 rounded-full bg-white text-slate-900 flex items-center justify-center shadow-lg">
-                    <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                <img src="https://img.youtube.com/vi/${vid.id}/mqdefault.jpg" alt="${vid.title}" class="thumbnail-img w-full group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition"></div>
+                
+                <!-- Play Button Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm text-slate-900 flex items-center justify-center shadow-xl scale-90 group-hover:scale-100 transition-transform">
+                    <i class="fa-solid fa-play text-sm ml-1"></i>
                   </div>
                 </div>
-                ${isDone ? '<span class="absolute top-2 right-2 bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow"><i class="fa-solid fa-check"></i></span>' : ''}
+                
+                ${isDone ? '<div class="absolute top-3 right-3 bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-md"><i class="fa-solid fa-check"></i></div>' : ''}
               </div>
-              <div class="p-3.5 flex flex-col justify-between">
-                <h5 class="text-xs font-semibold text-slate-800 line-clamp-2 group-hover:text-indigo-600 transition leading-snug">${vid.title}</h5>
-                <div class="mt-3 flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100">
-                  <span class="truncate pr-1">${topic.name}</span>
-                  <span class="${isDone ? 'text-emerald-600 font-semibold' : ''}">${isDone ? 'Selesai ✓' : 'Tonton'}</span>
+              <div class="p-5 flex flex-col justify-between flex-grow">
+                <h5 class="text-[13px] font-bold text-slate-800 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-snug">${vid.title}</h5>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500">
+                  <span class="truncate pr-2">${page.name}</span>
+                  <span class="${isDone ? 'text-emerald-600' : 'text-indigo-500 group-hover:underline'}">${isDone ? 'Selesai' : 'Mulai Tonton'}</span>
                 </div>
               </div>
             `;
-
-            card.onclick = () => playVideo(vid.id, vid.title, page.name);
-            videoGrid.appendChild(card);
+            card.onclick = () => openVideoPlayer(vid, page.name);
+            grid.appendChild(card);
           });
 
-          topicBlock.appendChild(videoGrid);
-          container.appendChild(topicBlock);
+          topicBlock.appendChild(grid);
+          vidContainer.appendChild(topicBlock);
         }
       });
-
-      updateTotalProgress();
     }
 
-    function playVideo(id, title, pageName) {
-      currentActiveVideo = { id, title, pageName };
-      const player = document.getElementById('player-container');
-      player.classList.remove('hidden');
-      document.getElementById('main-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-      document.getElementById('player-title').textContent = title;
+    /* --- Player & Notebook Functions --- */
+    function openVideoPlayer(videoObj, pageName) {
+      currentVideoObj = videoObj;
+      const container = document.getElementById('player-container');
+      container.classList.remove('hidden');
+      
+      document.getElementById('main-iframe').src = `https://www.youtube.com/embed/${videoObj.id}?autoplay=1`;
+      document.getElementById('player-title').textContent = videoObj.title;
       document.getElementById('player-page-tag').textContent = pageName;
-      document.getElementById('player-yt-link').href = `https://youtu.be/${id}`;
-      updatePlayerButton();
-      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('player-yt-link').href = `https://youtu.be/${videoObj.id}`;
+      
+      // Load Notes
+      const notesArea = document.getElementById('personal-notes');
+      notesArea.value = dbNotes[videoObj.id] || '';
+      document.getElementById('notes-status').style.opacity = '0';
+
+      updatePlayerCompletionBtn();
+      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function closePlayer() {
       document.getElementById('player-container').classList.add('hidden');
       document.getElementById('main-iframe').src = '';
-      currentActiveVideo = null;
+      currentVideoObj = null;
     }
 
-    function updatePlayerButton() {
-      if (!currentActiveVideo) return;
+    function clearNotes() {
+      if(!currentVideoObj) return;
+      if(confirm("Hapus catatan pribadi untuk materi ini?")) {
+        document.getElementById('personal-notes').value = '';
+        delete dbNotes[currentVideoObj.id];
+        localStorage.setItem('rhub_notes', JSON.stringify(dbNotes));
+        document.getElementById('notes-status').style.opacity = '0';
+      }
+    }
+
+    function updatePlayerCompletionBtn() {
       const btn = document.getElementById('player-done-btn');
-      const isDone = completedVideos.includes(currentActiveVideo.id);
+      const isDone = dbDone.includes(currentVideoObj.id);
+      
       if (isDone) {
-        btn.textContent = "Ditandai Selesai ✓";
-        btn.className = "bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-emerald-700 transition";
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1.5"></i> Selesai';
+        btn.className = "bg-emerald-500 hover:bg-emerald-600 text-white text-[13px] font-bold px-6 py-2.5 rounded-xl transition-all shadow-sm";
       } else {
-        btn.textContent = "Tandai Selesai";
-        btn.className = "bg-slate-900 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-slate-800 transition";
+        btn.innerHTML = 'Tandai Selesai';
+        btn.className = "bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-bold px-6 py-2.5 rounded-xl transition-all shadow-sm";
       }
     }
 
     document.getElementById('player-done-btn').onclick = () => {
-      if (!currentActiveVideo) return;
-      const id = currentActiveVideo.id;
-      const idx = completedVideos.indexOf(id);
-      if (idx > -1) {
-        completedVideos.splice(idx, 1);
-      } else {
-        completedVideos.push(id);
-      }
-      localStorage.setItem('resolve_class_done', JSON.stringify(completedVideos));
-      updatePlayerButton();
-      renderCurrentPageContent(document.getElementById('page-search-input').value);
+      if (!currentVideoObj) return;
+      const idx = dbDone.indexOf(currentVideoObj.id);
+      
+      if (idx > -1) dbDone.splice(idx, 1);
+      else dbDone.push(currentVideoObj.id);
+      
+      localStorage.setItem('rhub_done', JSON.stringify(dbDone));
+      
+      updatePlayerCompletionBtn();
+      updateGlobalProgress();
+      renderPageContent(document.getElementById('global-search-input').value);
+      
+      // Update showcase progress bar instantly if same page
+      switchShowcase(activePageId); 
     };
 
-    function updateTotalProgress() {
-      let total = 0;
-      resolvePages.forEach(p => p.topics.forEach(t => total += t.videos.length));
-      const done = completedVideos.length;
-      const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-      document.getElementById('nav-progress-text').textContent = `${pct}% (${done}/${total})`;
+    function updateGlobalProgress() {
+      const done = dbDone.length;
+      const pct = allVideosCount === 0 ? 0 : Math.round((done / allVideosCount) * 100);
+      document.getElementById('global-progress-text').textContent = `${pct}% Selesai`;
     }
 
-    document.getElementById('page-search-input').addEventListener('input', (e) => {
-      renderCurrentPageContent(e.target.value);
-    });
+    function shuffleHeroVideo() {
+      // Ambil acak dari database video untuk diletakkan di latar Hero Section
+      const allVids = appData.map(p => p.topics.map(t => t.videos)).flat(2);
+      if(allVids.length > 0) {
+        const randId = allVids[Math.floor(Math.random() * allVids.length)].id;
+        document.getElementById('hero-bg-iframe').src = `https://www.youtube.com/embed/${randId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${randId}&showinfo=0&rel=0&modestbranding=1`;
+      }
+    }
 
-    renderPageTabs();
-    renderCurrentPageContent();
-    shuffleBackgroundVideo();
-
-    document.getElementById('showcase-jump-btn').onclick = () => {
-      selectPage(3);
-      document.getElementById('kurikulum').scrollIntoView({ behavior: 'smooth' });
-    };
+    // Jalankan aplikasi
+    init();
   </script>
 </body>
 </html>

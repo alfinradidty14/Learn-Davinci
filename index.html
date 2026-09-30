@@ -13,6 +13,20 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fbfcfd; color: #0f172a; }
     .thumbnail-img { aspect-ratio: 16/9; object-fit: cover; }
     .ui-showcase-img { aspect-ratio: 16/10; object-fit: cover; }
+
+    /* CSS Full-Cover Video Background */
+    .video-bg-frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw; /* Rasio 16:9 */
+      min-height: 100vh;
+      min-width: 177.77vh; /* Rasio 16:9 */
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
     ::-webkit-scrollbar { width: 7px; }
     ::-webkit-scrollbar-track { background: #f8fafc; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -31,7 +45,6 @@
       </a>
 
       <div class="hidden md:flex items-center space-x-6 text-xs font-semibold text-slate-600">
-        <a href="#preview-reel" class="hover:text-slate-900 transition">Highlight Reel</a>
         <a href="#showcase" class="hover:text-slate-900 transition">Workspace UI</a>
         <a href="#kurikulum" class="hover:text-slate-900 transition">Kurikulum Page</a>
         <a href="https://www.blackmagicdesign.com/products/davinciresolve/training" target="_blank" class="hover:text-slate-900 transition">Sertifikasi</a>
@@ -49,89 +62,78 @@
     </nav>
   </div>
 
-  <!-- Hero Section -->
-  <section class="relative pt-32 pb-16 px-6 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-100">
+  <!-- Hero Section dengan Video Background Bergerak Penuh -->
+  <section class="relative min-h-[92vh] flex flex-col justify-between pt-36 pb-10 px-6 overflow-hidden border-b border-slate-100">
     
-    <!-- Background Ambient Glow -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[350px] bg-gradient-to-tr from-indigo-100/50 via-rose-100/30 to-amber-100/40 blur-3xl -z-10 rounded-full pointer-events-none"></div>
+    <!-- BACKGROUND VIDEO WRAPPER (Muted & Loop) -->
+    <div class="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
+      <iframe id="hero-bg-iframe" class="video-bg-frame opacity-65" 
+              src="" frameborder="0" allow="autoplay" allowfullscreen>
+      </iframe>
+    </div>
 
-    <div class="max-w-4xl mx-auto text-center space-y-6">
+    <!-- Soft White Glass Overlays (Menjaga Teks Tetap Jelas & Bersih) -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white/80 via-white/60 to-[#fbfcfd] backdrop-blur-[2px] pointer-events-none"></div>
+
+    <!-- Center Content (Headline & CTA) -->
+    <div class="max-w-4xl mx-auto text-center space-y-6 my-auto relative z-10">
       
       <!-- Pill Badge -->
-      <div class="inline-flex items-center space-x-2 bg-white border border-slate-200/90 text-slate-700 px-4 py-1.5 rounded-full text-xs font-medium shadow-sm">
+      <div class="inline-flex items-center space-x-2 bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-700 px-4 py-1.5 rounded-full text-xs font-medium shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         <span>150+ Tutorial Terkurasi Tingkat Lanjut</span>
       </div>
 
       <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08]">
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08] drop-shadow-sm">
         Master every frame.
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+      <p class="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
         Pelajari alur kerja pascaproduksi DaVinci Resolve mulai dari Editorial, Color Science (ACES), Fusion VFX, hingga Fairlight Audio Mastering.
       </p>
 
       <!-- Pill Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-        <a href="#kurikulum" class="bg-white border border-slate-300 hover:border-slate-400 text-slate-900 font-semibold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-sm flex items-center space-x-2">
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
+        <a href="#kurikulum" class="bg-white/95 hover:bg-white border border-slate-300 hover:border-slate-400 text-slate-900 font-semibold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-md flex items-center space-x-2">
           <span>Jelajahi Kurikulum</span>
           <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
-        <a href="#showcase" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-sm">
+        <a href="#showcase" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-full transition shadow-md">
           Lihat Workspace UI
         </a>
       </div>
     </div>
 
-    <!-- Live Random Moving Video Showcase Frame (Tanpa Suara / Muted Reel) -->
-    <div id="preview-reel" class="max-w-4xl mx-auto mt-12">
-      <div class="bg-white border border-slate-200 rounded-3xl p-3 sm:p-4 shadow-xl">
-        
-        <!-- Frame Window Bar -->
-        <div class="flex items-center justify-between px-3 py-2 border-b border-slate-100 mb-3 text-xs text-slate-500">
-          <div class="flex items-center space-x-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-            <span class="font-bold text-[11px] text-slate-700 ml-2 hidden sm:inline flex items-center gap-1.5">
-              <i class="fa-solid fa-film text-indigo-500"></i> Live Reel Highlight • <span class="text-slate-400">Muted Loop</span>
-            </span>
-          </div>
-          <button onclick="shuffleRandomVideo()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[11px] px-3 py-1 rounded-full transition flex items-center space-x-1.5 shadow-sm">
-            <i class="fa-solid fa-shuffle text-indigo-600"></i>
-            <span>Acak Cuplikan Lain</span>
-          </button>
-        </div>
-
-        <!-- Video Frame Container -->
-        <div class="relative pb-[56.25%] bg-slate-950 rounded-2xl overflow-hidden shadow-inner">
-          <iframe id="hero-random-iframe" class="absolute top-0 left-0 w-full h-full pointer-events-auto" 
-                  src="" frameborder="0" allow="autoplay" allowfullscreen>
-          </iframe>
-
-          <!-- Floating Info Overlay on Video -->
-          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-slate-900/80 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-xl text-white pointer-events-auto">
-            <div class="truncate mr-3">
-              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">Cuplikan Acak Saat Ini:</span>
-              <p id="hero-random-title" class="text-xs font-semibold truncate text-slate-200">Memuat cuplikan...</p>
-            </div>
-            <button id="hero-random-jump-btn" class="bg-white text-slate-900 hover:bg-slate-100 font-bold text-[11px] px-3.5 py-1.5 rounded-lg whitespace-nowrap transition shadow">
-              Tonton di Player
-            </button>
-          </div>
-        </div>
-
+    <!-- Floating Mini Reel Controller & Scroll Indicator -->
+    <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto w-full pt-8">
+      
+      <!-- Badge Video Background Info -->
+      <div class="flex items-center space-x-2.5 bg-white/85 backdrop-blur-md border border-slate-200/80 px-3.5 py-1.5 rounded-full shadow-sm text-xs">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+        </span>
+        <span class="text-slate-500 text-[11px]">Background Reel:</span>
+        <span id="hero-bg-title" class="font-bold text-slate-800 max-w-[200px] sm:max-w-xs truncate text-[11px]">Memuat cuplikan...</span>
+        <button onclick="shuffleBackgroundVideo()" title="Ganti Video Latar" class="ml-1 text-slate-500 hover:text-indigo-600 font-bold transition">
+          <i class="fa-solid fa-shuffle text-xs"></i>
+        </button>
       </div>
-    </div>
 
-    <!-- Scroll Down Indicator -->
-    <div class="text-center pt-10">
-      <a href="#showcase" class="inline-flex items-center space-x-1.5 text-[11px] font-bold tracking-widest uppercase text-slate-400 hover:text-slate-700 transition">
+      <!-- Scroll Indicator -->
+      <a href="#showcase" class="inline-flex items-center space-x-1.5 text-[11px] font-bold tracking-widest uppercase text-slate-500 hover:text-slate-800 transition bg-white/60 backdrop-blur-sm px-4 py-1 rounded-full">
         <span>SCROLL</span>
         <i class="fa-solid fa-arrow-down text-[10px]"></i>
       </a>
+
+      <!-- Jump to Video Button -->
+      <button id="hero-bg-jump-btn" class="hidden sm:inline-flex items-center space-x-1 text-[11px] font-semibold text-slate-600 bg-white/85 backdrop-blur-md border border-slate-200/80 hover:bg-slate-900 hover:text-white px-3.5 py-1.5 rounded-full transition shadow-sm">
+        <span>Buka Video Ini di Player</span>
+        <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+      </button>
+
     </div>
   </section>
 
@@ -579,7 +581,7 @@
     let currentActiveVideo = null;
     let allFlattenedVideos = [];
 
-    // Kumpulkan semua video ke dalam satu array untuk fitur acak
+    // Kumpulkan semua video untuk fungsi acak latar
     resolvePages.forEach((p, pIdx) => {
       p.topics.forEach(t => {
         t.videos.forEach(v => {
@@ -593,18 +595,18 @@
       });
     });
 
-    // Fitur Random Video Reel (Autoplay & Muted)
-    function shuffleRandomVideo() {
+    // Pemuatan Video Background Latar (Muted & Loop)
+    function shuffleBackgroundVideo() {
       if (allFlattenedVideos.length === 0) return;
-      const randIndex = Math.floor(Math.random() * allFlattenedVideos.length);
-      const chosen = allFlattenedVideos[randIndex];
+      const randIdx = Math.floor(Math.random() * allFlattenedVideos.length);
+      const chosen = allFlattenedVideos[randIdx];
 
-      const iframe = document.getElementById('hero-random-iframe');
-      // Parameter YouTube: autoplay=1, mute=1 (wajib browser agar autoplay jalan), controls=0, loop=1
-      iframe.src = `https://www.youtube.com/embed/${chosen.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${chosen.id}&modestbranding=1&rel=0`;
+      const iframe = document.getElementById('hero-bg-iframe');
+      // YouTube embed parameter background: autoplay=1, mute=1, controls=0, loop=1
+      iframe.src = `https://www.youtube.com/embed/${chosen.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${chosen.id}&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1`;
 
-      document.getElementById('hero-random-title').textContent = `${chosen.pageName} • ${chosen.title}`;
-      document.getElementById('hero-random-jump-btn').onclick = () => {
+      document.getElementById('hero-bg-title').textContent = `${chosen.pageName} • ${chosen.title}`;
+      document.getElementById('hero-bg-jump-btn').onclick = () => {
         selectPage(chosen.pageIndex);
         playVideo(chosen.id, chosen.title, chosen.pageName);
       };
@@ -760,10 +762,9 @@
       renderCurrentPageContent(e.target.value);
     });
 
-    // Inisialisasi awal
     renderPageTabs();
     renderCurrentPageContent();
-    shuffleRandomVideo(); // Putar video acak tanpa suara di hero section saat pertama kali dibuka
+    shuffleBackgroundVideo(); // Memulai video latar belakang acak tanpa suara
 
     document.getElementById('showcase-jump-btn').onclick = () => {
       selectPage(3);

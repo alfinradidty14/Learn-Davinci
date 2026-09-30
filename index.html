@@ -22,6 +22,7 @@
     .thumbnail-img { aspect-ratio: 16/9; object-fit: cover; }
     .ui-showcase-img { aspect-ratio: 16/10; object-fit: cover; }
 
+    /* Full-Cover Background Video */
     .video-bg-frame {
       position: absolute;
       top: 50%;
@@ -288,7 +289,7 @@
   <!-- DATA & JAVASCRIPT ENGINE -->
   <script>
     /* =========================================================================
-       DATABASE LENGKAP: 7 HALAMAN KERJA (MINIMAL 20+ VIDEO PER PAGE)
+       DATABASE LENGKAP: 7 HALAMAN KERJA (156 VIDEO TERKURASI)
        ========================================================================= */
     const appData = [
       {
@@ -467,41 +468,43 @@
         ],
         topics: [
           {
-            name: "Dasar Node, Merge & Masking",
+            name: "Level 1: Dasar Node, Merge & Spline (Fundamental)",
             videos: [
               { id: "gaFT_Kj2yeQ", title: "Fusion Interface & Node Logic — Casey Faris" },
-              { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, Mask" },
-              { id: "PoinMs_YceQ", title: "Vector Polygon & Masking" },
-              { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor Halus — Patrick Stirling" },
+              { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, and Alpha Mask" },
+              { id: "PoinMs_YceQ", title: "Vector Polygon & B-Spline Masking Basics" },
+              { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor Smoothing — Patrick Stirling" },
               { id: "SIbUS2tGgFw", title: "Transform, Blur, dan Color Curves di Fusion" },
-              { id: "7R1xOvFN4pA", title: "Bitmap Mask vs Vector Mask" },
-              { id: "Oj1unLrTo5g", title: "Fast Motion Graphics Animation" },
-              { id: "cZuLAWJ6CvQ", title: "Lower Thirds & Kinetic Titles Creation" }
+              { id: "7R1xOvFN4pA", title: "Bitmap Mask vs Vector Masking Logic" },
+              { id: "cZuLAWJ6CvQ", title: "Lower Thirds & Kinetic Titles Creation" },
+              { id: "1PzseSY5rr4", title: "DaVinci Resolve's Keyframe Stretcher Explained!" }
             ]
           },
           {
-            name: "Tracking, Keying & AI Tools",
+            name: "Level 2: Menengah (Tracking, Keying & Compositing)",
             videos: [
-              { id: "F-Pr1GGmyVU", title: "Point Tracker & Stabilisasi Video" },
+              { id: "VLxD0rK0aHw", title: "Motion Stabilizing in DaVinci Resolve Fusion" },
+              { id: "F-Pr1GGmyVU", title: "Point Tracker & Stabilisasi Video 1 Point vs 2 Point" },
               { id: "dp_qeQY8Zps", title: "Planar Tracking & Corner Pinning (Ganti Layar HP)" },
-              { id: "FvzlVK1IaU0", title: "Planar Masking & Object Removal" },
-              { id: "g8ZAY--tzeo", title: "Advanced Surface Tracker in Fusion" },
-              { id: "W6BhkDvgdTI", title: "Match Moving Objects with Tracker" },
               { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Efisien — VFX Study" },
-              { id: "kZC08b5mG58", title: "Delta Keyer: Hollywood Green Screen — JayAreTV" },
+              { id: "kZC08b5mG58", title: "Delta Keyer: Hollywood Green Screen Extraction — JayAreTV" },
               { id: "QN4UxWnRZEI", title: "Clean Plate Generation & Patch Replacer" },
-              { id: "DmQKedj3r2E", title: "AI Magic Mask Tutorial — Darren Mostyn" },
+              { id: "vslPHSuVvAA", title: "How to Get A PERFECT MASK Every Time! — Joris Hermans" },
+              { id: "UB7mOG9eNxg", title: "NEW Magic Mask 2 in DaVinci Resolve Studio — MrAlexTech" },
               { id: "f6bo9hoDWpc", title: "VFX Dasar: Compositing Ledakan & Debu" }
             ]
           },
           {
-            name: "Ruang Kerja 3D & Camera Tracker",
+            name: "Level 3: Tingkat Lanjut & Standar Studio (3D, Partikel & Macro)",
             videos: [
               { id: "6yHyU5oZQvI", title: "How to 3D Camera Track in Fusion — ProductionCrate" },
-              { id: "HhjK2q1jHwA", title: "Navigasi Lingkungan 3D Fusion" },
-              { id: "VSUC2zOFPh0", title: "3D Camera, Light, dan Renderer3D" },
-              { id: "rx591Kh3IpU", title: "3D Text & Extrusions" },
-              { id: "UnrmOnNWRSw", title: "3D Particles & Atmospheric Effects" }
+              { id: "uWemlq_gpJc", title: "How to Add 3D Tracking Text in Fusion — Quick Resolve" },
+              { id: "EpfSO-YgoLc", title: "How to CAST SHADOWS on Real World Objects in 3D" },
+              { id: "d_-h6tgvRY8", title: "Camera Tracking ANY 3D Object into Resolve — DanVinci" },
+              { id: "Rbmk8bQfJio", title: "DaVinci Resolve | Particle Introduction — PeeJ ENT" },
+              { id: "nLtLct_rJDc", title: "How To Create Animated Floating Dust Particles — C0nti" },
+              { id: "6XOwwVbfrec", title: "Make Your OWN PLUGINS in Resolve (Fusion Templates) — Casey Faris" },
+              { id: "PGARATLThMs", title: "Fusion Expressions 101 - Basic Coding for Editors — Casey Faris" }
             ]
           }
         ]
@@ -523,44 +526,44 @@
         ],
         topics: [
           {
-            name: "Color Science, ACES & Scopes",
+            name: "Level 1: Dasar, Scopes & Normalisasi (Fundamental)",
             videos: [
-              { id: "99v96TL-tuY", title: "DaVinci YRGB Color Managed (RCM)" },
-              { id: "V7Od6GlBrdc", title: "ACES Architecture di Film Komersial" },
-              { id: "QCRVwkhxDzw", title: "CSTs vs Resolve Color Management — Cullen Kelly" },
-              { id: "JpRuQQ__-YA", title: "Pro Colorist Guide to ACES in Resolve — Cullen Kelly" },
-              { id: "3ap8k564N_w", title: "Color Space Transform (CST) Manual" },
-              { id: "IwqucXqb2zY", title: "Scopes Mastery: Waveform & Parade — Darren Mostyn" },
-              { id: "JhPY-nojylE", title: "Vectorscope & Skin Tone Line" },
-              { id: "6m3AR-hNsSw", title: "Histogram & Dynamic Range Evaluation" },
-              { id: "YbDRl_xugJo", title: "NEW to DaVinci Resolve? Color Grading Tutorial — Darren Mostyn" }
+              { id: "YbDRl_xugJo", title: "NEW to DaVinci Resolve? Color Grading Basics — Darren Mostyn" },
+              { id: "c4AVwVdKTHc", title: "Resolve Color Management EASY for Beginners — Darren Mostyn" },
+              { id: "IwqucXqb2zY", title: "Scopes Mastery: Waveform, RGB Parade & Histogram — Darren Mostyn" },
+              { id: "Gz_QzBdHDYc", title: "Exposure Normalization & Highlight Rolloff — Cullen Kelly" },
+              { id: "bjA0Zqs5KRY", title: "Teknik White Balance Akurat & Netralisasi Cast — Darren Mostyn" },
+              { id: "fTg-1KicwSs", title: "Kontras Kurva & Pengaturan S-Curve Pivot Point" },
+              { id: "TpJ1EAerPN4", title: "Saturation vs Color Boost: Perbedaan Karakteristik" },
+              { id: "8V9CdNthfs4", title: "Fix BAD Footage EASILY with RGB Mixer — Darren Mostyn" }
             ]
           },
           {
-            name: "Primary Corrections, Balance & Node Tree",
+            name: "Level 2: Menengah (Node Architecture, Shot Matching & Skin Tone)",
             videos: [
-              { id: "Gz_QzBdHDYc", title: "Exposure Normalization & Highlight Rolloff" },
-              { id: "zplOyEp1Ofc", title: "Keseimbangan Shadow & Midtone" },
-              { id: "bjA0Zqs5KRY", title: "Teknik White Balance Akurat" },
-              { id: "fTg-1KicwSs", title: "Kontras Kurva & Pengaturan Pivot Point" },
-              { id: "TpJ1EAerPN4", title: "Saturation vs Color Boost" },
+              { id: "kdTMRQP_V7E", title: "The BEST Node Tree for ANY Camera! — Darren Mostyn" },
               { id: "U3vzpYHi4R8", title: "Fixed Node Tree Architecture Hollywood — Waqas Qazi" },
-              { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes" },
-              { id: "V4T9NBjwHwE", title: "Key Mixer & External Matte Nodes" }
+              { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes in Action" },
+              { id: "l3rOObH74TE", title: "Learn to PRO Color MATCH Shots in 15 mins! — Darren Mostyn" },
+              { id: "Bw14wqVbpOo", title: "Isolasi Skin Tone & Vectorscope Alignment Line" },
+              { id: "J_UuYr91sPo", title: "How to Grade Apple Log in DaVinci Resolve — Darren Mostyn" },
+              { id: "il409rHulr8", title: "How to Grade DRONE Footage with a PRO Colorist — Darren Mostyn" },
+              { id: "896vcqJijtQ", title: "How to IMPROVE Your D-Log M Grades with a PRO — Darren Mostyn" },
+              { id: "BZqe9jXgPLg", title: "Pro Colorist on 8-bit & Phone Footage — Darren Mostyn" }
             ]
           },
           {
-            name: "Secondaries, Look Dev & Film Emulation",
+            name: "Level 3: Tingkat Lanjut & Standar Hollywood (Color Science & Emulation)",
             videos: [
-              { id: "Bw14wqVbpOo", title: "Isolasi & Preservasi Skin Tone" },
-              { id: "7wcQzJ2MiTg", title: "Power Windows & Soft Edge Blending" },
-              { id: "ZvpzChjKDA8", title: "Color Page Object Tracking" },
-              { id: "1-5mXPEsm3k", title: "Designing Custom Cinematic Looks" },
-              { id: "tc2OF7iGtzY", title: "Pemisahan Warna Dingin & Hangat (Split Toning)" },
-              { id: "4q5KU3L2S3o", title: "Prinsip Film Emulation (Kodak 2383)" },
-              { id: "4BufREoC8xE", title: "Halation, Bloom, dan Grain Organik — Avery Peck" },
-              { id: "aoS-yLYtOh8", title: "Pemanfaatan HDR Color Wheels" },
-              { id: "OK5Nr6XSJyU", title: "Noise Reduction Temporal & Spasial" }
+              { id: "L-wWISKehoM", title: "How to Use ColorSlice Like a Pro (& when NEVER to use it) — Cullen Kelly" },
+              { id: "6g5XcJ5dEG8", title: "COLOR SLICE: Density and Saturation Tool — Douglas Dutton" },
+              { id: "LKTZR1t7jjY", title: "How to Color Manage RAW Footage Using Nodes — Cullen Kelly" },
+              { id: "QCRVwkhxDzw", title: "CSTs vs Resolve Color Management — Cullen Kelly" },
+              { id: "JpRuQQ__-YA", title: "Pro Colorist Guide To Color Management (ACES Pipeline) — Cullen Kelly" },
+              { id: "4gu0Yz9TE-c", title: "The Most Underrated Tool | Why Use HDR Wheels — Yes Jmo" },
+              { id: "4q5KU3L2S3o", title: "Print Film Emulation & Subtractive Color Chemistry (Kodak 2383)" },
+              { id: "4BufREoC8xE", title: "Halation, Bloom, and Grain Texture Profile — Avery Peck" },
+              { id: "OK5Nr6XSJyU", title: "Spatial vs Temporal Noise Reduction Profiling — Team DaVinci" }
             ]
           }
         ]
@@ -571,7 +574,7 @@
         icon: "fa-solid fa-music",
         tag: "Audio Mixing & Mastering",
         desc: "Digital Audio Workstation (DAW) di dalam NLE. Dilengkapi ratusan track, EQ parametrik, Sidechain Compression, AI Voice Isolation, dan BUS Routing (DME).",
-        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/fairlight/hero/hero-still.jpg",
+        showcaseImg: "https://images.blackmagicdesign.com/images/products/davinciresolve/overview/fairlight/fairlight-md.jpg",
         features: ["AI Voice Isolation", "Submix Bus Routing (DME)", "Loudness Metering (-14 LUFS)"],
         shortcuts: [
           { key: "M", desc: "Mute Selected Track" },
@@ -606,15 +609,15 @@
             ]
           },
           {
-            name: "Bus Routing DME, Sound Design & Final Mastering",
+            name: "Bus Routing DME, Dolby Atmos & Final Mastering",
             videos: [
               { id: "UHudbCiEmnU", title: "Use BUSES to Master Your Audio — Daniel Batal" },
               { id: "LZPJoS0CqC4", title: "Submix & DME Bus Routing in 3 Minutes — JayAreTV" },
               { id: "mLlo4uIEUWw", title: "DaVinci Resolve - Audio Post Routing/Bussing Masterclass" },
+              { id: "-ysx37Z0ti0", title: "DaVinci Resolve Fairlight Training - Dolby Atmos Integration — Blackmagic Design" },
+              { id: "zv0TcLS06V0", title: "Getting Started with Dolby Atmos Music — Michael G Wagner" },
               { id: "udEc8Ub1LQ4", title: "Track Automation & Master Fader Control" },
-              { id: "TgqE7_lsRqM", title: "Foley Recording & Sound Effects Replacement" },
-              { id: "wkKqXQsRl_c", title: "Creating Cinematic Ambience & Reverb Spaces" },
-              { id: "geZT8ikUy9Q", title: "Music Mixing & Leveling Against Dialogue" }
+              { id: "wkKqXQsRl_c", title: "Creating Cinematic Ambience & Reverb Spaces" }
             ]
           }
         ]
@@ -652,15 +655,15 @@
           {
             name: "Render Cache, Intermediate & Festival Delivery",
             videos: [
+              { id: "6xxkvfTLzTA", title: "Creating an IMF Package in DaVinci Resolve — Netflix Tech Resources" },
+              { id: "BESi2G4kmT8", title: "Picture IMF Supplementals in DaVinci Resolve — Netflix Tech" },
               { id: "i_88edxhJvc", title: "Render Cache Mastery: Smart vs User Cache" },
               { id: "eXPApYc6Id4", title: "ProRes 422 HQ vs ProRes 4444 Master Export" },
               { id: "9XOTQpTyoqQ", title: "Avid DNxHR/HD Master Codec Setup" },
               { id: "_Gh1dhb9jGk", title: "Exporting Vertical Video (Instagram Reels / TikTok)" },
               { id: "a9oJNfm27i0", title: "Format Ekspor Festival Film & DCI DCP — Color Grading Channel" },
-              { id: "maYUkyjI1x0", title: "Creating Unencrypted DCP for Theaters" },
               { id: "NYKdcnj3KYw", title: "Subtitles Burn-In vs Sidecar SRT Export" },
               { id: "b3iWBMK92GM", title: "Project Archive (.dra) untuk Cadangan LTO Tape" },
-              { id: "eSoNI8bTpFA", title: "Consolidating Media & Trimming Used Clips Only" },
               { id: "phwSgNO99wQ", title: "Advanced Remote Rendering & Network Queue" },
               { id: "bJS_rrzkETk", title: "Professional Studio Master Delivery Manifest" }
             ]

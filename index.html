@@ -1,352 +1,528 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DaVinci Resolve Mastery Hub</title>
+  <title>DaVinci Resolve Academy — Modul Per Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    body { background-color: #121316; color: #e1e3e8; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #181a1f; }
-    ::-webkit-scrollbar-thumb { background: #2c2f38; border-radius: 3px; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfdfe; color: #0f172a; }
+    .thumbnail-img { aspect-ratio: 16/9; object-fit: cover; }
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
   </style>
 </head>
-<body class="h-screen flex flex-col font-sans overflow-hidden">
+<body class="flex flex-col min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-[#181a1f] border-b border-[#262930] px-6 py-3 flex items-center justify-between flex-shrink-0">
-    <div class="flex items-center space-x-3">
-      <div class="w-8 h-8 rounded bg-gradient-to-tr from-amber-500 via-rose-500 to-indigo-500 flex items-center justify-center font-bold text-black text-sm">
-        DR
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-extrabold text-sm shadow-sm">
+          DR
+        </div>
+        <div>
+          <span class="font-extrabold text-base tracking-tight text-slate-900">Resolve Academy</span>
+          <span class="text-[10px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full ml-1 border border-slate-200">Per-Page Curriculum</span>
+        </div>
       </div>
-      <div>
-        <h1 class="font-bold text-base tracking-wide text-white">DaVinci Resolve Mastery Hub</h1>
-        <p class="text-xs text-gray-400">Kurikulum Belajar Terstruktur & Video Knowledge Base</p>
+
+      <div class="flex items-center space-x-4">
+        <!-- Progress Tracker Bar -->
+        <div class="flex items-center space-x-2 bg-slate-50 border border-slate-200/80 px-4 py-1.5 rounded-full text-xs font-semibold text-slate-700">
+          <i class="fa-solid fa-circle-check text-emerald-500"></i>
+          <span>Progress Total:</span>
+          <span id="nav-progress-text" class="text-slate-900 font-bold">0%</span>
+        </div>
       </div>
-    </div>
-    <div class="flex items-center space-x-4">
-      <div class="text-xs text-gray-400 bg-[#20232a] px-3 py-1.5 rounded-full border border-[#2d313b]">
-        Progress: <span id="progress-percent" class="text-amber-400 font-semibold">0%</span>
-      </div>
-      <a href="https://www.blackmagicdesign.com/products/davinciresolve/training" target="_blank" class="text-xs bg-[#2c303a] hover:bg-[#383d4a] text-gray-200 px-3 py-1.5 rounded transition">
-        Sertifikasi Resmi
-      </a>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <div class="flex flex-1 overflow-hidden">
+  <!-- Hero Section (Clean White SaaS Style) -->
+  <section class="pt-12 pb-8 px-6 bg-gradient-to-b from-white via-slate-50/40 to-white border-b border-slate-100">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <div class="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 text-slate-700 px-3.5 py-1.5 rounded-full text-xs font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Struktur Modular DaVinci Resolve Pipeline</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+        Kuasai DaVinci Resolve <span class="text-indigo-600">Page demi Page</span>.
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Pilih workspace page di bawah ini untuk mempelajari modul dan video tutorial spesifik. Anda dapat melacak materi yang telah diselesaikan.
+      </p>
+    </div>
+  </section>
 
-    <!-- Sidebar: Navigasi Materi -->
-    <aside class="w-96 bg-[#15171c] border-r border-[#242730] flex flex-col">
-      <!-- Search Box -->
-      <div class="p-3 border-b border-[#242730]">
-        <div class="relative">
-          <i class="fa fa-search absolute left-3 top-3 text-xs text-gray-500"></i>
-          <input type="text" id="search-input" placeholder="Cari topik (misal: Scopes, Fairlight, Node)..." 
-                 class="w-full bg-[#1e2129] border border-[#2c303b] text-xs text-gray-200 rounded-md pl-8 pr-3 py-2 focus:outline-none focus:border-amber-500">
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-6 py-8 w-full flex-1">
+    
+    <!-- DaVinci Resolve Page Navigation Bar (Mirrors the Bottom Toolbar) -->
+    <div class="mb-8">
+      <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center sm:text-left">Pilih Halaman / Page Kerja:</p>
+      <div class="flex items-center justify-start sm:justify-center overflow-x-auto pb-3 gap-2" id="page-nav-tabs">
+        <!-- Tab tombol digenerate oleh JS -->
+      </div>
+    </div>
+
+    <!-- Active Video Player Area (Muncul saat video diklik) -->
+    <div id="player-container" class="hidden mb-10 bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span id="player-page-tag" class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Page</span>
+          <h2 id="player-title" class="text-lg sm:text-xl font-bold text-slate-900 mt-2">Judul Video</h2>
+        </div>
+        <button onclick="closePlayer()" class="text-slate-400 hover:text-slate-600 text-sm p-2">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <div class="relative pb-[56.25%] bg-slate-950 rounded-2xl overflow-hidden shadow-inner mb-4">
+        <iframe id="main-iframe" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <button id="player-done-btn" class="bg-slate-900 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-slate-800 transition">
+          Tandai Selesai
+        </button>
+        <a id="player-yt-link" href="#" target="_blank" class="text-xs text-slate-600 hover:text-red-600 transition flex items-center space-x-1.5 font-medium">
+          <i class="fa-brands fa-youtube text-red-500 text-base"></i>
+          <span>Buka di YouTube</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Page Details & Video List -->
+    <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-8">
+      
+      <!-- Current Page Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-100 gap-4">
+        <div>
+          <div class="flex items-center space-x-2.5">
+            <div id="page-badge-icon" class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-book"></i>
+            </div>
+            <div>
+              <h2 id="page-title" class="text-2xl font-extrabold text-slate-900">Basic Knowledge</h2>
+              <p id="page-desc" class="text-xs sm:text-sm text-slate-500 mt-0.5">Pondasi dasar, setting project, dan optimasi hardware.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Bar dalam Page -->
+        <div class="relative w-full md:w-72">
+          <i class="fa-solid fa-search absolute left-3.5 top-3 text-xs text-slate-400"></i>
+          <input type="text" id="page-search-input" placeholder="Cari dalam page ini..." 
+                 class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400">
         </div>
       </div>
 
-      <!-- Module & Video List -->
-      <div id="course-tree" class="flex-1 overflow-y-auto p-3 space-y-4">
-        <!-- Konten kategori akan di-render via JavaScript -->
+      <!-- Topics and Video Cards Grid -->
+      <div id="topics-container" class="space-y-8">
+        <!-- Render topics & video cards via JS -->
       </div>
-    </aside>
+    </div>
 
-    <!-- Main Workspace: Video Player & Context -->
-    <main class="flex-1 flex flex-col bg-[#0f1013] overflow-y-auto p-6">
-      <div class="max-w-5xl mx-auto w-full space-y-5">
-        
-        <!-- Video Container -->
-        <div class="relative pb-[56.25%] bg-black rounded-lg overflow-hidden border border-[#242730] shadow-2xl">
-          <iframe id="video-frame" class="absolute top-0 left-0 w-full h-full" 
-                  src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-          </iframe>
-        </div>
+  </main>
 
-        <!-- Video Info & Meta -->
-        <div class="bg-[#181a1f] p-5 rounded-lg border border-[#262930] flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <span id="active-category" class="text-xs font-semibold uppercase tracking-wider text-amber-500">Kategori</span>
-            <h2 id="active-title" class="text-lg font-bold text-white mt-0.5">Pilih salah satu materi di sebelah kiri</h2>
-          </div>
-          <div class="flex items-center space-x-3">
-            <button id="toggle-complete-btn" class="text-xs font-medium px-4 py-2 rounded-md bg-[#252832] border border-[#353945] hover:bg-amber-600 hover:text-white transition">
-              Tandai Selesai
-            </button>
-            <a id="active-youtube-link" href="#" target="_blank" class="text-xs bg-[#242831] hover:bg-[#2e3340] text-gray-300 px-3 py-2 rounded-md transition flex items-center space-x-1">
-              <i class="fab fa-youtube text-red-500"></i>
-              <span>Buka di YouTube</span>
-            </a>
-          </div>
-        </div>
+  <!-- Footer -->
+  <footer class="border-t border-slate-100 bg-white py-8 px-6 text-center text-xs text-slate-400">
+    <p>Resolve Academy — Modul Pembelajaran DaVinci Resolve Indonesia. Hak cipta materi milik kreator masing-masing di YouTube.</p>
+  </footer>
 
-        <!-- Notes & Shortcuts Card -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-[#181a1f] p-4 rounded-lg border border-[#262930]">
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Tips Praktik Alur Kerja</h3>
-            <p class="text-xs text-gray-300 leading-relaxed">
-              Terapkan konsep <em>scene-referred color workflow</em> (ACES atau DaVinci Wide Gamut) dan pertahankan struktur <em>Fixed Node Tree</em> pada setiap latihan agar pembiasaan alur kerja konsisten.
-            </p>
-          </div>
-          <div class="bg-[#181a1f] p-4 rounded-lg border border-[#262930]">
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Penyimpanan Progres</h3>
-            <p class="text-xs text-gray-300 leading-relaxed">
-              Status materi yang telah Anda selesaikan tersimpan otomatis secara lokal di peramban ini.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </main>
-  </div>
-
+  <!-- DATA & JAVASCRIPT ENGINE -->
   <script>
-    // Data Kurikulum dari Koleksi Materi
-    const rawData = [
+    /*
+      =========================================================
+      STRUKTUR DATA PER-PAGE (MUDAH DITAMBAHKAN KAPAN SAJA)
+      =========================================================
+      Untuk menambah video baru, cukup tambahkan objek baru di dalam
+      array "videos": { id: "YOUTUBE_ID", title: "Judul Video" }
+    */
+    const resolvePages = [
       {
-        module: "1. Editorial & Storytelling",
+        id: "basic",
+        name: "0. Basic Knowledge",
+        icon: "fa-solid fa-graduation-cap",
+        desc: "Pondasi esensial: arsitektur sistem, database, project settings, cache, dan rekomendasi channel belajar.",
         topics: [
-          { name: "Timeline", videos: [
-            { id: "mjiT0g3mYgw", title: "Timeline Essentials" },
-            { id: "AA2agmf6jTo", title: "Timeline Navigation & Setup" },
-            { id: "ve38J2Z3EIQ", title: "Editing Efficiency & Cuts" },
-            { id: "ns4HtiFvUOc", title: "Advanced Timeline Trimming" },
-            { id: "6ciMx3AV2JQ", title: "Multi-Track Management" },
-            { id: "WP8zydfkofc", title: "Project Organization & Bins" }
-          ]},
-          { name: "Pacing & Storytelling", videos: [
-            { id: "9J3CNT3qvCM", title: "Pacing Fundamentals" },
-            { id: "sJLldZdGkzA", title: "Story Rhythm & Cutting on Action" },
-            { id: "7R8WebgoqRo", title: "Narrative Tension Building" },
-            { id: "uon8fOXdyRQ", title: "Mastering Story Structure" }
-          ]},
-          { name: "B-Roll Editing", videos: [
-            { id: "9jRZIqPQHm8", title: "B-Roll Sequencing" },
-            { id: "ZePNEgZhf48", title: "Speed Ramps & Transitions" },
-            { id: "Au1IB_sHlWE", title: "Matching B-Roll to Music" },
-            { id: "wZ27FgwcnSw", title: "Cinematic B-Roll Layering" }
-          ]},
-          { name: "Film Editing", videos: [
-            { id: "F5euSYD0nMY", title: "Scene Assembly Techniques" },
-            { id: "yaqq9aB1csw", title: "Dialogue Cutting Principles" },
-            { id: "UDgKrsb1X7A", title: "Dramatic Pacing & Subtext" },
-            { id: "zsy9HSMYBgg", title: "Feature Film Editing Workflow" }
-          ]}
+          {
+            name: "Fundamental & Resource Belajar",
+            videos: [
+              { id: "MTYjCp-hxjQ", title: "Panduan Memulai DaVinci Resolve dari Nol" },
+              { id: "CyexunsDzwA", title: "Setup Project & Best Preferences" },
+              { id: "hUM88jlUTgo", title: "Manajemen Database & Library Project" },
+              { id: "WmuO8AkWS5A", title: "Optimasi Cache & Playback Lancar" },
+              { id: "kMGkmK0SG34", title: "Keyboard Shortcuts Standar Editor Cepat" }
+            ]
+          }
         ]
       },
       {
-        module: "2. Color Grading & Color Science",
+        id: "media",
+        name: "1. Media Page",
+        icon: "fa-regular fa-folder-open",
+        desc: "Ingest media, verifikasi data checksum, sinkronisasi audio otomatis, dan metadata tagging.",
         topics: [
-          { name: "Coloring Fundamentals", videos: [
-            { id: "SkosqJfzEs0", title: "Overview Color Page" },
-            { id: "NefAhOTNJYU", title: "Color Wheels & Primary Adjustments" },
-            { id: "Eg3aulKKz2E", title: "Primary Bars vs Wheels" }
-          ]},
-          { name: "Scopes", videos: [
-            { id: "IwqucXqb2zY", title: "Waveform & Parade Mastery" },
-            { id: "JhPY-nojylE", title: "Vectorscope & Skin Tone Line" },
-            { id: "6m3AR-hNsSw", title: "Histogram & CIE Scopes" }
-          ]},
-          { name: "Exposure & Balance", videos: [
-            { id: "Gz_QzBdHDYc", title: "Exposure Normalization" },
-            { id: "zplOyEp1Ofc", title: "Highlight & Shadow Rolloff" },
-            { id: "bjA0Zqs5KRY", title: "Accurate White Balance" },
-            { id: "f4tQaItQIHU", title: "Neutralizing Color Casts" }
-          ]},
-          { name: "Color Management & Nodes", videos: [
-            { id: "99v96TL-tuY", title: "DaVinci YRGB Color Managed (RCM)" },
-            { id: "V7Od6GlBrdc", title: "ACES Pipeline Architecture" },
-            { id: "3ap8k564N_w", title: "Color Space Transform (CST)" },
-            { id: "U3vzpYHi4R8", title: "Fixed Node Tree Construction" },
-            { id: "t_seS-5216A", title: "Serial vs Parallel vs Layer Mixer" }
-          ]},
-          { name: "Look Development & Film Emulation", videos: [
-            { id: "1-5mXPEsm3k", title: "Designing Film Looks" },
-            { id: "tc2OF7iGtzY", title: "Color Separation & Palettes" },
-            { id: "4q5KU3L2S3o", title: "Film Emulation Fundamentals" },
-            { id: "4BufREoC8xE", title: "Halation & Film Grain Integration" },
-            { id: "yZ9OGyhE4F8", title: "Print Film LUTs & Tone Curves" }
-          ]}
+          {
+            name: "Ingest & Media Management",
+            videos: [
+              { id: "WP8zydfkofc", title: "Struktur Folder & Smart Bins Efisien" },
+              { id: "6ciMx3AV2JQ", title: "Sinkronisasi Audio Kamera & External Recorder" },
+              { id: "i_88edxhJvc", title: "Pembuatan Proxy Otomatis untuk Editing Ringan" },
+              { id: "4-G3AMHFeb4", title: "Optimized Media vs Render Cache" }
+            ]
+          }
         ]
       },
       {
-        module: "3. Fusion (VFX & Motion Graphics)",
+        id: "cut",
+        name: "2. Cut Page",
+        icon: "fa-solid fa-forward",
+        desc: "Fast rough-cut, source tape workflow, dual timeline, dan perakitan footage kecepatan tinggi.",
         topics: [
-          { name: "Basic Fusion", videos: [
-            { id: "gaFT_Kj2yeQ", title: "Fusion Interface & Node Concept" },
-            { id: "XZcu0CVcQsQ", title: "Merge Node Logic" },
-            { id: "PoinMs_YceQ", title: "Masking & Polygons" },
-            { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor" }
-          ]},
-          { name: "Tracking & Compositing", videos: [
-            { id: "F-Pr1GGmyVU", title: "Point Tracker Fundamentals" },
-            { id: "dp_qeQY8Zps", title: "Planar Tracking & Screen Replace" },
-            { id: "PYExcRXM5mo", title: "Rotoscoping Techniques" },
-            { id: "kZC08b5mG58", title: "Delta Keyer (Green Screen)" }
-          ]}
+          {
+            name: "Fast Assembly & B-Roll",
+            videos: [
+              { id: "9jRZIqPQHm8", title: "Source Tape & Fast Selection" },
+              { id: "ZePNEgZhf48", title: "Speed Ramps & Retime Curves di Cut Page" },
+              { id: "Au1IB_sHlWE", title: "B-Roll Cutaways & Quick Audio Sync" },
+              { id: "wZ27FgwcnSw", title: "Cinematic B-Roll Assembly Cepat" }
+            ]
+          }
         ]
       },
       {
-        module: "4. Fairlight (Audio Post-Production)",
+        id: "edit",
+        name: "3. Edit Page",
+        icon: "fa-solid fa-sliders",
+        desc: "Timeline editorial presisi, pacing penceritaan, dynamic trimming, dan penyusunan adegan film.",
         topics: [
-          { name: "Audio Essentials & Metering", videos: [
-            { id: "sxLz6r-Vqms", title: "Fairlight Overview" },
-            { id: "-B13nDMxC1k", title: "Audio Architecture & Gain Staging" },
-            { id: "a68BwGw-2-M", title: "LUFS & Metering Standards" }
-          ]},
-          { name: "Dialogue & Processing", videos: [
-            { id: "iZiR7uoNWuo", title: "Dialogue Editing & Checkerboarding" },
-            { id: "9k7-OtG2lAE", title: "Noise Removal & Voice Isolation" },
-            { id: "vRa_Zk90lDc", title: "Parametric EQ Tuning" },
-            { id: "booRjPgtIS4", title: "Dynamics & Compression" }
-          ]},
-          { name: "Bus Routing & Final Mix", videos: [
-            { id: "LZPJoS0CqC4", title: "Submix & Bus Routing (DME)" },
-            { id: "udEc8Ub1LQ4", title: "Final Track Automation & Mastering" }
-          ]}
+          {
+            name: "Timeline & Trimming",
+            videos: [
+              { id: "mjiT0g3mYgw", title: "Timeline Essentials & Precision Trimming" },
+              { id: "AA2agmf6jTo", title: "Ripple, Roll, Slip, dan Slide Edit" },
+              { id: "ve38J2Z3EIQ", title: "Multi-Track Management & Compound Clips" },
+              { id: "ns4HtiFvUOc", title: "Advanced Timeline Keyboard Trimming" }
+            ]
+          },
+          {
+            name: "Pacing & Storytelling",
+            videos: [
+              { id: "9J3CNT3qvCM", title: "Pacing Fundamentals & Visual Beats" },
+              { id: "sJLldZdGkzA", title: "Cutting on Action & Continuity" },
+              { id: "7R8WebgoqRo", title: "Membangun Ketegangan Naratif" },
+              { id: "uon8fOXdyRQ", title: "Struktur Cerita 4 Babak dalam Editing" }
+            ]
+          },
+          {
+            name: "Film Editing",
+            videos: [
+              { id: "F5euSYD0nMY", title: "Dari Assembly Cut ke Final Cut" },
+              { id: "yaqq9aB1csw", title: "Kontinuitas Dialog Antar Tokoh" },
+              { id: "UDgKrsb1X7A", title: "Ritme Emosional Adegan Dramatis" },
+              { id: "zsy9HSMYBgg", title: "Standar Workflow Film Bioskop" }
+            ]
+          }
         ]
       },
       {
-        module: "5. Deliver Page & Mastering",
+        id: "fusion",
+        name: "4. Fusion Page",
+        icon: "fa-solid fa-wand-magic-sparkles",
+        desc: "Node-based compositing, motion graphics, 2D/3D tracking, rotoscoping, dan visual effects.",
         topics: [
-          { name: "Codecs & Export Presets", videos: [
-            { id: "ISSg000DaU0", title: "Deliver Page Workflow" },
-            { id: "-4NXxY4maYc", title: "Codec Fundamentals (ProRes, DNx, H.265)" },
-            { id: "SqVoTQL3iGg", title: "Color Space Tags (Rec.709 vs Rec.709-A)" },
-            { id: "a9oJNfm27i0", title: "Film Festival & Cinema Master Export" },
-            { id: "b3iWBMK92GM", title: "Project Archiving (.dra) & LTO Backup" }
-          ]}
+          {
+            name: "Dasar Node & Masking",
+            videos: [
+              { id: "gaFT_Kj2yeQ", title: "Pemahaman Alur Logika Node Fusion" },
+              { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, Effect Mask" },
+              { id: "PoinMs_YceQ", title: "Vector Polygon & Masking" },
+              { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor Halus" }
+            ]
+          },
+          {
+            name: "Tracking, Roto & VFX",
+            videos: [
+              { id: "F-Pr1GGmyVU", title: "Point Tracker & Stabilisasi" },
+              { id: "dp_qeQY8Zps", title: "Planar Tracking & Corner Pinning (Ganti Layar HP)" },
+              { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Cepat" },
+              { id: "kZC08b5mG58", title: "Delta Keyer: Ekstraksi Green Screen Bersih" },
+              { id: "f6bo9hoDWpc", title: "VFX Dasar: Compositing Ledakan & Debu" }
+            ]
+          },
+          {
+            name: "3D Workspace Fusion",
+            videos: [
+              { id: "HhjK2q1jHwA", title: "Navigasi Lingkungan 3D Fusion" },
+              { id: "VSUC2zOFPh0", title: "3D Camera, Light, dan Renderer3D" },
+              { id: "rx591Kh3IpU", title: "3D Text & Motion Graphic Lanjut" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "color",
+        name: "5. Color Page",
+        icon: "fa-solid fa-palette",
+        desc: "Color science, ACES, DaVinci Wide Gamut, Scopes, Node Tree terstandar, dan Film Emulation.",
+        topics: [
+          {
+            name: "Color Management & Scopes",
+            videos: [
+              { id: "99v96TL-tuY", title: "DaVinci YRGB Color Managed (RCM)" },
+              { id: "V7Od6GlBrdc", title: "ACES Architecture di Film Komersial" },
+              { id: "3ap8k564N_w", title: "Color Space Transform (CST) Manual" },
+              { id: "IwqucXqb2zY", title: "Membaca Waveform, Parade, & Vectorscope" },
+              { id: "JhPY-nojylE", title: "Preservasi Skin Tone Menggunakan Garis Indikator" }
+            ]
+          },
+          {
+            name: "Primary Corrections & Balance",
+            videos: [
+              { id: "Gz_QzBdHDYc", title: "Exposure Normalization & Highlight Rolloff" },
+              { id: "zplOyEp1Ofc", title: "Keseimbangan Shadow & Midtone" },
+              { id: "bjA0Zqs5KRY", title: "Teknik White Balance Akurat" },
+              { id: "fTg-1KicwSs", title: "Kontras Kurva & Pengaturan Pivot Point" },
+              { id: "TpJ1EAerPN4", title: "Saturation vs Color Boost" }
+            ]
+          },
+          {
+            name: "Fixed Node Tree & Secondaries",
+            videos: [
+              { id: "U3vzpYHi4R8", title: "Membangun Fixed Node Tree Standar Hollywood" },
+              { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes" },
+              { id: "Bw14wqVbpOo", title: "Isolasi Skin Tone Tanpa Menodai Background" },
+              { id: "7wcQzJ2MiTg", title: "Power Windows & Soft Edge Blending" },
+              { id: "ZvpzChjKDA8", title: "Color Page Object Tracking" }
+            ]
+          },
+          {
+            name: "Look Dev & Film Emulation",
+            videos: [
+              { id: "1-5mXPEsm3k", title: "Membangun Palet Warna Sinematik Sendiri" },
+              { id: "tc2OF7iGtzY", title: "Pemisahan Warna Dingin dan Hangat (Split Toning)" },
+              { id: "4q5KU3L2S3o", title: "Prinsip Film Emulation (Kodak 2383)" },
+              { id: "4BufREoC8xE", title: "Halation, Bloom, dan Tekstur Grain Organik" },
+              { id: "aoS-yLYtOh8", title: "Pemanfaatan HDR Color Wheels" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "fairlight",
+        name: "6. Fairlight Page",
+        icon: "fa-solid fa-music",
+        desc: "Audio post-production, pembersihan vokal, EQ & Dynamics, bus routing DME, dan target loudness LUFS.",
+        topics: [
+          {
+            name: "Audio Essentials & Pembersihan Dialog",
+            videos: [
+              { id: "sxLz6r-Vqms", title: "Arsitektur Workspace Fairlight" },
+              { id: "-B13nDMxC1k", title: "Gain Staging & Pengaturan Headroom" },
+              { id: "a68BwGw-2-M", title: "Standar Metering LUFS (-14 web vs -24 broadcast)" },
+              { id: "iZiR7uoNWuo", title: "Checkerboarding Track Dialog" },
+              { id: "9k7-OtG2lAE", title: "Noise Removal & AI Voice Isolation" }
+            ]
+          },
+          {
+            name: "EQ, Kompresi & Routing DME",
+            videos: [
+              { id: "vRa_Zk90lDc", title: "Parametric EQ: Membentuk Kejelasan Vokal" },
+              { id: "booRjPgtIS4", title: "Kompresor: Meratakan Dinamika Suara" },
+              { id: "X-QaPnzBhB4", title: "Master Limiter untuk Menghindari Clipping" },
+              { id: "LZPJoS0CqC4", title: "Submix & Bus Routing (Dialogue, Music, SFX)" },
+              { id: "udEc8Ub1LQ4", title: "Otomasi Volume & Panning Lanjut" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "deliver",
+        name: "7. Deliver Page",
+        icon: "fa-solid fa-rocket",
+        desc: "Mastering video, format ProRes/DNxHR, penanganan pergeseran warna Mac (Gamma Shift), dan arsip project.",
+        topics: [
+          {
+            name: "Standar Codec & Ekspor Master",
+            videos: [
+              { id: "ISSg000DaU0", title: "Navigasi Deliver Page & Custom Presets" },
+              { id: "-4NXxY4maYc", title: "Dasar Codec: Lossless, Intermediate vs Delivery" },
+              { id: "SqVoTQL3iGg", title: "Solusi Gamma Shift QuickTime (Rec.709-A Tagging)" },
+              { id: "a9oJNfm27i0", title: "Format Ekspor Festival Film & DCI DCP" },
+              { id: "b3iWBMK92GM", title: "Project Archive (.dra) untuk Cadangan LTO" }
+            ]
+          }
         ]
       }
     ];
 
-    let completedVideos = JSON.parse(localStorage.getItem('dr_completed_videos') || '[]');
-    let currentVideo = null;
+    let activePageIndex = 0;
+    let completedVideos = JSON.parse(localStorage.getItem('resolve_class_done') || '[]');
+    let currentActiveVideo = null;
 
-    function renderTree(filterText = '') {
-      const container = document.getElementById('course-tree');
+    // Render Navigation Tabs
+    function renderPageTabs() {
+      const tabContainer = document.getElementById('page-nav-tabs');
+      tabContainer.innerHTML = '';
+
+      resolvePages.forEach((page, idx) => {
+        const btn = document.createElement('button');
+        const isActive = idx === activePageIndex;
+        btn.className = `flex items-center space-x-2 px-4 py-2.5 rounded-full text-xs font-semibold whitespace-nowrap transition ${
+          isActive 
+            ? 'bg-slate-900 text-white shadow-sm' 
+            : 'bg-white border border-slate-200 text-slate-600 hover:border-slate-300'
+        }`;
+        btn.innerHTML = `<i class="${page.icon}"></i> <span>${page.name}</span>`;
+        btn.onclick = () => selectPage(idx);
+        tabContainer.appendChild(btn);
+      });
+    }
+
+    function selectPage(index) {
+      activePageIndex = index;
+      renderPageTabs();
+      renderCurrentPageContent(document.getElementById('page-search-input').value);
+    }
+
+    // Render Konten Halaman Aktif
+    function renderCurrentPageContent(searchTerm = '') {
+      const page = resolvePages[activePageIndex];
+      
+      document.getElementById('page-title').textContent = page.name;
+      document.getElementById('page-desc').textContent = page.desc;
+      document.getElementById('page-badge-icon').innerHTML = `<i class="${page.icon}"></i>`;
+
+      const container = document.getElementById('topics-container');
       container.innerHTML = '';
-      let totalVideosCount = 0;
 
-      rawData.forEach(mod => {
-        const modContainer = document.createElement('div');
-        modContainer.className = "space-y-1";
+      page.topics.forEach(topic => {
+        const filteredVideos = topic.videos.filter(v => 
+          v.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          topic.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
-        const modHeader = document.createElement('div');
-        modHeader.className = "text-[11px] font-bold uppercase tracking-wider text-gray-400 py-1 flex items-center justify-between";
-        modHeader.innerHTML = `<span>${mod.module}</span>`;
-        modContainer.appendChild(modHeader);
+        if (filteredVideos.length > 0) {
+          const topicBlock = document.createElement('div');
+          topicBlock.className = "space-y-3";
 
-        let hasVisibleTopics = false;
+          topicBlock.innerHTML = `
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">${topic.name}</h3>
+              <span class="text-[11px] text-slate-400 font-medium">${filteredVideos.length} Video</span>
+            </div>
+          `;
 
-        mod.topics.forEach(topic => {
-          const filteredVideos = topic.videos.filter(v => 
-            v.title.toLowerCase().includes(filterText.toLowerCase()) || 
-            topic.name.toLowerCase().includes(filterText.toLowerCase()) ||
-            mod.module.toLowerCase().includes(filterText.toLowerCase())
-          );
+          const videoGrid = document.createElement('div');
+          videoGrid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4";
 
-          if (filteredVideos.length > 0) {
-            hasVisibleTopics = true;
-            const topicBox = document.createElement('div');
-            topicBox.className = "bg-[#1a1c23] rounded border border-[#252833] overflow-hidden";
+          filteredVideos.forEach(vid => {
+            const isDone = completedVideos.includes(vid.id);
+            const card = document.createElement('div');
+            card.className = `group cursor-pointer border rounded-2xl overflow-hidden hover:shadow-md transition duration-200 ${
+              isDone ? 'bg-slate-50 border-emerald-200' : 'bg-white border-slate-200/80'
+            }`;
 
-            const topicTitle = document.createElement('div');
-            topicTitle.className = "px-3 py-1.5 text-xs font-semibold text-gray-300 bg-[#21242d]";
-            topicTitle.textContent = topic.name;
-            topicBox.appendChild(topicTitle);
-
-            const videoList = document.createElement('div');
-            videoList.className = "divide-y divide-[#232630]";
-
-            filteredVideos.forEach(vid => {
-              totalVideosCount++;
-              const isDone = completedVideos.includes(vid.id);
-              const item = document.createElement('div');
-              item.className = `px-3 py-2 text-xs flex items-center justify-between cursor-pointer hover:bg-[#252936] transition ${currentVideo && currentVideo.id === vid.id ? 'bg-[#2a2f3e] text-white border-l-2 border-amber-500' : 'text-gray-400'}`;
-              
-              item.innerHTML = `
-                <div class="flex items-center space-x-2 truncate">
-                  <i class="far ${isDone ? 'fa-check-circle text-emerald-400' : 'fa-circle text-gray-600'} text-[10px]"></i>
-                  <span class="truncate">${vid.title}</span>
+            card.innerHTML = `
+              <div class="relative bg-slate-900">
+                <img src="https://img.youtube.com/vi/${vid.id}/mqdefault.jpg" alt="${vid.title}" class="thumbnail-img w-full group-hover:scale-105 transition duration-300">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <div class="w-9 h-9 rounded-full bg-white text-slate-900 flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                  </div>
                 </div>
-              `;
+                ${isDone ? '<span class="absolute top-2 right-2 bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow"><i class="fa-solid fa-check"></i></span>' : ''}
+              </div>
+              <div class="p-3.5 flex flex-col justify-between">
+                <h4 class="text-xs font-semibold text-slate-800 line-clamp-2 group-hover:text-indigo-600 transition leading-snug">${vid.title}</h4>
+                <div class="mt-3 flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100">
+                  <span class="truncate pr-1">${topic.name}</span>
+                  <span class="${isDone ? 'text-emerald-600 font-semibold' : ''}">${isDone ? 'Selesai ✓' : 'Tonton'}</span>
+                </div>
+              </div>
+            `;
 
-              item.onclick = () => selectVideo(vid, topic.name, mod.module);
-              videoList.appendChild(item);
-            });
+            card.onclick = () => playVideo(vid.id, vid.title, page.name);
+            videoGrid.appendChild(card);
+          });
 
-            topicBox.appendChild(videoList);
-            modContainer.appendChild(topicBox);
-          }
-        });
-
-        if (hasVisibleTopics) {
-          container.appendChild(modContainer);
+          topicBlock.appendChild(videoGrid);
+          container.appendChild(topicBlock);
         }
       });
 
-      updateProgress();
+      updateTotalProgress();
     }
 
-    function selectVideo(video, topicName, moduleName) {
-      currentVideo = video;
-      document.getElementById('video-frame').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
-      document.getElementById('active-title').textContent = video.title;
-      document.getElementById('active-category').textContent = `${moduleName} • ${topicName}`;
-      document.getElementById('active-youtube-link').href = `https://youtu.be/${video.id}`;
-      updateCompleteButton();
-      renderTree(document.getElementById('search-input').value);
+    // Video Player Functions
+    function playVideo(id, title, pageName) {
+      currentActiveVideo = { id, title, pageName };
+      const player = document.getElementById('player-container');
+      player.classList.remove('hidden');
+      document.getElementById('main-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      document.getElementById('player-title').textContent = title;
+      document.getElementById('player-page-tag').textContent = pageName;
+      document.getElementById('player-yt-link').href = `https://youtu.be/${id}`;
+      updatePlayerButton();
+      player.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    function updateCompleteButton() {
-      const btn = document.getElementById('toggle-complete-btn');
-      if (!currentVideo) return;
-      const isDone = completedVideos.includes(currentVideo.id);
+    function closePlayer() {
+      document.getElementById('player-container').classList.add('hidden');
+      document.getElementById('main-iframe').src = '';
+      currentActiveVideo = null;
+    }
+
+    function updatePlayerButton() {
+      if (!currentActiveVideo) return;
+      const btn = document.getElementById('player-done-btn');
+      const isDone = completedVideos.includes(currentActiveVideo.id);
       if (isDone) {
-        btn.textContent = "Selesai ✓";
-        btn.className = "text-xs font-medium px-4 py-2 rounded-md bg-emerald-600/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-600/30 transition";
+        btn.textContent = "Ditandai Selesai ✓";
+        btn.className = "bg-emerald-600 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-emerald-700 transition";
       } else {
         btn.textContent = "Tandai Selesai";
-        btn.className = "text-xs font-medium px-4 py-2 rounded-md bg-[#252832] border border-[#353945] hover:bg-amber-600 hover:text-white transition";
+        btn.className = "bg-slate-900 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-slate-800 transition";
       }
     }
 
-    document.getElementById('toggle-complete-btn').onclick = () => {
-      if (!currentVideo) return;
-      const idx = completedVideos.indexOf(currentVideo.id);
+    document.getElementById('player-done-btn').onclick = () => {
+      if (!currentActiveVideo) return;
+      const id = currentActiveVideo.id;
+      const idx = completedVideos.indexOf(id);
       if (idx > -1) {
         completedVideos.splice(idx, 1);
       } else {
-        completedVideos.push(currentVideo.id);
+        completedVideos.push(id);
       }
-      localStorage.setItem('dr_completed_videos', JSON.stringify(completedVideos));
-      updateCompleteButton();
-      renderTree(document.getElementById('search-input').value);
+      localStorage.setItem('resolve_class_done', JSON.stringify(completedVideos));
+      updatePlayerButton();
+      renderCurrentPageContent(document.getElementById('page-search-input').value);
     };
 
-    function updateProgress() {
+    function updateTotalProgress() {
       let total = 0;
-      rawData.forEach(m => m.topics.forEach(t => total += t.videos.length));
+      resolvePages.forEach(p => p.topics.forEach(t => total += t.videos.length));
       const done = completedVideos.length;
       const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-      document.getElementById('progress-percent').textContent = `${pct}% (${done}/${total})`;
+      document.getElementById('nav-progress-text').textContent = `${pct}% (${done}/${total})`;
     }
 
-    document.getElementById('search-input').addEventListener('input', (e) => {
-      renderTree(e.target.value);
+    document.getElementById('page-search-input').addEventListener('input', (e) => {
+      renderCurrentPageContent(e.target.value);
     });
 
     // Inisialisasi awal
-    renderTree();
-    // Pilih video pertama secara default
-    if (rawData[0].topics[0].videos[0]) {
-      selectVideo(rawData[0].topics[0].videos[0], rawData[0].topics[0].name, rawData[0].module);
-    }
+    renderPageTabs();
+    renderCurrentPageContent();
   </script>
 </body>
 </html>

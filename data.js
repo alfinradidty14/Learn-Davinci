@@ -1,4 +1,4 @@
-// ResolveHub DaVinci Resolve Masterclass Dataset (263 Tutorials)
+// ResolveHub DaVinci Resolve Masterclass Dataset (301 Tutorials)
 const davinciPages = [
   {
     "id": "media",
@@ -341,6 +341,72 @@ const davinciPages = [
         "title": "Subtext & Scene Structure for Dramatic Film",
         "subcat": "Pacing & Story",
         "instructor": "StudioBinder"
+      },
+      {
+        "id": "fYlwId_z_yU",
+        "title": "DaVinci Resolve Official Training: Intro to Editing (Part 1)",
+        "instructor": "Blackmagic Design",
+        "subcat": "Edit Page Trimming"
+      },
+      {
+        "id": "M6-Ol-ytMCw",
+        "title": "DaVinci Resolve Official Training: Intro to Editing (Part 2)",
+        "instructor": "Blackmagic Design",
+        "subcat": "Edit Page Trimming"
+      },
+      {
+        "id": "LUqZQAUDtVY",
+        "title": "DaVinci Resolve Official Training: Multicam Editing Masterclass",
+        "instructor": "Blackmagic Design",
+        "subcat": "Multicam & Audio Cut"
+      },
+      {
+        "id": "BNvNuWcJZbQ",
+        "title": "Transform How You EDIT in DaVinci Resolve - Workflow Secrets",
+        "instructor": "MrAlexTech",
+        "subcat": "Pacing & Story"
+      },
+      {
+        "id": "sAJQhITMnt8",
+        "title": "How I Start Every Project in DaVinci Resolve - Professional Timeline Prep",
+        "instructor": "MrAlexTech",
+        "subcat": "Edit Page Trimming"
+      },
+      {
+        "id": "REpmmKN7EWU",
+        "title": "7 Steps to Edit a Video in DaVinci Resolve (Start to Finish)",
+        "instructor": "Casey Faris",
+        "subcat": "Pacing & Story"
+      },
+      {
+        "id": "GxLVpGygMGQ",
+        "title": "Dynamic Trim Mode Explained: Fast Ripple & Roll Editing",
+        "instructor": "Daniel Batal",
+        "subcat": "Edit Page Trimming"
+      },
+      {
+        "id": "UJ3oZqmZ0tc",
+        "title": "Timeline Edit & Trim Tools: Roll, Ripple, Slip, and Slide In-Depth",
+        "instructor": "Quanta",
+        "subcat": "Edit Page Trimming"
+      },
+      {
+        "id": "WFqX7uc4j4c",
+        "title": "The Best Way to Edit to Music in DaVinci Resolve (Beat Snapping)",
+        "instructor": "Casey Faris",
+        "subcat": "B-Roll & Visuals"
+      },
+      {
+        "id": "fUcA8r5h4EQ",
+        "title": "How to Edit Hours of Video Footage - Timeline Organization for Editors",
+        "instructor": "Casey Faris",
+        "subcat": "Edit Page Trimming"
+      },
+      {
+        "id": "nHK_LVoOZhM",
+        "title": "Speed Editor Workflow: Hardware Cut Page Pacing & Mastery",
+        "instructor": "The Edit Place",
+        "subcat": "Edit Page Trimming"
       }
     ]
   },
@@ -785,6 +851,66 @@ const davinciPages = [
         "title": "How I Grade This Commercial: Pro Masterclass",
         "subcat": "Finishing & Look Dev",
         "instructor": "Darren Mostyn"
+      },
+      {
+        "id": "OrEcXbET1Y4",
+        "title": "DaVinci Resolve Official Training: Introduction to Color Grading",
+        "instructor": "Blackmagic Design",
+        "subcat": "Scopes & Balance"
+      },
+      {
+        "id": "zvwmgOeXd28",
+        "title": "DaVinci Resolve Official Training: Advanced Colorist Tools & Nodes",
+        "instructor": "Blackmagic Design",
+        "subcat": "Node Tree & Matching"
+      },
+      {
+        "id": "CTAzjAReZvs",
+        "title": "DaVinci Resolve Official Training: Color Management & ACES Pipeline",
+        "instructor": "Blackmagic Design",
+        "subcat": "ColorSlice & ACES"
+      },
+      {
+        "id": "MLcH_uEP5uw",
+        "title": "DaVinci Resolve Official Training: Hardware Panels & Trackballs Control",
+        "instructor": "Blackmagic Design",
+        "subcat": "Finishing & Look Dev"
+      },
+      {
+        "id": "YbDRl_xugJo",
+        "title": "New to DaVinci Resolve? Color Grading From Scratch Like a Pro",
+        "instructor": "Darren Mostyn",
+        "subcat": "Scopes & Balance"
+      },
+      {
+        "id": "HFES-nHS-js",
+        "title": "Creative Look Development in DaVinci Resolve: Split Toning & Palette",
+        "instructor": "Cullen Kelly",
+        "subcat": "Film Emulation & Skin"
+      },
+      {
+        "id": "WWesr3k1Oos",
+        "title": "7 Color Grading Tips You NEED To Know In DaVinci Resolve",
+        "instructor": "Cullen Kelly",
+        "subcat": "Secondary & Power Window"
+      },
+      {
+        "id": "xC-tuFDcKuk",
+        "title": "Increase Your Visual Impact: Color Separation & Contrast Science",
+        "instructor": "Cullen Kelly",
+        "subcat": "Film Emulation & Skin"
+      },
+      {
+        "id": "pTdm0soTUXI",
+        "title": "Magic Mask: AI Object & Person Isolation in Color Page",
+        "instructor": "Casey Faris",
+        "subcat": "Secondary & Power Window"
+      },
+      {
+        "id": "UB7mOG9eNxg",
+        "title": "Magic Mask 2 Deep Dive: Full Hollywood Isolation Tutorial",
+        "instructor": "MrAlexTech",
+        "subcat": "Secondary & Power Window"
       }
     ]
   },
@@ -1048,6 +1174,48 @@ const davinciPages = [
         "title": "3D Camera Projection & Matte Painting Extension",
         "subcat": "3D Workspace & Particles",
         "instructor": "VFX Study"
+      },
+      {
+        "id": "mJf1-Ilgis8",
+        "title": "DaVinci Resolve Official Training: Introduction to Fusion VFX",
+        "instructor": "Blackmagic Design",
+        "subcat": "Node Basics"
+      },
+      {
+        "id": "KmK4TwwdhcY",
+        "title": "DaVinci Resolve Official Training: Motion Graphics in Fusion",
+        "instructor": "Blackmagic Design",
+        "subcat": "Motion Graphics"
+      },
+      {
+        "id": "NijKYuHCssY",
+        "title": "Fusion Nodes Made Easy: Understanding Dataflow & Merges",
+        "instructor": "Creator Sergeant",
+        "subcat": "Node Basics"
+      },
+      {
+        "id": "nWv9Wn9KAvY",
+        "title": "Fusion Explained in Plain Language: Visual Effects for Beginners",
+        "instructor": "Casey Faris",
+        "subcat": "Node Basics"
+      },
+      {
+        "id": "pXU8iIQ3ahs",
+        "title": "Motion Graphics for Beginners in Fusion: Fast Kinetic Animation",
+        "instructor": "Casey Faris",
+        "subcat": "Motion Graphics"
+      },
+      {
+        "id": "yG4IK-f3eHA",
+        "title": "Easy Lower Third Graphics in Fusion: Custom Animated Templates",
+        "instructor": "Casey Faris",
+        "subcat": "Motion Graphics"
+      },
+      {
+        "id": "I_ke-RzBV3Y",
+        "title": "How to Make Titles that Always Look Pro: Typography & Modifiers",
+        "instructor": "Casey Faris",
+        "subcat": "Motion Graphics"
       }
     ]
   },
@@ -1383,6 +1551,42 @@ const davinciPages = [
         "title": "Advanced Cinematic Sound Design & Sub Bass Drops",
         "subcat": "Sound Design & Foley",
         "instructor": "Film Riot"
+      },
+      {
+        "id": "5lceOriiwu8",
+        "title": "DaVinci Resolve Official Training: Introduction to Audio Editing",
+        "instructor": "Blackmagic Design",
+        "subcat": "Voice Cleanup & Gain"
+      },
+      {
+        "id": "tbH2MKPnc_0",
+        "title": "DaVinci Resolve Official Training: Introduction to Audio Mixing",
+        "instructor": "Blackmagic Design",
+        "subcat": "Bus Routing & LUFS"
+      },
+      {
+        "id": "n4uTGns2z7c",
+        "title": "DaVinci Resolve Official Training: Introduction to Sound Design & FX",
+        "instructor": "Blackmagic Design",
+        "subcat": "Sound Design & Foley"
+      },
+      {
+        "id": "_L703SWyrNM",
+        "title": "DaVinci Resolve Official Training: Audio Track Layers & ADR Comping",
+        "instructor": "Blackmagic Design",
+        "subcat": "Voice Cleanup & Gain"
+      },
+      {
+        "id": "-ysx37Z0ti0",
+        "title": "DaVinci Resolve Official Training: Dolby Atmos Integration & Spatial Audio",
+        "instructor": "Blackmagic Design",
+        "subcat": "Bus Routing & LUFS"
+      },
+      {
+        "id": "tqgUA44Nd9k",
+        "title": "3 Tips to Remove Audio Background Noise in DaVinci Resolve",
+        "instructor": "Jason Yadlovski",
+        "subcat": "EQ & Dynamics"
       }
     ]
   },
@@ -1675,6 +1879,30 @@ const davinciPages = [
         "title": "Final Wrap: Post-Production File Delivery Archival",
         "subcat": "Mastering Penyiaran",
         "instructor": "Team DaVinci"
+      },
+      {
+        "id": "hoAIWys0mCI",
+        "title": "DaVinci Resolve Official Training: Delivering Content for Masters",
+        "instructor": "Blackmagic Design",
+        "subcat": "Mastering Penyiaran"
+      },
+      {
+        "id": "n8bgxaFztW0",
+        "title": "Get Your Export to Look Great on YouTube: Bitrate & VP09 Encoders",
+        "instructor": "Daniel Batal",
+        "subcat": "Codecs & Gamma Shift"
+      },
+      {
+        "id": "7ceGQPt6GG4",
+        "title": "The Best Export Settings for YouTube 4K: Crisp Rendering Settings",
+        "instructor": "Visionary Filmmaker",
+        "subcat": "Codecs & Gamma Shift"
+      },
+      {
+        "id": "ZaXKiAFgv6Q",
+        "title": "How to Export 4K Master Video for YouTube, Clients & Social Media",
+        "instructor": "Matt WhoisMatt Johnson",
+        "subcat": "Codecs & Gamma Shift"
       }
     ]
   }

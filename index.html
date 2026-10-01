@@ -3,578 +3,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ResolveHub — Kurikulum Mandiri DaVinci Resolve</title>
-  
-  <!-- Tailwind CSS & Fonts -->
+  <title>ResolveHub — DaVinci Resolve Masterclass & Ecosystem</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  
   <style>
-    body { 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      background-color: #fbfcfd; 
-      color: #0f172a; 
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #070a13; color: #f1f5f9; overflow-x: hidden; }
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25), 0 20px 45px -15px rgba(0, 0, 0, 0.6);
     }
-    
+    .liquid-glass-hover:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4), 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      transform: translateY(-2px);
+    }
+    .liquid-glass-active {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border: 1px solid rgba(212, 255, 50, 0.45) !important;
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.5), 0 0 30px rgba(212, 255, 50, 0.15) !important;
+    }
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.2);
+    }
+    .glass-pill:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); }
+    .glass-pill-active { background: #d4ff32 !important; color: #090d16 !important; border-color: #d4ff32 !important; font-weight: 800 !important; }
     .thumbnail-img { aspect-ratio: 16/9; object-fit: cover; }
-
-    /* Video Background Cover */
-    .video-bg-frame {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100vw;
-      height: 56.25vw;
-      min-height: 100vh;
-      min-width: 177.77vh;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
-    
-    .fade-in { animation: fadeIn 0.3s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar-track { background: #070a13; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+    .ambient-glow-1 { position: absolute; width: 650px; height: 650px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%); filter: blur(80px); pointer-events: none; }
+    .ambient-glow-2 { position: absolute; width: 550px; height: 550px; border-radius: 50%; background: radial-gradient(circle, rgba(212,255,50,0.12) 0%, transparent 70%); filter: blur(80px); pointer-events: none; }
   </style>
 </head>
-<body class="flex flex-col min-h-screen selection:bg-indigo-100 selection:text-indigo-900">
+<body class="flex flex-col min-h-screen relative selection:bg-[#d4ff32] selection:text-slate-950">
+
+  <div class="ambient-glow-1 -top-40 -left-40 -z-10"></div>
+  <div class="ambient-glow-2 top-40 -right-20 -z-10"></div>
 
   <!-- Floating Capsule Navbar -->
-  <div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <nav class="pointer-events-auto bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-full px-5 py-2.5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex items-center justify-between gap-6 sm:gap-10 max-w-4xl w-full transition-all">
-      <a href="#" class="flex items-center space-x-2.5 group">
-        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-extrabold text-xs shadow-sm group-hover:scale-105 transition-transform">
+  <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="pointer-events-auto liquid-glass rounded-full px-6 py-3 flex items-center justify-between gap-6 max-w-5xl w-full transition-all">
+      <a href="./" class="flex items-center space-x-3 group">
+        <div class="w-8 h-8 rounded-full bg-[#d4ff32] text-slate-950 flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(212,255,50,0.4)] group-hover:scale-105 transition-transform">
           DR
         </div>
-        <span class="font-bold text-sm tracking-tight text-slate-900">ResolveHub</span>
+        <span class="font-extrabold text-sm tracking-tight text-white group-hover:text-[#d4ff32] transition-colors">ResolveHub</span>
       </a>
 
-      <!-- Menu Navigasi 6 Halaman Kerja DaVinci -->
-      <div class="hidden md:flex items-center space-x-5 text-[12px] font-bold text-slate-500">
-        <button onclick="switchPage('media')" class="hover:text-slate-900 transition-colors">Media</button>
-        <button onclick="switchPage('edit')" class="hover:text-slate-900 transition-colors">Cut & Edit</button>
-        <button onclick="switchPage('color')" class="hover:text-slate-900 transition-colors">Color</button>
-        <button onclick="switchPage('fusion')" class="hover:text-slate-900 transition-colors">Fusion</button>
-        <button onclick="switchPage('fairlight')" class="hover:text-slate-900 transition-colors">Fairlight</button>
-        <button onclick="switchPage('deliver')" class="hover:text-slate-900 transition-colors">Deliver</button>
+      <div class="hidden md:flex items-center space-x-7 text-[12px] font-bold tracking-wide uppercase text-slate-300">
+        <a href="#kurikulum" class="hover:text-white transition-colors">Kurikulum</a>
+        <a href="#ekosistem" class="hover:text-white transition-colors">Ekosistem</a>
+        <a href="official-training.html" class="hover:text-white transition-colors flex items-center space-x-1">
+          <span>Official BMD</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-[#d4ff32]"></i>
+        </a>
       </div>
 
       <div class="flex items-center space-x-3">
-        <div class="flex items-center space-x-1.5 text-[11px] font-bold text-slate-600 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full" title="Total Progres Belajar">
-          <i class="fa-solid fa-circle-check text-emerald-500"></i>
+        <div class="hidden sm:flex items-center space-x-2 text-[11px] font-bold text-slate-200 glass-pill px-3.5 py-1.5 rounded-full" title="Total Materi Selesai">
+          <i class="fa-solid fa-circle-check text-[#d4ff32]"></i>
           <span id="global-progress-text">0% Selesai</span>
         </div>
-        <a href="#kurikulum" class="bg-slate-900 hover:bg-slate-800 text-white text-[12px] font-semibold px-4 py-1.5 rounded-full transition-colors shadow-sm">
-          Mulai Belajar
+        <a href="#kurikulum" class="bg-[#d4ff32] hover:bg-[#c6f325] text-slate-950 text-xs font-black px-5 py-2 rounded-full transition-all shadow-[0_0_20px_rgba(212,255,50,0.3)] flex items-center space-x-1.5">
+          <span>Mulai Belajar</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </a>
       </div>
     </nav>
-  </div>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-[85vh] flex flex-col justify-center items-center px-6 overflow-hidden border-b border-slate-200/50">
-    <div class="absolute inset-0 -z-20 overflow-hidden pointer-events-none bg-slate-100">
-      <iframe id="hero-bg-iframe" class="video-bg-frame opacity-40 mix-blend-luminosity" src="" frameborder="0" allow="autoplay; muted" allowfullscreen></iframe>
-    </div>
-
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white/70 via-white/50 to-[#fbfcfd] backdrop-blur-[1px] pointer-events-none"></div>
-
-    <div class="max-w-3xl mx-auto text-center space-y-7 relative z-10 py-20 mt-8">
-      <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-md border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-bold shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>Koleksi Terlengkap DaVinci Resolve Masterclass</span>
+  <!-- Hero Section (Gambar 2 Layout) -->
+  <section class="pt-36 sm:pt-44 pb-16 px-6 max-w-7xl mx-auto w-full relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div class="lg:col-span-7 space-y-8">
+        <div class="inline-flex items-center space-x-2 glass-pill px-4 py-1.5 rounded-full text-xs font-bold text-slate-200">
+          <span class="w-2 h-2 rounded-full bg-[#d4ff32] animate-pulse"></span>
+          <span>DaVinci Resolve 19 & 20 Ecosystem</span>
+        </div>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.04]">
+          Master every frame with <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-[#d4ff32]">cinematic craft.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed">
+          Kurikulum mandiri terlengkap: dari ingest media, editorial, Hollywood color science, visual effects Fusion, hingga audio mastering Fairlight.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#kurikulum" class="bg-[#d4ff32] hover:bg-[#c8f722] text-slate-950 font-black text-sm px-7 py-3.5 rounded-full transition-all shadow-[0_0_25px_rgba(212,255,50,0.35)] flex items-center space-x-3 group hover:-translate-y-0.5">
+            <span>JELAJAHI MATERI</span>
+            <div class="w-7 h-7 rounded-full bg-slate-950 text-[#d4ff32] flex items-center justify-center text-xs group-hover:rotate-45 transition-transform duration-300">
+              <i class="fa-solid fa-arrow-up-right"></i>
+            </div>
+          </a>
+          <a href="official-training.html" class="liquid-glass liquid-glass-hover text-white font-bold text-sm px-6 py-3.5 rounded-full transition-all flex items-center space-x-2">
+            <span>Official BMD Training</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-[#d4ff32]"></i>
+          </a>
+        </div>
+        <div class="pt-4 flex items-center space-x-4 border-t border-white/10">
+          <div class="flex items-center text-[#d4ff32] text-xs space-x-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-xs font-bold text-slate-400">
+            Rating <span class="text-white font-black">4.9/5</span> oleh 5,200+ editor & colorist independen
+          </p>
+        </div>
       </div>
 
-      <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 leading-[1.05] drop-shadow-sm">
-        Master every frame.
-      </h1>
+      <!-- Hero Visual (Liquid Glass VisionOS Style - Gambar 1) -->
+      <div class="lg:col-span-5 relative">
+        <div class="liquid-glass rounded-[2.5rem] p-3 shadow-2xl relative overflow-hidden group">
+          <div class="relative rounded-[2rem] overflow-hidden bg-slate-950/80 min-h-[400px] flex flex-col justify-between p-6">
+            <div class="relative z-10 flex items-center justify-between">
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#d4ff32] glass-pill px-3 py-1 rounded-full">
+                // Post-Production Engine
+              </span>
+              <div class="flex items-center space-x-1.5 glass-pill px-2.5 py-1 rounded-full text-[10px] font-bold text-slate-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>263 Tutorials</span>
+              </div>
+            </div>
+            <div class="relative z-10 my-auto py-8 text-center space-y-2">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white text-2xl shadow-xl group-hover:scale-110 transition-transform duration-500">
+                <i class="fa-solid fa-wand-magic-sparkles text-[#d4ff32]"></i>
+              </div>
+              <h3 class="text-xl font-black text-white tracking-tight">DaVinci Resolve Studio</h3>
+              <p class="text-xs text-slate-400 font-medium">Standard of Hollywood Feature Films & High-End Shows</p>
+            </div>
+            <div class="relative z-10 flex flex-wrap gap-1.5">
+              <span class="glass-pill text-[11px] font-medium text-slate-200 px-3 py-1 rounded-full">ACES & DWG</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-200 px-3 py-1 rounded-full">Node Science</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-200 px-3 py-1 rounded-full">Fairlight DME</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-200 px-3 py-1 rounded-full">ProRes & IMF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
-        Jelajahi ratusan video tutorial yang dikelompokkan secara terstruktur di 6 halaman kerja DaVinci Resolve: Media, Cut & Edit, Color, Fusion, Fairlight, hingga Deliver.
-      </p>
-
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
-        <a href="#kurikulum" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all shadow-md shadow-slate-900/10 flex items-center space-x-2 hover:-translate-y-0.5">
-          <span>Jelajahi Tutorial Workspace</span>
-          <i class="fa-solid fa-arrow-down text-xs"></i>
-        </a>
+    <!-- Mini Cards Strip (Gambar 2 Hero Bottom) -->
+    <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex flex-wrap gap-1">
+          <span class="text-[9px] font-bold glass-pill px-2 py-0.5 rounded text-slate-300">Ripple Trim</span>
+          <span class="text-[9px] font-bold glass-pill px-2 py-0.5 rounded text-slate-300">Roll</span>
+        </div>
+        <div class="mt-4"><span class="text-[10px] text-slate-400 block font-bold uppercase">EDITORIAL</span><span class="text-xs font-black text-white">Cut & Edit Page</span></div>
+      </div>
+      <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-1.5 text-xs text-[#d4ff32] font-black"><i class="fa-solid fa-palette"></i><span>Film Looks</span></div>
+        <div class="mt-4"><span class="text-[10px] text-slate-400 block font-bold uppercase">COLOR SCIENCE</span><span class="text-xs font-black text-white">Kodak 2383 & Scopes</span></div>
+      </div>
+      <div class="bg-[#d4ff32] text-slate-950 rounded-2xl p-4 flex flex-col justify-between shadow-lg shadow-[#d4ff32]/10">
+        <div class="text-[10px] font-mono font-black uppercase tracking-wider">ACCESS FREE</div>
+        <div class="mt-4"><span class="text-2xl font-black leading-none block">100%</span><span class="text-[11px] font-extrabold mt-1 block">Kurikulum Terbuka</span></div>
+      </div>
+      <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between">
+        <div class="text-[11px] font-bold text-cyan-400 flex items-center space-x-1.5"><i class="fa-solid fa-sliders"></i><span>-14 LUFS Metering</span></div>
+        <div class="mt-4"><span class="text-[10px] text-slate-400 block font-bold uppercase">FAIRLIGHT</span><span class="text-xs font-black text-white">Voice Isolation AI</span></div>
+      </div>
+      <div class="hidden lg:flex liquid-glass rounded-2xl p-4 flex-col justify-between">
+        <div class="text-[11px] font-bold text-purple-400 flex items-center space-x-1.5"><i class="fa-solid fa-share-nodes"></i><span>IMF & DCI DCP</span></div>
+        <div class="mt-4"><span class="text-[10px] text-slate-400 block font-bold uppercase">DELIVERY</span><span class="text-xs font-black text-white">Rec.709-A QuickTime</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Curriculum Section (Sesuai UI Favorit Anda) -->
-  <section id="kurikulum" class="py-16 px-6 max-w-7xl mx-auto w-full">
-    
-    <!-- Title & Instant Search -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-5">
+  <!-- Bento Grid Section (Gambar 2 Lower Half) -->
+  <section id="ekosistem" class="py-20 px-6 max-w-7xl mx-auto w-full relative z-10 border-t border-white/10">
+    <div class="space-y-12">
+      <div class="max-w-4xl space-y-4">
+        <div class="flex items-center space-x-2 text-xs font-extrabold text-[#d4ff32] tracking-wider uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d4ff32]"></span>
+          <span>Ekosistem Lengkap</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+          A global masterclass dedicated to editing <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-400 text-slate-950 text-sm align-middle mx-1"><i class="fa-regular fa-clock"></i></span> faster and grading <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#d4ff32] text-slate-950 text-sm align-middle mx-1"><i class="fa-regular fa-lightbulb"></i></span> deeper.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[280px]">
+          <div>
+            <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">// Core Capabilities</span>
+            <div class="flex flex-wrap gap-1.5 pt-3">
+              <span class="glass-pill text-[11px] font-medium text-slate-300 px-2.5 py-1 rounded-full">Ripple Cut</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-300 px-2.5 py-1 rounded-full">ColorSlice</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-300 px-2.5 py-1 rounded-full">Delta Keyer</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-300 px-2.5 py-1 rounded-full">Magic Mask</span>
+              <span class="glass-pill text-[11px] font-medium text-slate-300 px-2.5 py-1 rounded-full">Voice Isolation</span>
+            </div>
+          </div>
+          <div class="pt-6 border-t border-white/10 mt-4"><span class="text-xs text-slate-400 block font-medium">Workspace Pages</span><span class="text-3xl font-black text-white mt-0.5 block">6 Divisi</span></div>
+        </div>
+
+        <div class="bg-[#d4ff32] text-slate-950 rounded-3xl p-6 flex flex-col justify-between min-h-[280px] shadow-xl shadow-[#d4ff32]/10">
+          <div><span class="text-xs font-mono font-black uppercase tracking-wider text-slate-900/80">Commitment to Mastery</span><h3 class="text-4xl font-black tracking-tight mt-2">100%</h3></div>
+          <p class="text-sm font-extrabold text-slate-950 leading-snug">263 Video Tutorial terkurasi tanpa paywall. Dari materi pemula hingga standar broadcast internasional.</p>
+        </div>
+
+        <div class="liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-tr from-cyan-950/70 via-slate-900/60 to-purple-950/40 pointer-events-none"></div>
+          <div class="relative z-10"><span class="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider">// High Dynamic Range</span><div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-cyan-300 mt-3 text-lg"><i class="fa-solid fa-circle-nodes"></i></div></div>
+          <div class="relative z-10 pt-6"><span class="text-3xl font-black text-white block">32-Bit</span><p class="text-xs text-slate-300 mt-1 font-medium leading-relaxed">Floating point image processing dengan presisi warna tak terbatas.</p></div>
+        </div>
+
+        <div class="liquid-glass rounded-3xl p-6 flex flex-col justify-between min-h-[280px]">
+          <div><span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Curated Library</span><h3 class="text-4xl font-black text-white tracking-tight mt-2">263+</h3></div>
+          <p class="text-xs text-slate-300 font-medium leading-relaxed">Video tutorial terstruktur dari instruktur resmi Blackmagic Design, Casey Faris, Darren Mostyn, Cullen Kelly, dan Film Riot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workspace Navigator Section -->
+  <section id="kurikulum" class="py-20 px-6 max-w-7xl mx-auto w-full relative z-10 border-t border-white/10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
       <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">WORKSPACE NAVIGATOR</span>
-        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-2">Pilih Halaman Kerja (Page)</h2>
-        <p class="text-sm text-slate-500 mt-1 font-medium">Beralih antar halaman kerja DaVinci Resolve untuk memfilter materi secara instan.</p>
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#d4ff32] glass-pill px-3 py-1 rounded-full">// Workspace Navigator</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mt-3">Pilih Halaman Kerja (Page)</h2>
+        <p class="text-sm text-slate-400 mt-1 font-medium">Beralih antar halaman kerja DaVinci Resolve untuk memfilter materi secara instan.</p>
       </div>
-      
-      <!-- Live Search -->
       <div class="relative w-full md:w-80 group">
-        <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"></i>
+        <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-400 group-focus-within:text-[#d4ff32] transition-colors"></i>
         <input type="text" id="global-search-input" placeholder="Cari materi atau instruktur..." 
-               class="w-full bg-white border border-slate-200 rounded-2xl pl-11 pr-4 py-3 text-sm text-slate-800 placeholder-slate-400 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all">
+               class="w-full liquid-glass rounded-2xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-400 font-medium focus:outline-none focus:border-[#d4ff32] transition-all">
       </div>
     </div>
 
-    <!-- Workspace Tabs Selector (Media, Cut & Edit, Color, Fusion, Fairlight, Deliver) -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8" id="workspace-tabs">
-      <!-- Digenerate oleh JS -->
-    </div>
+    <!-- Workspace Tabs -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8" id="workspace-tabs"></div>
 
-    <!-- Active Page Info Banner -->
-    <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm mb-8">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+    <!-- Active Banner -->
+    <div class="liquid-glass rounded-3xl p-6 sm:p-8 shadow-2xl mb-8 relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 relative z-10">
         <div>
-          <span id="active-page-tag" class="text-xs font-extrabold uppercase tracking-wider text-indigo-600">HALAMAN KERJA</span>
-          <h3 id="active-page-title" class="text-2xl font-extrabold text-slate-900 mt-1">Nama Page</h3>
-          <p id="active-page-desc" class="text-xs sm:text-sm text-slate-600 mt-1.5 font-medium leading-relaxed max-w-3xl"></p>
+          <span id="active-page-tag" class="text-xs font-mono font-bold uppercase tracking-wider text-[#d4ff32]">HALAMAN KERJA</span>
+          <h3 id="active-page-title" class="text-2xl sm:text-3xl font-black text-white mt-1">Nama Page</h3>
+          <p id="active-page-desc" class="text-xs sm:text-sm text-slate-300 mt-2 font-medium leading-relaxed max-w-3xl"></p>
         </div>
-        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 sm:min-w-[210px] text-left sm:text-right">
-          <span class="text-xs text-slate-500 font-medium">Progres di Halaman Ini:</span>
-          <div class="text-base font-extrabold text-slate-900 mt-0.5" id="page-progress-text">0% (0 Selesai)</div>
+        <div class="glass-pill rounded-2xl p-4 sm:min-w-[210px] text-left sm:text-right border border-white/10">
+          <span class="text-xs text-slate-400 font-medium">Progres di Halaman Ini:</span>
+          <div class="text-lg font-black text-[#d4ff32] mt-0.5" id="page-progress-text">0% (0 Selesai)</div>
         </div>
       </div>
-
-      <!-- Sub-Category Filter Chips -->
-      <div class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-2" id="subcategory-filters">
-        <!-- Digenerate oleh JS -->
-      </div>
+      <div class="mt-6 pt-5 border-t border-white/10 flex items-center gap-2 overflow-x-auto pb-2 relative z-10" id="subcategory-filters"></div>
     </div>
 
-    <!-- Video Player Popup + Catatan Pribadi (Notebook) -->
-    <div id="player-container" class="hidden mb-12 bg-white border border-slate-200/80 rounded-[2rem] p-2 shadow-lg fade-in overflow-hidden">
+    <!-- Video Player Popup + Catatan Pribadi -->
+    <div id="player-container" class="hidden mb-12 liquid-glass rounded-[2rem] p-3 shadow-2xl fade-in overflow-hidden border border-white/15">
       <div class="grid grid-cols-1 xl:grid-cols-3 gap-0">
-        
-        <!-- Frame Video -->
-        <div class="xl:col-span-2 p-4 sm:p-6 bg-slate-50 rounded-[1.5rem]">
+        <div class="xl:col-span-2 p-4 sm:p-6 bg-black/40 rounded-[1.5rem]">
           <div class="flex items-start justify-between mb-4">
             <div>
-              <span id="player-page-tag" class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-100/50 border border-indigo-100 px-2.5 py-1 rounded-md">PAGE</span>
-              <h2 id="player-title" class="text-lg sm:text-xl font-bold text-slate-900 mt-2 leading-tight">Judul Tutorial</h2>
+              <span id="player-page-tag" class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#d4ff32] glass-pill px-2.5 py-1 rounded-md">PAGE</span>
+              <h2 id="player-title" class="text-lg sm:text-xl font-bold text-white mt-2 leading-tight">Judul Tutorial</h2>
             </div>
-            <button onclick="closePlayer()" class="bg-white border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm">
+            <button onclick="closePlayer()" class="w-8 h-8 rounded-full glass-pill text-slate-400 hover:text-white flex items-center justify-center transition-all">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
-
-          <div class="relative pb-[56.25%] bg-slate-900 rounded-xl overflow-hidden shadow-inner mb-5">
+          <div class="relative pb-[56.25%] bg-black rounded-xl overflow-hidden shadow-inner mb-5">
             <iframe id="main-iframe" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
           </div>
-
           <div class="flex flex-wrap items-center justify-between gap-3">
-            <button id="player-done-btn" class="bg-slate-900 text-white text-xs font-bold px-6 py-2.5 rounded-xl hover:bg-slate-800 transition-all shadow-sm">
-              Tandai Selesai
-            </button>
-            <a id="player-yt-link" href="#" target="_blank" class="text-[13px] text-slate-500 hover:text-red-500 transition-colors flex items-center font-bold">
-              <i class="fa-brands fa-youtube text-lg mr-1.5"></i> Buka di YouTube
+            <button id="player-done-btn" class="bg-[#d4ff32] text-slate-950 text-xs font-black px-6 py-2.5 rounded-xl hover:bg-[#c6f325] transition-all shadow-md">Tandai Selesai</button>
+            <a id="player-yt-link" href="#" target="_blank" class="text-[13px] text-slate-300 hover:text-red-400 transition-colors flex items-center font-bold">
+              <i class="fa-brands fa-youtube text-lg mr-1.5 text-red-500"></i> Buka di YouTube
             </a>
           </div>
         </div>
-
-        <!-- Personal Notebook -->
-        <div class="xl:col-span-1 p-4 sm:p-6 border-t xl:border-t-0 xl:border-l border-slate-100 flex flex-col bg-white">
+        <div class="xl:col-span-1 p-4 sm:p-6 border-t xl:border-t-0 xl:border-l border-white/10 flex flex-col">
           <div class="flex items-center justify-between mb-3">
-            <h3 class="text-sm font-bold text-slate-900 flex items-center">
-              <i class="fa-solid fa-pen-to-square text-indigo-500 mr-2"></i> Catatan Materi
-            </h3>
-            <span id="notes-status" class="text-[10px] font-bold text-emerald-500 opacity-0 transition-opacity">Tersimpan ✓</span>
+            <h3 class="text-sm font-bold text-white flex items-center"><i class="fa-solid fa-pen-to-square text-[#d4ff32] mr-2"></i> Catatan Materi</h3>
+            <span id="notes-status" class="text-[10px] font-bold text-emerald-400 opacity-0 transition-opacity">Tersimpan ✓</span>
           </div>
-          <p class="text-[11px] text-slate-400 mb-2">Tuliskan shortcut, rumus node, atau parameter penting. Tersimpan otomatis di peramban Anda.</p>
-          <textarea id="personal-notes" placeholder="Tuliskan catatan Anda di sini..." class="w-full flex-grow bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all resize-none min-h-[160px]"></textarea>
+          <p class="text-[11px] text-slate-400 mb-2">Tuliskan shortcut atau parameter penting. Tersimpan otomatis di peramban.</p>
+          <textarea id="personal-notes" placeholder="Tuliskan catatan Anda di sini..." class="w-full flex-grow liquid-glass rounded-xl p-3.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#d4ff32] transition-all resize-none min-h-[160px]"></textarea>
           <div class="mt-3 flex justify-end">
-            <button onclick="clearNotes()" class="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors">
-              <i class="fa-regular fa-trash-can mr-1"></i> Bersihkan Catatan
-            </button>
+            <button onclick="clearNotes()" class="text-[11px] font-bold text-slate-400 hover:text-red-400 transition-colors"><i class="fa-regular fa-trash-can mr-1"></i> Bersihkan Catatan</button>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- Video Cards Container -->
-    <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-      <!-- Digenerate oleh JS -->
-    </div>
+    <!-- Video Grid -->
+    <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
 
-    <!-- Load More Button -->
+    <!-- Load More -->
     <div id="load-more-container" class="mt-12 text-center hidden">
-      <button onclick="loadMoreVideos()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-800 text-xs font-bold px-8 py-3.5 rounded-full transition-all shadow-sm">
-        Muat Lebih Banyak Video (<span id="load-more-count">0</span> Tersisa)
+      <button onclick="loadMoreVideos()" class="liquid-glass liquid-glass-hover text-white text-xs font-black px-8 py-3.5 rounded-full transition-all shadow-lg">
+        Muat Lebih Banyak Video (<span id="load-more-count" class="text-[#d4ff32]">0</span> Tersisa)
       </button>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-200/60 bg-white py-12 px-6 text-center text-sm text-slate-500 font-medium mt-auto">
+  <footer class="border-t border-white/10 py-14 px-6 text-center text-sm text-slate-500 font-medium mt-auto relative z-10">
     <div class="max-w-7xl mx-auto flex flex-col items-center justify-center space-y-3">
-      <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-xs shadow-sm">DR</div>
-      <p>ResolveHub — Kurikulum Mandiri DaVinci Resolve Indonesia.</p>
-      <p class="text-xs text-slate-400">Hak cipta tutorial YouTube merupakan milik para instruktur dan kreator terkait.</p>
+      <div class="w-9 h-9 rounded-full bg-[#d4ff32] text-slate-950 flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(212,255,50,0.4)]">DR</div>
+      <p class="text-slate-400">ResolveHub — Kurikulum Mandiri DaVinci Resolve Indonesia.</p>
+      <p class="text-xs text-slate-600">Hak cipta tutorial YouTube merupakan milik para instruktur dan kreator terkait.</p>
     </div>
   </footer>
 
-  <!-- DATA & JAVASCRIPT ENGINE -->
-  <script>
-    /* =========================================================================
-       DATASET MASSAL TUTORIAL 6 HALAMAN KERJA DAVINCI RESOLVE (DEDUPLIKASI TOTAL)
-       ========================================================================= */
-    const davinciPages = [
-  {
-    id: "media",
-    name: "Media Page",
-    icon: "fa-folder-open",
-    tag: "MEDIA MANAGEMENT & INGEST",
-    desc: "Pusat manajemen media: pengaturan project, database PostgreSQL/Local, verifikasi Clone Tool MD5, Smart Bins metadata otomatis, waveform audio sync, dan proxy generator.",
-    subcategories: ["Semua", "Setup & Database", "Clone Tool & Ingest", "Smart Bins & Metadata", "Audio Sync & Proxy"],
-    videos: [
-      { id: "Dv4j5-gHxkg", title: "The Media Page: Panduan Lengkap Pemula", subcat: "Setup & Database", instructor: "Blackmagic Design" },
-      { id: "MCDVcQIA3UM", title: "Introduction to DaVinci Resolve (Full Course)", subcat: "Setup & Database", instructor: "Casey Faris" },
-      { id: "3mo_vgKfYCU", title: "Learn DaVinci Resolve in JUST 10 MINUTES!", subcat: "Setup & Database", instructor: "Casey Faris" },
-      { id: "g52gP_bR65E", title: "DaVinci Resolve Newbies Guide - Pro Explains", subcat: "Setup & Database", instructor: "Darren Mostyn" },
-      { id: "CyexunsDzwA", title: "Setup Project, Timelines & Best Preferences", subcat: "Setup & Database", instructor: "Blackmagic Design" },
-      { id: "MTYjCp-hxjQ", title: "Panduan Memulai DaVinci Resolve dari Dasar", subcat: "Setup & Database", instructor: "Editor ID" },
-      { id: "hUM88jlUTgo", title: "Manajemen Database PostgreSQL vs Local Library", subcat: "Setup & Database", instructor: "Darren Mostyn" },
-      { id: "WmuO8AkWS5A", title: "Optimasi Cache SSD, Scratch Disk & Playback Lancar", subcat: "Setup & Database", instructor: "Casey Faris" },
-      { id: "kMGkmK0SG34", title: "Keyboard Shortcuts Standar Editor Cepat", subcat: "Setup & Database", instructor: "Film Riot" },
-      { id: "FUNfPUZxE9E", title: "Master the Media Page: Clone Tool MD5 Checksum", subcat: "Clone Tool & Ingest", instructor: "Darren Mostyn" },
-      { id: "WP8zydfkofc", title: "Struktur Folder, Smart Bins & Metadata Otomatis", subcat: "Smart Bins & Metadata", instructor: "MrAlexTech" },
-      { id: "E46-cM5xVAw", title: "The SMARTER Way to Organise Footage in Resolve", subcat: "Smart Bins & Metadata", instructor: "MrAlexTech" },
-      { id: "zxa7uzMdXzc", title: "How to Import & Relink Offline Media in DaVinci", subcat: "Smart Bins & Metadata", instructor: "Darren Mostyn" },
-      { id: "6ciMx3AV2JQ", title: "Auto-Sync Audio Eksternal via Waveform Matching", subcat: "Audio Sync & Proxy", instructor: "Casey Faris" },
-      { id: "i_88edxhJvc", title: "DaVinci Proxy Generator Workflow Lengkap", subcat: "Audio Sync & Proxy", instructor: "Film Riot" },
-      { id: "4-G3AMHFeb4", title: "Optimized Media vs Proxy Media vs Render Cache", subcat: "Audio Sync & Proxy", instructor: "Cullen Kelly" },
-      { id: "SrJOE2pEp7A", title: "Ingest & Playback Optimization Masterclass", subcat: "Setup & Database", instructor: "Ben Claremont" },
-      { id: "Pwv8g6C48q8", title: "Davinci Resolve Media Page Explained", subcat: "Setup & Database", instructor: "Master DaVinci Resolve" },
-      { id: "FzyFE9RaTYs", title: "Modern Media Ingest & File Structure Workflow", subcat: "Clone Tool & Ingest", instructor: "Casey Faris" },
-      { id: "gjxiH2Tm4JE", title: "Media Organization & Working with Bins", subcat: "Smart Bins & Metadata", instructor: "Casey Faris" },
-      { id: "9ih_Lq-p79Y", title: "Customize Media Pool Layout & Metadata Columns", subcat: "Smart Bins & Metadata", instructor: "Daniel Batal" },
-      { id: "w4h-Vs5rh1M", title: "Importing Multiple Frame Rates & Mixed Resolution", subcat: "Clone Tool & Ingest", instructor: "Transform Edits" },
-      { id: "kNrNx8tbmb4", title: "Media Pool Power Bins: Sharing Assets Across Projects", subcat: "Smart Bins & Metadata", instructor: "Daniel Batal" },
-      { id: "fXn_-f9fmPw", title: "Clip Attributes: Changing Pixel Aspect Ratio & Audio", subcat: "Setup & Database", instructor: "Conner John" },
-      { id: "_ItXERH79RM", title: "Essential Media Pool & Clip Inspector Setup", subcat: "Setup & Database", instructor: "Team DaVinci" },
-      { id: "iUaAMq4W46M", title: "Smart Bins Automation & Fast Project Navigation", subcat: "Setup & Database", instructor: "MrAlexTech" },
-      { id: "mgNgHVcuh8U", title: "Project Settings: Color Science & Performance Secrets", subcat: "Setup & Database", instructor: "Darren Mostyn" },
-      { id: "ojag53rOrBE", title: "Offline Media Workflow & File Recovery in Resolve", subcat: "Setup & Database", instructor: "Casey Faris" },
-      { id: "4oM0IyvVfls", title: "Hardware Acceleration & GPU Configuration Guide", subcat: "Setup & Database", instructor: "Film Riot" },
-    ]
-  },
-  {
-    id: "edit",
-    name: "Cut & Edit Page",
-    icon: "fa-film",
-    tag: "EDITORIAL & PACING",
-    desc: "Dua engine editing terbaik: Cut Page untuk perakitan kilat berbasis Source Tape, serta Edit Page untuk precision trimming, multicam, dan pemotongan ritmis.",
-    subcategories: ["Semua", "Edit Page Trimming", "Pacing & Story", "B-Roll & Visuals", "Multicam & Audio Cut"],
-    videos: [
-      { id: "EYHKVb2qFI4", title: "STOP Struggling with CUT PAGE! Secret Revealed", subcat: "B-Roll & Visuals", instructor: "Darren Mostyn" },
-      { id: "C-8C-JHkjAY", title: "HOW TO CUT VIDEO in DaVinci Resolve - Basic Tips", subcat: "B-Roll & Visuals", instructor: "Casey Faris" },
-      { id: "26OfvGXGezw", title: "Speed Editor Tutorial & In-Depth with Cut Page", subcat: "B-Roll & Visuals", instructor: "Darren Mostyn" },
-      { id: "85W8E7VRmU4", title: "Speed Editing in DaVinci Resolve's Cut Page", subcat: "B-Roll & Visuals", instructor: "Blackmagic Design" },
-      { id: "Q1tCEvqakUo", title: "Fastest Editing Workflow in DaVinci Resolve", subcat: "B-Roll & Visuals", instructor: "Casey Faris" },
-      { id: "ZePNEgZhf48", title: "Speed Ramps & Retime Curves di Cut Page", subcat: "B-Roll & Visuals", instructor: "Film Riot" },
-      { id: "9jRZIqPQHm8", title: "Dynamic B-Roll Sequencing di Cut Page", subcat: "B-Roll & Visuals", instructor: "MrAlexTech" },
-      { id: "Au1IB_sHlWE", title: "B-Roll Cutaways & Quick Audio Syncing", subcat: "B-Roll & Visuals", instructor: "Casey Faris" },
-      { id: "mjiT0g3mYgw", title: "Timeline Essentials & Precision Trimming", subcat: "Edit Page Trimming", instructor: "Blackmagic Design" },
-      { id: "AA2agmf6jTo", title: "Ripple, Roll, Slip, dan Slide Edit (Film Editing Pro)", subcat: "Edit Page Trimming", instructor: "Film Riot" },
-      { id: "ve38J2Z3EIQ", title: "Fast Trimming & Keyboard Shortcuts", subcat: "Edit Page Trimming", instructor: "Casey Faris" },
-      { id: "ns4HtiFvUOc", title: "Advanced Timeline Track Management & Nesting", subcat: "Edit Page Trimming", instructor: "MrAlexTech" },
-      { id: "9J3CNT3qvCM", title: "Pacing Fundamentals & Visual Beats", subcat: "Pacing & Story", instructor: "This Guy Edits" },
-      { id: "sJLldZdGkzA", title: "Cutting on Action & Rhythm", subcat: "Pacing & Story", instructor: "StudioBinder" },
-      { id: "yaqq9aB1csw", title: "Dialogue Continuity (J & L Cuts)", subcat: "Pacing & Story", instructor: "Sven Pape" },
-      { id: "7R8WebgoqRo", title: "Membangun Ketegangan Naratif Adegan Dramatis", subcat: "Pacing & Story", instructor: "StudioBinder" },
-      { id: "UDgKrsb1X7A", title: "Ritme Emosional Pemotongan Adegan", subcat: "Pacing & Story", instructor: "This Guy Edits" },
-      { id: "F5euSYD0nMY", title: "Assembly Cut ke Final Picture Lock", subcat: "Pacing & Story", instructor: "Darren Mostyn" },
-      { id: "uon8fOXdyRQ", title: "Mastering Story Arc & Visual Pacing in Editing", subcat: "Pacing & Story", instructor: "This Guy Edits" },
-      { id: "wZ27FgwcnSw", title: "Seamless B-Roll Transitions & Motion Matching", subcat: "B-Roll & Visuals", instructor: "Daniel Batal" },
-      { id: "zsy9HSMYBgg", title: "Subtext & Scene Structure for Dramatic Film", subcat: "Pacing & Story", instructor: "StudioBinder" },
-      { id: "kNrNx8tbmb4", title: "DaVinci Resolve's NEW Edit Page Explained", subcat: "Edit Page Trimming", instructor: "Daniel Batal" },
-      { id: "fXn_-f9fmPw", title: "Edit Page Explained: Every Button & Tool", subcat: "Edit Page Trimming", instructor: "Conner John" },
-    ]
-  },
-  {
-    id: "color",
-    name: "Color Page",
-    icon: "fa-palette",
-    tag: "COLOR SCIENCE & GRADING",
-    desc: "Standar grading Hollywood: pembacaan Scopes, Fixed Node Tree, Color Management (ACES/DWG), ColorSlice, isolasi warna kulit, dan emulasi film 35mm (Kodak 2383).",
-    subcategories: ["Semua", "Scopes & Balance", "Node Tree & Matching", "ColorSlice & ACES", "Film Emulation & Skin", "Secondary & Power Window", "Finishing & Look Dev"],
-    videos: [
-      { id: "SkosqJfzEs0", title: "CONQUER the COLOR Page in DaVinci Resolve!", subcat: "Finishing & Look Dev", instructor: "Daniel Batal" },
-      { id: "NefAhOTNJYU", title: "Full COLOR Page Tour for Beginners", subcat: "Finishing & Look Dev", instructor: "Casey Faris" },
-      { id: "Eg3aulKKz2E", title: "Primary Color Correction Fundamentals", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "IwqucXqb2zY", title: "Scopes Mastery: Waveform, RGB Parade & Histogram", subcat: "Scopes & Balance", instructor: "Darren Mostyn" },
-      { id: "JhPY-nojylE", title: "Vectorscope Calibration for Perfect Skin & Hue", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "6m3AR-hNsSw", title: "Reading Waveform & Parade for Broadcast Legal", subcat: "Scopes & Balance", instructor: "Team DaVinci" },
-      { id: "Gz_QzBdHDYc", title: "Exposure Normalization & Highlight Rolloff", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "zplOyEp1Ofc", title: "Fixing Underexposed & Overexposed Log Footage", subcat: "Scopes & Balance", instructor: "Darren Mostyn" },
-      { id: "6nfml-0-jtc", title: "Contrast & Exposure Control with HDR Wheels", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "xbHxK-AxcrQ", title: "Zone System for Digital Colorists", subcat: "Scopes & Balance", instructor: "Waqas Qazi" },
-      { id: "bjA0Zqs5KRY", title: "Teknik White Balance Akurat & Netralisasi Cast", subcat: "Scopes & Balance", instructor: "Darren Mostyn" },
-      { id: "f4tQaItQIHU", title: "Color Temperature & Tint Balancing in RAW", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "YZ2bJzt9z-s", title: "Neutralizing Color Casts with RGB Curves", subcat: "Scopes & Balance", instructor: "Darren Mostyn" },
-      { id: "nCjBBsKhse8", title: "Auto Balance vs Manual White Balance Techniques", subcat: "Scopes & Balance", instructor: "Casey Faris" },
-      { id: "fTg-1KicwSs", title: "Kontras Kurva & Pengaturan S-Curve Pivot Point", subcat: "Scopes & Balance", instructor: "Casey Faris" },
-      { id: "kUrm3ypYY_o", title: "Mastering Custom Curves for Film Contrast", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "62CmsM-ClAw", title: "Midtone Contrast & Perceptual Sharpness", subcat: "Scopes & Balance", instructor: "Darren Mostyn" },
-      { id: "TpJ1EAerPN4", title: "Subtractive Color Saturation vs Video Saturation", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "ukLP0kXppaU", title: "Saturation vs Saturation & Color Warper", subcat: "Scopes & Balance", instructor: "Darren Mostyn" },
-      { id: "o8mnnJ8G8KA", title: "Preserving Hue When Pushing High Saturation", subcat: "Scopes & Balance", instructor: "Yes Jmo" },
-      { id: "XqHidJUxUUk", title: "Color Boost vs Saturation Explained", subcat: "Scopes & Balance", instructor: "MrAlexTech" },
-      { id: "1MWGl0s3K2Q", title: "Desaturating Shadows & Highlights Naturally", subcat: "Scopes & Balance", instructor: "Cullen Kelly" },
-      { id: "99v96TL-tuY", title: "DaVinci Wide Gamut (DWG) Complete Setup", subcat: "ColorSlice & ACES", instructor: "Cullen Kelly" },
-      { id: "V7Od6GlBrdc", title: "Color Space Transform (CST) vs RCM Guide", subcat: "ColorSlice & ACES", instructor: "Darren Mostyn" },
-      { id: "3ap8k564N_w", title: "ACES Color Workflow from Ingest to Screen", subcat: "ColorSlice & ACES", instructor: "Cullen Kelly" },
-      { id: "QCRVwkhxDzw", title: "CSTs vs Resolve Color Management", subcat: "ColorSlice & ACES", instructor: "Cullen Kelly" },
-      { id: "c4AVwVdKTHc", title: "Resolve Color Management EASY for Beginners", subcat: "ColorSlice & ACES", instructor: "Darren Mostyn" },
-      { id: "yUc4iuAh_rQ", title: "HDR vs SDR Color Management Pipelines", subcat: "ColorSlice & ACES", instructor: "Darren Mostyn" },
-      { id: "U3vzpYHi4R8", title: "Fixed Node Tree Architecture Hollywood", subcat: "Node Tree & Matching", instructor: "Waqas Qazi" },
-      { id: "t_seS-5216A", title: "Serial, Parallel, dan Layer Mixer Nodes in Action", subcat: "Node Tree & Matching", instructor: "Casey Faris" },
-      { id: "V4T9NBjwHwE", title: "Key Mixer & Compound Node Techniques", subcat: "Node Tree & Matching", instructor: "Darren Mostyn" },
-      { id: "kdTMRQP_V7E", title: "The BEST Node Tree for ANY Camera!", subcat: "Node Tree & Matching", instructor: "Darren Mostyn" },
-      { id: "l3rOObH74TE", title: "PRO Color MATCH Shots in 15 mins!", subcat: "Node Tree & Matching", instructor: "Darren Mostyn" },
-      { id: "nnxJg7CKBdY", title: "Shot Matching Different Cameras (Sony, Canon, BMPCC)", subcat: "Node Tree & Matching", instructor: "Darren Mostyn" },
-      { id: "Bw14wqVbpOo", title: "Isolasi Skin Tone & Vectorscope Alignment Line", subcat: "Film Emulation & Skin", instructor: "Cullen Kelly" },
-      { id: "E7oog981GQI", title: "HSL Qualifier: Precision Secondary Color Isolation", subcat: "Secondary & Power Window", instructor: "Darren Mostyn" },
-      { id: "L4dPaUabhpc", title: "Color Warper for Precise Secondary Adjustments", subcat: "Secondary & Power Window", instructor: "Cullen Kelly" },
-      { id: "r76XMnTGZkY", title: "Selective Desaturation & Sky Color Replacement", subcat: "Secondary & Power Window", instructor: "Casey Faris" },
-      { id: "_q35kRAtJnY", title: "3D Keyer & Clean Matte Edges in Color Page", subcat: "Secondary & Power Window", instructor: "Darren Mostyn" },
-      { id: "7wcQzJ2MiTg", title: "Power Windows: Lighting & Depth Creation", subcat: "Secondary & Power Window", instructor: "Darren Mostyn" },
-      { id: "BNL9YqFVdVQ", title: "Graduated & Circular Power Windows for Faces", subcat: "Secondary & Power Window", instructor: "Casey Faris" },
-      { id: "vLrVRgYyVtA", title: "Combining Windows with Keyers for Perfect Mattes", subcat: "Secondary & Power Window", instructor: "Cullen Kelly" },
-      { id: "ZvpzChjKDA8", title: "Window Tracking & Cloud Tracker in Resolve", subcat: "Secondary & Power Window", instructor: "Darren Mostyn" },
-      { id: "TKRBoK70Y7w", title: "Point Tracker vs Interactive Cloud Tracking", subcat: "Secondary & Power Window", instructor: "Casey Faris" },
-      { id: "GYQXqrYOVl8", title: "Stabilization inside Color Page Tracker", subcat: "Secondary & Power Window", instructor: "MrAlexTech" },
-      { id: "l-FL8p_gEOo", title: "Tracking Difficult Occluded Objects", subcat: "Secondary & Power Window", instructor: "Darren Mostyn" },
-      { id: "1-5mXPEsm3k", title: "Creating Cinematic Looks from Scratch", subcat: "Finishing & Look Dev", instructor: "Cullen Kelly" },
-      { id: "sUiUaPpIVPY", title: "Teal and Orange Look: Hollywood Chemistry", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "tc2OF7iGtzY", title: "Bleach Bypass & Gritty Desaturated Looks", subcat: "Finishing & Look Dev", instructor: "Film Riot" },
-      { id: "kRJ89WDmnA8", title: "Pastel & Vintage 70s Look Development", subcat: "Finishing & Look Dev", instructor: "Cullen Kelly" },
-      { id: "-k87m157X4I", title: "Color Theory for Filmmakers & Colorists", subcat: "Finishing & Look Dev", instructor: "StudioBinder" },
-      { id: "hzZK0sNQQB0", title: "Complementary & Analogous Color Harmonies", subcat: "Finishing & Look Dev", instructor: "Cullen Kelly" },
-      { id: "hvXEmcuaXrY", title: "Psychology of Color in Narrative Cinema", subcat: "Finishing & Look Dev", instructor: "StudioBinder" },
-      { id: "lINVnA3rVIE", title: "Color Contrast: Warm vs Cool Separation", subcat: "Finishing & Look Dev", instructor: "This Guy Edits" },
-      { id: "7d-54gTAgkc", title: "Building Visual Cohesion Across an Entire Film", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "4q5KU3L2S3o", title: "Print Film Emulation & Subtractive Color (Kodak 2383)", subcat: "Film Emulation & Skin", instructor: "Cullen Kelly" },
-      { id: "4BufREoC8xE", title: "Halation, Bloom, dan Grain Texture Profile", subcat: "Film Emulation & Skin", instructor: "Avery Peck" },
-      { id: "yZ9OGyhE4F8", title: "Analog Film Emulation: 16mm vs 35mm Grain", subcat: "Film Emulation & Skin", instructor: "Cullen Kelly" },
-      { id: "kN3sGfWM7vI", title: "Kodak 5207 vs Fuji 3513 Emulation Workflow", subcat: "Film Emulation & Skin", instructor: "Darren Mostyn" },
-      { id: "wV1dJVOBZYw", title: "Authentic Film Gate Weave & Optical Blur", subcat: "Film Emulation & Skin", instructor: "Film Riot" },
-      { id: "XOadVMXuAaw", title: "Film Print Density & Subtractive Curves", subcat: "Film Emulation & Skin", instructor: "Cullen Kelly" },
-      { id: "aoS-yLYtOh8", title: "HDR Wheels Masterclass: Black Clip to Specular", subcat: "ColorSlice & ACES", instructor: "Cullen Kelly" },
-      { id: "quzmXmt4vkE", title: "HDR Zone Control on High Dynamic Range Sensors", subcat: "ColorSlice & ACES", instructor: "Darren Mostyn" },
-      { id: "-ALuCzjNjwQ", title: "Using HDR Wheels on Standard Rec.709 Timelines", subcat: "ColorSlice & ACES", instructor: "Yes Jmo" },
-      { id: "OK5Nr6XSJyU", title: "Spatial vs Temporal Noise Reduction Profiling", subcat: "Finishing & Look Dev", instructor: "Team DaVinci" },
-      { id: "vaVoyuAbB2c", title: "Fixing Extreme Low Light Noise without Smudging", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "bR_4i5FBaA4", title: "Final Pass: Sharpening, Softening & Letterboxing", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "-egTJuJzNqg", title: "Quality Control (QC) & Checking Clipping Before Export", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "ip09ormGWvk", title: "Exporting Cinema Masters & Audio Stems in Color", subcat: "Finishing & Look Dev", instructor: "Cullen Kelly" },
-      { id: "Fcej7hDihW8", title: "Deliver Page Hand-off from Colorist to Master", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-      { id: "dxL7tclBlnY", title: "How I Grade This Commercial: Pro Masterclass", subcat: "Finishing & Look Dev", instructor: "Darren Mostyn" },
-    ]
-  },
-  {
-    id: "fusion",
-    name: "Fusion Page",
-    icon: "fa-wand-magic-sparkles",
-    tag: "VFX & MOTION GRAPHICS",
-    desc: "Compositing tingkat lanjut berbasis node: tracking planar & 3D kamera, Delta Keyer green screen, rotoscoping presisi, Magic Mask AI, dan workspace 3D.",
-    subcategories: ["Semua", "Node Basics", "Motion Graphics", "Tracking & Keying", "AI Tools & Roto", "3D Workspace & Particles"],
-    videos: [
-      { id: "gaFT_Kj2yeQ", title: "Fusion Interface & Node Logic", subcat: "Node Basics", instructor: "Casey Faris" },
-      { id: "XZcu0CVcQsQ", title: "Merge Node: Foreground, Background, and Alpha Mask", subcat: "Node Basics", instructor: "Blackmagic Design" },
-      { id: "PoinMs_YceQ", title: "Vector Polygon & B-Spline Masking Basics", subcat: "Node Basics", instructor: "Patrick Stirling" },
-      { id: "Da5pKCIu4bg", title: "Keyframing & Spline Editor Smoothing", subcat: "Node Basics", instructor: "Patrick Stirling" },
-      { id: "SIbUS2tGgFw", title: "Transform, Blur, dan Color Curves di Fusion", subcat: "Node Basics", instructor: "JayAreTV" },
-      { id: "7R1xOvFN4pA", title: "Fast Title & Lower Third Animation in Fusion", subcat: "Node Basics", instructor: "Patrick Stirling" },
-      { id: "Oj1unLrTo5g", title: "MediaIn and MediaOut Fundamentals Explained", subcat: "Node Basics", instructor: "Casey Faris" },
-      { id: "cZuLAWJ6CvQ", title: "Lower Thirds & Kinetic Titles Creation", subcat: "Node Basics", instructor: "Casey Faris" },
-      { id: "TFOk3nQ3o7w", title: "Modifier Tools & Automatic Animation in Fusion", subcat: "Node Basics", instructor: "Patrick Stirling" },
-      { id: "Ho4ZQE7_T_Y", title: "Motion Graphics Design & Layout Principles", subcat: "Motion Graphics", instructor: "Casey Faris" },
-      { id: "HtasfXOIzqY", title: "Shape Nodes (sRender, sEllipse, sRectangle) Intro", subcat: "Motion Graphics", instructor: "Patrick Stirling" },
-      { id: "FvDkp9JkrLI", title: "Creating Clean Animated Charts & Infographics", subcat: "Motion Graphics", instructor: "JayAreTV" },
-      { id: "YlsBz--K5lA", title: "Kinetic Typography with Follower Modifier", subcat: "Motion Graphics", instructor: "Patrick Stirling" },
-      { id: "ceDOFQ6ZwW8", title: "Logo Animation & Reveal Techniques in Fusion", subcat: "Motion Graphics", instructor: "Casey Faris" },
-      { id: "pER2MmqNP4w", title: "Glow, Drop Shadows & Light Rays for Graphics", subcat: "Motion Graphics", instructor: "JayAreTV" },
-      { id: "MzBhzMoUc4s", title: "Speed Graph & Easing Curve Masterclass", subcat: "Motion Graphics", instructor: "Patrick Stirling" },
-      { id: "cRE2ObMIfos", title: "Seamless Title Transitions & Morphing Shapes", subcat: "Motion Graphics", instructor: "MrAlexTech" },
-      { id: "mlbgay7MHjM", title: "Custom Graphic Presets for Edit Page Inspection", subcat: "Motion Graphics", instructor: "Casey Faris" },
-      { id: "F-Pr1GGmyVU", title: "Point Tracker & Stabilisasi Video 1 vs 2 Point", subcat: "Tracking & Keying", instructor: "JayAreTV" },
-      { id: "dp_qeQY8Zps", title: "Planar Tracking & Corner Pinning (Ganti Layar Gadget)", subcat: "Tracking & Keying", instructor: "Casey Faris" },
-      { id: "FvzlVK1IaU0", title: "Planar Tracker: Removing Objects with Clean Plate", subcat: "Tracking & Keying", instructor: "JayAreTV" },
-      { id: "g8ZAY--tzeo", title: "Track Offset & Assisting Lost Tracker Points", subcat: "Tracking & Keying", instructor: "VFX Study" },
-      { id: "W6BhkDvgdTI", title: "Planar Transform vs Tracker Transform Nodes", subcat: "Tracking & Keying", instructor: "Patrick Stirling" },
-      { id: "PYExcRXM5mo", title: "Teknik Rotoscoping Efisien", subcat: "AI Tools & Roto", instructor: "VFX Study" },
-      { id: "kZC08b5mG58", title: "Delta Keyer: Hollywood Green Screen Extraction", subcat: "AI Tools & Roto", instructor: "JayAreTV" },
-      { id: "QN4UxWnRZEI", title: "Clean Plate Generation & Patch Replacer", subcat: "AI Tools & Roto", instructor: "Casey Faris" },
-      { id: "01i_hDMOpto", title: "Despill & Edge Refining on Difficult Hair Green Screen", subcat: "AI Tools & Roto", instructor: "VFX Study" },
-      { id: "e4T2FXV2RzM", title: "Foreground & Background Light Wrap Compositing", subcat: "AI Tools & Roto", instructor: "JayAreTV" },
-      { id: "VSUC2zOFPh0", title: "Multi-Layer CG Compositing & Depth Maps", subcat: "AI Tools & Roto", instructor: "ProductionCrate" },
-      { id: "f6bo9hoDWpc", title: "VFX Dasar: Compositing Ledakan & Asap", subcat: "AI Tools & Roto", instructor: "Film Riot" },
-      { id: "Yb1ruPEpJcM", title: "Muzzle Flashes, Gunshot Smoke & Bullet Hits", subcat: "AI Tools & Roto", instructor: "Film Riot" },
-      { id: "rgWj9Dj1SU0", title: "Sparks, Debris & Physics Compositing", subcat: "AI Tools & Roto", instructor: "ProductionCrate" },
-      { id: "ZVUdsSsSKbU", title: "Sky Replacement & Atmosphere Integration", subcat: "AI Tools & Roto", instructor: "Casey Faris" },
-      { id: "b6jyrOMtMVk", title: "Day for Night Conversion & Light Sources in Fusion", subcat: "AI Tools & Roto", instructor: "JayAreTV" },
-      { id: "E7Zseg55kY0", title: "Adding Realistic Camera Shake & Motion Blur", subcat: "AI Tools & Roto", instructor: "MrAlexTech" },
-      { id: "HhjK2q1jHwA", title: "Fusion 3D Workspace, Camera & 3D Render Setup", subcat: "3D Workspace & Particles", instructor: "Casey Faris" },
-      { id: "rx591Kh3IpU", title: "Importing 3D Models (FBX, OBJ) into Fusion", subcat: "3D Workspace & Particles", instructor: "ProductionCrate" },
-      { id: "UnrmOnNWRSw", title: "Lighting 3D Scenes: Point, Spot & Ambient Lights", subcat: "3D Workspace & Particles", instructor: "JayAreTV" },
-      { id: "2-QbenW_2L8", title: "Shadow Catching & Ambient Occlusion in 3D", subcat: "3D Workspace & Particles", instructor: "ProductionCrate" },
-      { id: "m3w35k3ioEM", title: "3D Camera Projection & Matte Painting Extension", subcat: "3D Workspace & Particles", instructor: "VFX Study" },
-    ]
-  },
-  {
-    id: "fairlight",
-    name: "Fairlight Page",
-    icon: "fa-sliders",
-    tag: "AUDIO POST & MIXING",
-    desc: "Studio audio terintegrasi: AI Voice Isolation, dynamic parametric EQ, auto ducking sidechain, submix DME bus routing, dan mastering -14 LUFS.",
-    subcategories: ["Semua", "Voice Cleanup & Gain", "EQ & Dynamics", "Sidechain Ducking", "Bus Routing & LUFS", "Sound Design & Foley"],
-    videos: [
-      { id: "sxLz6r-Vqms", title: "Fairlight Architecture Overview & Complete Guide", subcat: "Voice Cleanup & Gain", instructor: "Daniel Batal" },
-      { id: "PvJ_4VaZYnI", title: "Fairlight Sound Design Essentials for Beginners", subcat: "Voice Cleanup & Gain", instructor: "Film Riot" },
-      { id: "2yW2e4jzZ9g", title: "Mastering Fairlight Audio Workflow in DaVinci", subcat: "Voice Cleanup & Gain", instructor: "Blackmagic Design" },
-      { id: "-B13nDMxC1k", title: "Gain Staging & Headroom Setup", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "xJKypZXc3B4", title: "Understanding Audio Track Types (Mono, Stereo, 5.1)", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "fLDmqpr_Rec", title: "Audio Signal Flow & Inspector Controls", subcat: "Voice Cleanup & Gain", instructor: "Alex Knickerbocker" },
-      { id: "Rp-6F8SWFSY", title: "Setting Up Mic Input & Voiceover Recording", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "nZJkcca7vJ4", title: "Monitoring Calibration & Studio Headroom", subcat: "Voice Cleanup & Gain", instructor: "Fairlight Pro" },
-      { id: "a68BwGw-2-M", title: "Standar Metering LUFS (-14 web vs -24 broadcast)", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "k5Q588l-7JY", title: "True Peak Metering & Preventing Inter-Sample Clipping", subcat: "Voice Cleanup & Gain", instructor: "Alex Knickerbocker" },
-      { id: "2pg8Q9FulSY", title: "Dynamic Range & Loudness Range (LRA) Analysis", subcat: "Voice Cleanup & Gain", instructor: "Fairlight Pro" },
-      { id: "iZiR7uoNWuo", title: "Checkerboarding Track Dialog", subcat: "Voice Cleanup & Gain", instructor: "Alex Knickerbocker" },
-      { id: "8DPTayE7sus", title: "Clean Up Dialogue & Add Clarity", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "_ZopyFOg46M", title: "Dialogue Leveler & Transparent Gain Balancing", subcat: "Voice Cleanup & Gain", instructor: "MrAlexTech" },
-      { id: "Bz_dO-kawIk", title: "Matching Dialogue Tone from Different Microphones", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "C-Ea8EJO5C0", title: "Automated Dialogue Replacement (ADR) Setup", subcat: "Voice Cleanup & Gain", instructor: "Blackmagic Design" },
-      { id: "Z8aFJaPgK6s", title: "Masterclass: Studio Audio Restoration & Noise Fixes", subcat: "Voice Cleanup & Gain", instructor: "Blackmagic Design" },
-      { id: "9k7-OtG2lAE", title: "Voice Isolation & Noise Removal", subcat: "Voice Cleanup & Gain", instructor: "MrAlexTech" },
-      { id: "LLVTU8FLIKM", title: "Removing Air Conditioner & Fan Noise Naturally", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "SFERua4J8pc", title: "Hum & Buzz Removal with Notch Filters", subcat: "Voice Cleanup & Gain", instructor: "Alex Knickerbocker" },
-      { id: "TgMaLHiEVao", title: "De-Reverb: Fixing Echoey Room Acoustics", subcat: "Voice Cleanup & Gain", instructor: "Jason Yadlovski" },
-      { id: "vRa_Zk90lDc", title: "Parametric EQ: Membentuk Kejelasan Vokal", subcat: "EQ & Dynamics", instructor: "Jason Yadlovski" },
-      { id: "7I3gNW8xl_w", title: "Advanced Parametric Equalizer Techniques in Fairlight", subcat: "EQ & Dynamics", instructor: "Blackmagic Design" },
-      { id: "_bzdFlYWh44", title: "High Pass & Low Pass Filters for Muddy Mixes", subcat: "EQ & Dynamics", instructor: "Alex Knickerbocker" },
-      { id: "BNqM81PPDok", title: "Carving EQ Space Between Music and Dialogue", subcat: "EQ & Dynamics", instructor: "Jason Yadlovski" },
-      { id: "booRjPgtIS4", title: "Kompresor: Meratakan Dinamika Suara", subcat: "EQ & Dynamics", instructor: "Alex Knickerbocker" },
-      { id: "N1Uy7E8nF8A", title: "Fast Attack vs Slow Release on Voice Over", subcat: "EQ & Dynamics", instructor: "Jason Yadlovski" },
-      { id: "_WakRRd7_98", title: "Multi-Band Dynamics for Broadcast Polish", subcat: "EQ & Dynamics", instructor: "Alex Knickerbocker" },
-      { id: "lgCYjek5_JY", title: "Noise Gate & Expander: Eliminating Breath Noise", subcat: "EQ & Dynamics", instructor: "Jason Yadlovski" },
-      { id: "X-QaPnzBhB4", title: "Master Limiter Mencegah Clipping & Distortion", subcat: "EQ & Dynamics", instructor: "Jason Yadlovski" },
-      { id: "U0AgZhUzqaE", title: "Brickwall Limiter vs Soft Clipper Comparison", subcat: "EQ & Dynamics", instructor: "Alex Knickerbocker" },
-      { id: "V7hCCZ-JwdE", title: "Audio Crossfades & Smooth Clip Transitions", subcat: "Sidechain Ducking", instructor: "Casey Faris" },
-      { id: "BiFibCl0474", title: "Creating Custom Audio Swells and Transitions", subcat: "Sidechain Ducking", instructor: "Film Riot" },
-      { id: "TgqE7_lsRqM", title: "Foley Sound Creation & Footsteps Layering", subcat: "Sound Design & Foley", instructor: "Film Riot" },
-      { id: "amNxmSVYc34", title: "Cloth Movement, Props & Weapon Foley Design", subcat: "Sound Design & Foley", instructor: "ProductionCrate" },
-      { id: "WxRpMTQhb4k", title: "Sound Library Search & Fairlight Foley Metadata", subcat: "Sound Design & Foley", instructor: "Blackmagic Design" },
-      { id: "wkKqXQsRl_c", title: "Ambience & Background Room Tone Construction", subcat: "Sound Design & Foley", instructor: "Alex Knickerbocker" },
-      { id: "p053TE-cTwc", title: "Stereo Width Expansion on Environmental Sounds", subcat: "Sound Design & Foley", instructor: "Jason Yadlovski" },
-      { id: "YA4rZgq0RaI", title: "Reverb: Creating Believable Acoustic Spaces", subcat: "Sound Design & Foley", instructor: "Alex Knickerbocker" },
-      { id: "n7Kvn-sZ39s", title: "Audio Automation: Volume & Pan Curves in Real-time", subcat: "Sound Design & Foley", instructor: "Jason Yadlovski" },
-      { id: "WVzSJ5Y5Y-k", title: "Touch, Latch & Write Automation Modes Explained", subcat: "Sound Design & Foley", instructor: "Alex Knickerbocker" },
-      { id: "B6m2jmhJZCY", title: "Automating EQ Sweeps and Filter Effects", subcat: "Sound Design & Foley", instructor: "Film Riot" },
-      { id: "udEc8Ub1LQ4", title: "Final Audio Mixdown Checklist Before Delivery", subcat: "Bus Routing & LUFS", instructor: "Jason Yadlovski" },
-      { id: "LZPJoS0CqC4", title: "Submix & DME Bus Routing in 3 Minutes", subcat: "Bus Routing & LUFS", instructor: "JayAreTV" },
-      { id: "qoGgu1-au90", title: "Auxiliary Busses & Send Effects Configuration", subcat: "Bus Routing & LUFS", instructor: "Alex Knickerbocker" },
-      { id: "RIO31k-vdoo", title: "DME (Dialogue, Music, Effects) Multi-Bus Routing", subcat: "Bus Routing & LUFS", instructor: "Fairlight Pro" },
-      { id: "geZT8ikUy9Q", title: "Mixing Music Tracks for High Impact in Video", subcat: "Sidechain Ducking", instructor: "Alex Knickerbocker" },
-      { id: "GZBNvabt7MY", title: "Music Ducking Strategies: Manual vs Automated", subcat: "Sidechain Ducking", instructor: "Jason Yadlovski" },
-      { id: "y2Vnp_XyRI4", title: "Sidechain Audio Ducking Otomatis", subcat: "Sidechain Ducking", instructor: "Jason Yadlovski" },
-      { id: "rtTasuhY1qg", title: "Advanced Cinematic Sound Design & Sub Bass Drops", subcat: "Sound Design & Foley", instructor: "Film Riot" },
-      { id: "eimXwqq438c", title: "SOUND DESIGN in DaVinci Resolve for Filmmaking", subcat: "Sound Design & Foley", instructor: "Jason Yadlovski" },
-      { id: "I66_LmOTlSk", title: "Layering Impact Whooshes and Risers", subcat: "Sound Design & Foley", instructor: "ProductionCrate" },
-      { id: "H8KhX9W9e-0", title: "Synthesizing Audio Elements Inside Fairlight", subcat: "Sound Design & Foley", instructor: "Alex Knickerbocker" },
-    ]
-  },
-  {
-    id: "deliver",
-    name: "Deliver Page",
-    icon: "fa-share-nodes",
-    tag: "DELIVER & MASTERING",
-    desc: "Standar ekspor industri: ProRes 422 HQ vs 4444, penanganan QuickTime Gamma Shift (Rec.709-A) macOS, paket IMF Netflix, dan DCI DCP bioskop.",
-    subcategories: ["Semua", "Codecs & Gamma Shift", "Mastering Penyiaran", "Netflix IMF & DCP", "Subtitles & Archive"],
-    videos: [
-      { id: "ISSg000DaU0", title: "The Complete Guide to the Deliver Page", subcat: "Mastering Penyiaran", instructor: "Thom Lyons" },
-      { id: "7gkUpR19TOs", title: "Deliver Page Presets for YouTube, Vimeo & Cinema", subcat: "Mastering Penyiaran", instructor: "Casey Faris" },
-      { id: "ym1NP3iLBQo", title: "Optimizing Render Speeds & GPU Encoder Settings", subcat: "Mastering Penyiaran", instructor: "MrAlexTech" },
-      { id: "otHE81syHI0", title: "How To Export Videos in DaVinci Resolve", subcat: "Mastering Penyiaran", instructor: "Jamie Fenn" },
-      { id: "-4NXxY4maYc", title: "Dasar Codec: Lossless, Intermediate vs Delivery", subcat: "Codecs & Gamma Shift", instructor: "Gerald Undone" },
-      { id: "SUvlWYD67QQ", title: "Bitrate & Compression Settings untuk Web", subcat: "Codecs & Gamma Shift", instructor: "Casey Faris" },
-      { id: "iFPD72k46iQ", title: "H.264 vs H.265 (HEVC) Encoding Comparison", subcat: "Codecs & Gamma Shift", instructor: "Gerald Undone" },
-      { id: "DI1BjkmVhTg", title: "Constant Bitrate (CBR) vs Variable Bitrate (VBR)", subcat: "Codecs & Gamma Shift", instructor: "Team DaVinci" },
-      { id: "_XzGhc9mPVk", title: "Exporting 4K vs 1080p for Online Platforms", subcat: "Codecs & Gamma Shift", instructor: "Casey Faris" },
-      { id: "2hR5dBdkmqc", title: "Vertical Video (9:16) Export Settings for TikTok & Reels", subcat: "Codecs & Gamma Shift", instructor: "MrAlexTech" },
-      { id: "Hh33FLPK-L0", title: "Custom Timeline Resolutions & Ultrawide Exports", subcat: "Codecs & Gamma Shift", instructor: "Daniel Batal" },
-      { id: "2SC9xDyPZlw", title: "Superscaling 1080p to 4K on Export", subcat: "Codecs & Gamma Shift", instructor: "Darren Mostyn" },
-      { id: "7lUFluLOh-s", title: "Frame Rate Conversion: 24fps, 30fps, 60fps", subcat: "Codecs & Gamma Shift", instructor: "Gerald Undone" },
-      { id: "3f8TR6YtkIY", title: "Optical Flow vs Nearest Frame Retiming on Export", subcat: "Codecs & Gamma Shift", instructor: "Casey Faris" },
-      { id: "pfEYAuPFhK8", title: "Handling 23.976fps vs True 24.000fps for Film", subcat: "Codecs & Gamma Shift", instructor: "Darren Mostyn" },
-      { id: "wx-cz51To0E", title: "Drop Frame vs Non-Drop Frame Timecode Explained", subcat: "Codecs & Gamma Shift", instructor: "Team DaVinci" },
-      { id: "gT08fXG2mhs", title: "Calculating Perfect Target Bitrate for File Size", subcat: "Codecs & Gamma Shift", instructor: "Gerald Undone" },
-      { id: "qzvGm1lagbY", title: "Preventing Pixelation in Dark Shadows on YouTube", subcat: "Codecs & Gamma Shift", instructor: "Cullen Kelly" },
-      { id: "SqVoTQL3iGg", title: "Solusi QuickTime Gamma Shift (Rec.709-A)", subcat: "Codecs & Gamma Shift", instructor: "Darren Mostyn" },
-      { id: "h40OWs84has", title: "Color Tagging: NCLC Tags 1-1-1 vs 1-2-1", subcat: "Codecs & Gamma Shift", instructor: "Darren Mostyn" },
-      { id: "ip09ormGWvk", title: "Exporting Cinema Masters & Audio Stems", subcat: "Subtitles & Archive", instructor: "Cullen Kelly" },
-      { id: "uWWGDngD8zc", title: "Exporting Multi-Channel Audio Tracks (5.1 & Stereo)", subcat: "Subtitles & Archive", instructor: "Alex Knickerbocker" },
-      { id: "i_88edxhJvc", title: "Render Cache Workflow & Smart Cache Deletion", subcat: "Codecs & Gamma Shift", instructor: "Film Riot" },
-      { id: "4-G3AMHFeb4", title: "Using Render Cache for Instant Deliver Export", subcat: "Codecs & Gamma Shift", instructor: "Cullen Kelly" },
-      { id: "QTAAmCg6zUQ", title: "Optimized Media Location & Cache Performance", subcat: "Codecs & Gamma Shift", instructor: "MrAlexTech" },
-      { id: "E46-cM5xVAw", title: "Purging Unused Cache to Free Up Hard Drive Space", subcat: "Codecs & Gamma Shift", instructor: "MrAlexTech" },
-      { id: "eXPApYc6Id4", title: "ProRes 422 HQ vs ProRes 4444 Master Export", subcat: "Codecs & Gamma Shift", instructor: "Darren Mostyn" },
-      { id: "9XOTQpTyoqQ", title: "Avid DNxHR/HD Master Codec Setup", subcat: "Codecs & Gamma Shift", instructor: "Team DaVinci" },
-      { id: "4QdDV43A64Q", title: "GoPro CineForm as an Open Cross-Platform Intermediate", subcat: "Codecs & Gamma Shift", instructor: "Gerald Undone" },
-      { id: "_Gh1dhb9jGk", title: "Instagram Video Compression & Bitrate Settings", subcat: "Subtitles & Archive", instructor: "Casey Faris" },
-      { id: "a9oJNfm27i0", title: "Format Ekspor Festival Film & DCI DCP", subcat: "Netflix IMF & DCP", instructor: "Color Grading Channel" },
-      { id: "maYUkyjI1x0", title: "Creating Encrypted vs Unencrypted DCP in Resolve", subcat: "Netflix IMF & DCP", instructor: "Color Grading Channel" },
-      { id: "NYKdcnj3KYw", title: "Subtitles Burn-In vs Sidecar SRT Export", subcat: "Netflix IMF & DCP", instructor: "Casey Faris" },
-      { id: "b3iWBMK92GM", title: "Project Archive (.dra) untuk Cadangan LTO Tape", subcat: "Subtitles & Archive", instructor: "MrAlexTech" },
-      { id: "eSoNI8bTpFA", title: "Consolidating Media for Cloud Project Sharing", subcat: "Subtitles & Archive", instructor: "Casey Faris" },
-      { id: "eI0SB8daZt0", title: "Relinking Restored Project Archives on Another Machine", subcat: "Subtitles & Archive", instructor: "Darren Mostyn" },
-      { id: "0HpHqn-vnt0", title: "Best Hard Drive Backup Practices for Editors", subcat: "Subtitles & Archive", instructor: "Film Riot" },
-      { id: "phwSgNO99wQ", title: "Remote Rendering via DaVinci Resolve Studio Network", subcat: "Mastering Penyiaran", instructor: "Blackmagic Design" },
-      { id: "QyDMhqpiB88", title: "Batch Exporting Multiple Timelines with Custom Naming", subcat: "Mastering Penyiaran", instructor: "Daniel Batal" },
-      { id: "yinOtVTWJFY", title: "Render Queue Presets & Job Status Management", subcat: "Mastering Penyiaran", instructor: "Thom Lyons" },
-      { id: "0Mds4-ggpNI", title: "Email & Notification Alerts on Render Completion", subcat: "Mastering Penyiaran", instructor: "MrAlexTech" },
-      { id: "bJS_rrzkETk", title: "Professional Post-Production Hand-off Pipeline", subcat: "Mastering Penyiaran", instructor: "Darren Mostyn" },
-      { id: "cKVm5PZWTNY", title: "Delivering Broadcast Masters to QC Specifications", subcat: "Mastering Penyiaran", instructor: "Darren Mostyn" },
-      { id: "zK-S_ZCdeQE", title: "Netflix Delivery Specifications: IMF & Naming Rules", subcat: "Mastering Penyiaran", instructor: "Netflix Tech" },
-      { id: "F8PfKy_g_Qc", title: "EDL, XML & AAF Export for Pro Tools & Symphony", subcat: "Mastering Penyiaran", instructor: "Blackmagic Design" },
-      { id: "Fhh0o43-IxQ", title: "Final Wrap: Post-Production File Delivery Archival", subcat: "Mastering Penyiaran", instructor: "Team DaVinci" },
-    ]
-  }
-];
+  <!-- Memuat Dataset Materi (263 Video) dari data.js -->
+  <script src="data.js"></script>
 
-    /* =========================================================================
-       STATE MANAGEMENT & LOCALSTORAGE
-       ========================================================================= */
+  <!-- Logika Aplikasi -->
+  <script>
     let activePageId = "media";
     let activeSubcat = "Semua";
     let currentVideoObj = null;
-    let visibleCount = 12; // Menampilkan 12 item awal lalu muat bertahap
+    let visibleCount = 12;
     let dbDone = JSON.parse(localStorage.getItem('rhub_done') || '[]');
     let dbNotes = JSON.parse(localStorage.getItem('rhub_notes') || '{}');
     let notesTimeout;
 
-    const totalVideosCount = davinciPages.reduce((acc, p) => acc + p.videos.length, 0);
+    const totalVideosCount = (typeof davinciPages !== 'undefined') ? davinciPages.reduce((acc, p) => acc + p.videos.length, 0) : 0;
 
-    /* =========================================================================
-       INITIALIZATION
-       ========================================================================= */
     function init() {
+      if (typeof davinciPages === 'undefined') return;
       renderWorkspaceTabs();
       renderPageContent();
       updateGlobalProgress();
-      shuffleHeroVideo();
 
       document.getElementById('global-search-input').addEventListener('input', () => {
         visibleCount = 12;
@@ -585,7 +346,6 @@
         if(!currentVideoObj) return;
         clearTimeout(notesTimeout);
         document.getElementById('notes-status').style.opacity = '0';
-        
         notesTimeout = setTimeout(() => {
           dbNotes[currentVideoObj.id] = e.target.value;
           localStorage.setItem('rhub_notes', JSON.stringify(dbNotes));
@@ -600,7 +360,6 @@
       visibleCount = 12;
       renderWorkspaceTabs();
       renderPageContent();
-      
       const el = document.getElementById('kurikulum');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -608,20 +367,16 @@
     function renderWorkspaceTabs() {
       const container = document.getElementById('workspace-tabs');
       container.innerHTML = '';
-
       davinciPages.forEach(p => {
         const isActive = p.id === activePageId;
         const btn = document.createElement('button');
         btn.className = `flex flex-col items-center justify-center p-4 rounded-2xl border transition-all text-center group ${
-          isActive 
-            ? 'bg-slate-900 border-slate-900 text-white shadow-md shadow-slate-900/10' 
-            : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+          isActive ? 'liquid-glass-active text-white' : 'liquid-glass liquid-glass-hover text-slate-300'
         }`;
-
         btn.innerHTML = `
-          <i class="fa-solid ${p.icon} text-lg mb-2 ${isActive ? 'text-indigo-400' : 'text-slate-400 group-hover:text-indigo-600'} transition-colors"></i>
+          <i class="fa-solid ${p.icon} text-lg mb-2 ${isActive ? 'text-[#d4ff32]' : 'text-slate-400 group-hover:text-[#d4ff32]'} transition-colors"></i>
           <span class="text-xs font-bold">${p.name}</span>
-          <span class="text-[10px] mt-0.5 ${isActive ? 'text-slate-300' : 'text-slate-400'}">${p.videos.length} Video</span>
+          <span class="text-[10px] mt-0.5 ${isActive ? 'text-slate-200' : 'text-slate-400'}">${p.videos.length} Video</span>
         `;
         btn.onclick = () => switchPage(p.id);
         container.appendChild(btn);
@@ -636,17 +391,13 @@
       document.getElementById('active-page-title').textContent = page.name;
       document.getElementById('active-page-desc').textContent = page.desc;
 
-      // Render Sub-Category Filter Chips
       const subcatContainer = document.getElementById('subcategory-filters');
       subcatContainer.innerHTML = '';
-      
       page.subcategories.forEach(sub => {
         const isChipActive = sub === activeSubcat;
         const chip = document.createElement('button');
-        chip.className = `px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${
-          isChipActive
-            ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-            : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-white hover:text-slate-900'
+        chip.className = `px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+          isChipActive ? 'glass-pill-active shadow-sm' : 'glass-pill text-slate-300 hover:text-white'
         }`;
         chip.textContent = sub;
         chip.onclick = () => {
@@ -673,7 +424,6 @@
       if(!page) return;
 
       const searchTerm = document.getElementById('global-search-input').value.toLowerCase();
-      
       let filtered = page.videos.filter(v => {
         const matchSearch = v.title.toLowerCase().includes(searchTerm) || v.instructor.toLowerCase().includes(searchTerm);
         const matchSubcat = (activeSubcat === "Semua") || (v.subcat === activeSubcat);
@@ -682,12 +432,11 @@
 
       const container = document.getElementById('video-grid');
       container.innerHTML = '';
-
       const slicedVideos = filtered.slice(0, visibleCount);
 
       if (slicedVideos.length === 0) {
         container.innerHTML = `
-          <div class="col-span-full py-16 text-center text-slate-400">
+          <div class="col-span-full py-16 text-center text-slate-500">
             <i class="fa-solid fa-film text-3xl mb-3"></i>
             <p class="text-sm font-bold">Tidak ada video yang cocok dengan pencarian.</p>
           </div>
@@ -699,31 +448,28 @@
       slicedVideos.forEach(vid => {
         const isDone = dbDone.includes(vid.id);
         const card = document.createElement('div');
-        card.className = `group cursor-pointer rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border bg-white flex flex-col ${
-          isDone ? 'border-emerald-200 bg-emerald-50/20' : 'border-slate-200/80 hover:-translate-y-1'
+        card.className = `group cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 liquid-glass liquid-glass-hover flex flex-col ${
+          isDone ? 'border-emerald-500/50 bg-emerald-950/20' : ''
         }`;
-
         card.innerHTML = `
-          <div class="relative bg-slate-900">
+          <div class="relative bg-black/60 overflow-hidden">
             <img src="https://img.youtube.com/vi/${vid.id}/mqdefault.jpg" alt="${vid.title}" class="thumbnail-img w-full group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-            <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition"></div>
-            
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm text-slate-900 flex items-center justify-center shadow-xl scale-90 group-hover:scale-100 transition-transform">
-                <i class="fa-solid fa-play text-xs ml-0.5"></i>
+              <div class="w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-xl scale-90 group-hover:scale-100 transition-transform">
+                <i class="fa-solid fa-play text-xs ml-0.5 text-[#d4ff32]"></i>
               </div>
             </div>
-            
-            ${isDone ? '<div class="absolute top-2.5 right-2.5 bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] shadow-md"><i class="fa-solid fa-check"></i></div>' : ''}
+            ${isDone ? '<div class="absolute top-2.5 right-2.5 bg-emerald-500 text-slate-950 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shadow-md"><i class="fa-solid fa-check"></i></div>' : ''}
           </div>
           <div class="p-4 flex flex-col justify-between flex-grow">
             <div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">${vid.subcat}</span>
-              <h5 class="text-xs font-bold text-slate-800 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-snug mt-2">${vid.title}</h5>
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#d4ff32] glass-pill px-2 py-0.5 rounded">${vid.subcat}</span>
+              <h5 class="text-xs font-bold text-white line-clamp-2 group-hover:text-[#d4ff32] transition-colors leading-snug mt-2.5">${vid.title}</h5>
             </div>
-            <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400">
+            <div class="mt-4 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] font-bold text-slate-400">
               <span class="truncate pr-2">${vid.instructor}</span>
-              <span class="${isDone ? 'text-emerald-600' : 'text-indigo-600 group-hover:underline'}">${isDone ? 'Selesai ✓' : 'Tonton'}</span>
+              <span class="${isDone ? 'text-emerald-400' : 'text-[#d4ff32] group-hover:underline'}">${isDone ? 'Selesai ✓' : 'Tonton'}</span>
             </div>
           </div>
         `;
@@ -731,7 +477,6 @@
         container.appendChild(card);
       });
 
-      // Kontrol Tombol Load More
       const loadMoreBtn = document.getElementById('load-more-container');
       const remaining = filtered.length - visibleCount;
       if (remaining > 0) {
@@ -751,16 +496,13 @@
       currentVideoObj = videoObj;
       const container = document.getElementById('player-container');
       container.classList.remove('hidden');
-      
       document.getElementById('main-iframe').src = `https://www.youtube.com/embed/${videoObj.id}?autoplay=1`;
       document.getElementById('player-title').textContent = videoObj.title;
       document.getElementById('player-page-tag').textContent = `${pageName} • ${videoObj.subcat}`;
       document.getElementById('player-yt-link').href = `https://youtu.be/${videoObj.id}`;
-      
       const notesArea = document.getElementById('personal-notes');
       notesArea.value = dbNotes[videoObj.id] || '';
       document.getElementById('notes-status').style.opacity = '0';
-
       updatePlayerCompletionBtn();
       container.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -784,13 +526,12 @@
     function updatePlayerCompletionBtn() {
       const btn = document.getElementById('player-done-btn');
       const isDone = dbDone.includes(currentVideoObj.id);
-      
       if (isDone) {
         btn.innerHTML = '<i class="fa-solid fa-check mr-1.5"></i> Selesai Ditonton';
-        btn.className = "bg-emerald-500 hover:bg-emerald-600 text-white text-[13px] font-bold px-6 py-2.5 rounded-xl transition-all shadow-sm";
+        btn.className = "bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-[13px] font-black px-6 py-2.5 rounded-xl transition-all shadow-md";
       } else {
         btn.innerHTML = 'Tandai Selesai';
-        btn.className = "bg-slate-900 hover:bg-slate-800 text-white text-[13px] font-bold px-6 py-2.5 rounded-xl transition-all shadow-sm";
+        btn.className = "bg-[#d4ff32] hover:bg-[#c6f325] text-slate-950 text-[13px] font-black px-6 py-2.5 rounded-xl transition-all shadow-md";
       }
     }
 
@@ -798,18 +539,13 @@
       if (!currentVideoObj) return;
       const id = currentVideoObj.id;
       const idx = dbDone.indexOf(id);
-      
       if (idx > -1) dbDone.splice(idx, 1);
       else dbDone.push(id);
-      
       localStorage.setItem('rhub_done', JSON.stringify(dbDone));
-      
       updatePlayerCompletionBtn();
       updateGlobalProgress();
-      
       const page = davinciPages.find(p => p.id === activePageId);
       if(page) updatePageProgress(page);
-      
       renderVideoCards();
     };
 
@@ -817,14 +553,6 @@
       const done = dbDone.length;
       const pct = totalVideosCount === 0 ? 0 : Math.round((done / totalVideosCount) * 100);
       document.getElementById('global-progress-text').textContent = `${pct}% Selesai`;
-    }
-
-    function shuffleHeroVideo() {
-      const allVids = davinciPages.map(p => p.videos).flat();
-      if(allVids.length > 0) {
-        const randId = allVids[Math.floor(Math.random() * allVids.length)].id;
-        document.getElementById('hero-bg-iframe').src = `https://www.youtube.com/embed/${randId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${randId}&showinfo=0&rel=0&modestbranding=1`;
-      }
     }
 
     init();
